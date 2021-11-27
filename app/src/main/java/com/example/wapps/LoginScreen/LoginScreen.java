@@ -1,0 +1,16 @@
+package com.example.wapps.LoginScreen;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import com.example.wapps.R;
+
+public class LoginScreen extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login_screen);
+    }
+}
