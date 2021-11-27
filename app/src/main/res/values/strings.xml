@@ -3,9 +3,10 @@
     <string name="todo">TODO</string>
     <string name="welcome">Benvingut!</string>
     <string name="login">Inicia Sessió</string>
-    <string name="correo">Correo</string>
-    <string name="contrasenya">Contrasenya</string>
+    <string name="email">Correo</string>
+    <string name="password">Contrasenya</string>
     <string name="forgotPassword">Has oblidat la contrasenya?</string>
-    <string name="registerIfNoAcc">No tens compte? Registra’t</string>
+    <string name="registerIfNoAcc">No tens compte?</string>
+    <string name="register">Registra\'t</string>
     <string name="connect">O connecta amb</string>
 </resources>
