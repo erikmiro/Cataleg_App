@@ -88,12 +88,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="56dp"
-                app:srcCompat="@drawable/white_box"
-                app:layout_constraintTop_toBottomOf="@+id/loginLine2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginLine2"
+                app:srcCompat="@drawable/white_box"
                 tools:layout_editor_absoluteX="295dp"
                 tools:layout_editor_absoluteY="700dp" />
-
 
 
             <ImageView
@@ -101,8 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:background="@drawable/ic_twitter_icon"
                 android:layout_marginEnd="56dp"
+                android:background="@drawable/ic_twitter_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginLine2" />
 
@@ -118,7 +117,7 @@
 
             <ImageView
                 android:id="@+id/loginLine2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="22dp"
@@ -142,7 +141,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/loginPasswordTxt"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="40dp"
@@ -150,34 +149,28 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/emailTxt"
-                    app:passwordToggleEnabled="true">
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/custom_lock_icon">
 
                     <EditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:drawablePadding="18dp"
-                        android:drawableStart="@drawable/custom_lock_icon"
-                        android:ems="10"
-                        android:paddingBottom="0dp"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:singleLine="true"
-                        android:paddingStart="4dp"
-                        android:paddingEnd="8dp" />
+                        android:singleLine="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emailTxt"
                     android:layout_width="0dp"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="40dp"
                     android:gravity="bottom"
+                    app:startIconDrawable="@drawable/custom_email_icon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/loginTxt">
@@ -185,25 +178,20 @@
                     <EditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:background="@color/white"
-                        android:drawableStart="@drawable/custom_email_icon"
-                        android:drawablePadding="16dp"
-                        android:paddingBottom="0dp"
                         android:ems="10"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:lines="1"
-                        android:maxLines="1"
-                        android:paddingStart="4dp"
-                        android:paddingEnd="8dp" />
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/noAccTxt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="91dp"
                     android:fontFamily="@font/notosanshk_regular"
