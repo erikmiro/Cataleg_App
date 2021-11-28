@@ -22,6 +22,7 @@ public class LoginScreen extends AppCompatActivity {
 private EditText emailTxt, passwordTxt;
 private Button loginBtn;
 private FirebaseAuth mAuth;
+private Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ private FirebaseAuth mAuth;
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         if (FirebaseAuth.getInstance().getCurrentUser() != null)
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(goToMain);
     }
 
     public void loginUser() {
@@ -75,7 +76,7 @@ private FirebaseAuth mAuth;
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginScreen.this, getString(R.string.loggedSuccessfully), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(goToMain);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
