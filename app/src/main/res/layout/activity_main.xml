@@ -18,7 +18,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="@color/bottombar_background"
-        app:itemIconSize="80dp"
+        app:itemIconSize="30dp"
         app:itemIconTint="@color/white"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation" />
