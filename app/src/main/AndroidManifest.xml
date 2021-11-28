@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Wapps">
         <activity
             android:name=".LoginScreen.LoginScreen"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
