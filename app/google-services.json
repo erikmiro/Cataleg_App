@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472127925999",
+    "project_id": "catrenat-3e277",
+    "storage_bucket": "catrenat-3e277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472127925999:android:60b9913d8e09eeea5cf51a",
+        "android_client_info": {
+          "package_name": "com.example.wapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472127925999-rvcnl1dt6a1k5kggr8qlj2ejq9i6mi5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQj4jSXgjiR5obZ8OIYaN4Rl5GzYkguO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472127925999-rvcnl1dt6a1k5kggr8qlj2ejq9i6mi5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

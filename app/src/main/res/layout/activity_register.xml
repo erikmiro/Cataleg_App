@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_login_screen_bg"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/welcomeTxt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanshk_bold"
+        android:gravity="center"
+        android:text="@string/welcome"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/register_box_background"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/loginTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/notosanshk_medium"
+            android:gravity="center"
+            android:text="@string/register"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/passRegTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:paddingBottom="10dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintBottom_toTopOf="@+id/passRepRegTxt"
+            app:layout_constraintEnd_toEndOf="@+id/nameRegTxt"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/nameRegTxt"
+            app:layout_constraintTop_toBottomOf="@+id/emailRegTxt" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/notosanshk_black"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:text="@string/registerBtn"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            app:cornerRadius="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/passRepRegTxt"
+            app:layout_constraintStart_toStartOf="@+id/passRepRegTxt"
+            app:layout_constraintTop_toBottomOf="@+id/passRepRegTxt" />
+
+        <EditText
+            android:id="@+id/passRepRegTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
+            android:ems="10"
+            android:hint="@string/passwordRep"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:paddingBottom="10dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintEnd_toEndOf="@+id/nameRegTxt"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/nameRegTxt"
+            app:layout_constraintTop_toBottomOf="@+id/passRegTxt" />
+
+        <EditText
+            android:id="@+id/nameRegTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:hint="@string/user"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:paddingBottom="12dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintBottom_toTopOf="@+id/emailRegTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginTxt" />
+
+        <EditText
+            android:id="@+id/emailRegTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:paddingBottom="10dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintBottom_toTopOf="@+id/passRegTxt"
+            app:layout_constraintEnd_toEndOf="@+id/nameRegTxt"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/nameRegTxt"
+            app:layout_constraintTop_toBottomOf="@+id/nameRegTxt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
