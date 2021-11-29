@@ -23,7 +23,7 @@ public class LoginScreen extends AppCompatActivity {
         EditText innerPasswordTxt = findViewById(R.id.etPassword);
         EditText innerEmailTxt = findViewById(R.id.etEmail);
 
-        // To be able to change lock icon color when focused
+        // To be able to change lock icon color when focused.
         innerPasswordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
