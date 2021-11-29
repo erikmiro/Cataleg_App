@@ -67,7 +67,7 @@
                 android:id="@+id/loginWhiteBoxGoogle"
                 android:layout_width="57dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginConnectTxt"
@@ -93,6 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linia" />
 
+
             <ImageView
                 android:id="@+id/loginGoogleIcon"
                 android:layout_width="57dp"
@@ -103,6 +104,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/loginConnectTxt"
                 app:srcCompat="@drawable/ic_google" />
 
+
+            <TextView
+                android:id="@+id/loginConnectTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="23dp"
+                android:background="@drawable/connect_with_background"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/notosanshk_regular"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/connect"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view"
