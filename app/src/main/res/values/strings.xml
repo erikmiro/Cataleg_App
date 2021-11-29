@@ -5,8 +5,18 @@
     <string name="login">Inicia Sessió</string>
     <string name="email">Correo</string>
     <string name="password">Contrasenya</string>
+    <string name="passwordRep">Repeteix contrasenya</string>
+    <string name="user">Usuari</string>
     <string name="forgotPassword">Has oblidat la contrasenya?</string>
     <string name="registerIfNoAcc">No tens compte?</string>
     <string name="register">Registra\'t</string>
     <string name="connect">O connecta amb</string>
+    <string name="registerBtn">Registrar</string>
+    <string name="register">Registra\'t</string>
+    <string name="emailRequired">Introdueix el correu electrònic</string>
+    <string name="emailNotValid">Introdueix un correu electrònic vàlid</string>
+    <string name="passwordRequired">Introdueix una contrasenya</string>
+    <string name="passwordMinLength">La longitud mínima ha de ser de 6 caràcters</string>
+    <string name="loggedSuccessfully">S\'ha iniciat sessió correctament.</string>
+    <string name="wrongEmailPass">Correu electrònic o contrasenya incorrectes</string>
 </resources>
