@@ -15,6 +15,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/linia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:srcCompat="@drawable/ic_linia" />
+
             <TextView
                 android:id="@+id/loginWelcomeTxt"
                 android:layout_width="match_parent"
@@ -30,30 +43,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/loginConnectTxt"
-                android:layout_width="96dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/notosanshk_regular"
-                android:text="@string/connect"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/loginLine2"
-                app:layout_constraintStart_toEndOf="@+id/loginLine1"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
-
             <ImageView
-                android:id="@+id/loginWhiteBoxGoogle"
+                android:id="@+id/loginWhiteBoxFb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginLine1"
+                app:layout_constraintTop_toBottomOf="@+id/linia"
                 app:srcCompat="@drawable/white_box" />
 
             <ImageView
-                android:id="@+id/loginWhiteBoxFb"
+                android:id="@+id/loginFbIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linia"
+                app:srcCompat="@drawable/ic_fb_icon" />
+
+            <ImageView
+                android:id="@+id/loginWhiteBoxGoogle"
                 android:layout_width="57dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -63,14 +74,24 @@
                 app:srcCompat="@drawable/white_box" />
 
             <ImageView
-                android:id="@+id/loginFbIcon"
+                android:id="@+id/loginWhiteBoxTwitter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
-                android:layout_marginTop="28dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginLine1"
-                app:srcCompat="@drawable/ic_fb_icon" />
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linia"
+                app:srcCompat="@drawable/white_box" />
+
+            <ImageView
+                android:id="@+id/loginTwitterIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/ic_twitter_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linia" />
 
             <ImageView
                 android:id="@+id/loginGoogleIcon"
@@ -82,48 +103,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/loginConnectTxt"
                 app:srcCompat="@drawable/ic_google" />
 
-            <ImageView
-                android:id="@+id/loginWhiteBoxTwitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="56dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginLine2"
-                app:srcCompat="@drawable/white_box"
-                tools:layout_editor_absoluteX="295dp"
-                tools:layout_editor_absoluteY="700dp" />
-
-
-            <ImageView
-                android:id="@+id/loginTwitterIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="56dp"
-                android:background="@drawable/ic_twitter_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginLine2" />
-
-            <ImageView
-                android:id="@+id/loginLine1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="34dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view"
-                app:srcCompat="@drawable/blue_line" />
-
-            <ImageView
-                android:id="@+id/loginLine2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
-                android:layout_marginEnd="22dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view"
-                app:srcCompat="@drawable/blue_line" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/view"
@@ -148,7 +127,7 @@
                     android:gravity="bottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emailTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/loginEmailTxt"
                     app:passwordToggleEnabled="true"
                     app:startIconDrawable="@drawable/custom_lock_icon">
 
@@ -160,10 +139,11 @@
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:singleLine="true" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emailTxt"
+                    android:id="@+id/loginEmailTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
@@ -257,6 +237,18 @@
                     tools:ignore="DuplicateSpeakableTextCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/loginConnectTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="#F9F9F9"
+                android:backgroundTint="#F9F9F9"
+                android:fontFamily="@font/notosanshk_regular"
+                android:text="@string/connect"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="159dp"
+                tools:layout_editor_absoluteY="626dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
