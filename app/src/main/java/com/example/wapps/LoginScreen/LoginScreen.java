@@ -24,7 +24,6 @@ public class LoginScreen extends AppCompatActivity {
 private EditText emailTxt, passwordTxt;
 private Button loginBtn;
 private FirebaseAuth mAuth;
-private Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,33 +31,31 @@ private Intent goToMain = new Intent(getApplicationContext(), MainActivity.class
         setContentView(R.layout.activity_login_screen);
 
         // Properties
-        TextInputLayout passwordTxt = findViewById(R.id.loginPasswordTxt);
-        TextInputLayout emailTxt = findViewById(R.id.loginEmailTxt);
-        EditText innerPasswordTxt = findViewById(R.id.etPassword);
-        EditText innerEmailTxt = findViewById(R.id.etEmail);
+        TextInputLayout outerPasswordTxt = findViewById(R.id.loginPasswordTxt);
+        TextInputLayout outerEmailTxt = findViewById(R.id.loginEmailTxt);
+        passwordTxt = findViewById(R.id.etPassword);
+        emailTxt = findViewById(R.id.etEmail);
 
         // To be able to change lock icon color when focused
-        innerPasswordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        passwordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
-                passwordTxt.setStartIconTintList(ColorStateList.valueOf(color));
+                outerPasswordTxt.setStartIconTintList(ColorStateList.valueOf(color));
             }
         });
 
         // To be able to change email icon color when focused
-        innerEmailTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        emailTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
-                emailTxt.setStartIconTintList(ColorStateList.valueOf(color));
+                outerEmailTxt.setStartIconTintList(ColorStateList.valueOf(color));
             }
         });
 
 
         mAuth = FirebaseAuth.getInstance();
-        emailTxt = findViewById(R.id.emailTxt);
-        passwordTxt = findViewById(R.id.passwordTxt);
         loginBtn = findViewById(R.id.loginBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +72,7 @@ private Intent goToMain = new Intent(getApplicationContext(), MainActivity.class
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         if (FirebaseAuth.getInstance().getCurrentUser() != null)
-            startActivity(goToMain);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     public void loginUser() {
@@ -104,7 +101,7 @@ private Intent goToMain = new Intent(getApplicationContext(), MainActivity.class
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginScreen.this, getString(R.string.loggedSuccessfully), Toast.LENGTH_SHORT).show();
-                startActivity(goToMain);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
