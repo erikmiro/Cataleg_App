@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.util.Patterns;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wapps.MainActivity;
 import com.example.wapps.R;
+import com.example.wapps.RegisterActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginScreen extends AppCompatActivity {
 private EditText emailTxt, passwordTxt;
+private TextView registerTxt;
 private Button loginBtn;
 private FirebaseAuth mAuth;
 
@@ -35,6 +38,8 @@ private FirebaseAuth mAuth;
         TextInputLayout outerEmailTxt = findViewById(R.id.loginEmailTxt);
         passwordTxt = findViewById(R.id.etPassword);
         emailTxt = findViewById(R.id.etEmail);
+        registerTxt = findViewById(R.id.registerTxt);
+        loginBtn = findViewById(R.id.loginBtn);
 
         // To be able to change lock icon color when focused
         passwordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -54,14 +59,20 @@ private FirebaseAuth mAuth;
             }
         });
 
-
+        // Sign in button (Login authentication process)
         mAuth = FirebaseAuth.getInstance();
-        loginBtn = findViewById(R.id.loginBtn);
-
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginUser();
+            }
+        });
+
+        // Register Activity launch
+        registerTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
     }
@@ -83,18 +94,22 @@ private FirebaseAuth mAuth;
         if(email.isEmpty()) {
             emailTxt.setError(getString(R.string.emailRequired));
             emailTxt.requestFocus();
+            return;
         } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailTxt.setError(getString(R.string.emailNotValid));
             emailTxt.requestFocus();
+            return;
         }
 
         // Password conditions
         if(password.isEmpty()) {
             passwordTxt.setError(getString(R.string.passwordRequired));
             passwordTxt.requestFocus();
+            return;
         } else if(password.length() < 6) {
             passwordTxt.setError(getString(R.string.passwordMinLength));
             passwordTxt.requestFocus();
+            return;
         }
 
         mAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
