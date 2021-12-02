@@ -10,6 +10,7 @@
     <string name="forgotPassword">Has oblidat la contrasenya?</string>
     <string name="registerIfNoAcc">No tens compte?</string>
     <string name="connect">O connecta amb</string>
+    <string name="register">Registra\'t</string>
     <string name="registerBtn">Registrar</string>
     <string name="usernameRequired">Introdueix un nom d\'usuari</string>
     <string name="emailRequired">Introdueix un correu electrònic</string>
