@@ -9,4 +9,6 @@
     <string name="registerIfNoAcc">No tens compte?</string>
     <string name="register">Registra\'t</string>
     <string name="connect">O connecta amb</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
