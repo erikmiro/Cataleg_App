@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,7 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText nameRegTxt, emailRegTxt, passRegTxt, passRepRegTxt;
+    EditText nameRegTxt, emailRegTxt, passRegTxt, passConfirmRegTxt;
+    TextInputLayout outerUsernameTxt, outerEmailTxt, outerPasswordTxt, outerConfirmPasswordTxt;
     Button registerBtn;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -32,10 +35,14 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // Properties
-        nameRegTxt = findViewById(R.id.nameRegTxt);
-        emailRegTxt = findViewById(R.id.emailRegTxt);
-        passRegTxt = findViewById(R.id.passRegTxt);
-        passRepRegTxt = findViewById(R.id.passRepRegTxt);
+        outerUsernameTxt = findViewById(R.id.registerUsernameTxt);
+        outerEmailTxt = findViewById(R.id.registerEmailTxt);
+        outerPasswordTxt = findViewById(R.id.registerPasswordTxt);
+        outerConfirmPasswordTxt = findViewById(R.id.registerConfirmPasswordTxt);
+        nameRegTxt = findViewById(R.id.etRegisterUsername);
+        emailRegTxt = findViewById(R.id.etRegisterEmail);
+        passRegTxt = findViewById(R.id.etRegisterPassword);
+        passConfirmRegTxt = findViewById(R.id.etRegisterConfirmPassword);
         registerBtn = findViewById(R.id.registerBtn);
 
         // Firebase
@@ -48,6 +55,42 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser();
             }
         });
+
+        // To be able to change username icon color when focused
+        nameRegTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
+                outerUsernameTxt.setStartIconTintList(ColorStateList.valueOf(color));
+            }
+        });
+
+        // To be able to change email icon color when focused
+        emailRegTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
+                outerEmailTxt.setStartIconTintList(ColorStateList.valueOf(color));
+            }
+        });
+
+        // To be able to change password icon color when focused
+        passRegTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
+                outerPasswordTxt.setStartIconTintList(ColorStateList.valueOf(color));
+            }
+        });
+
+        // To be able to change confirm password icon color when focused
+        passConfirmRegTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
+                outerConfirmPasswordTxt.setStartIconTintList(ColorStateList.valueOf(color));
+            }
+        });
     }
 
     public void registerUser() {
@@ -55,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
         String username = nameRegTxt.getText().toString().trim();
         String email = emailRegTxt.getText().toString().trim();
         String password = passRegTxt.getText().toString().trim();
-        String passwordRep = passRepRegTxt.getText().toString().trim();
+        String passwordRep = passConfirmRegTxt.getText().toString().trim();
 
         // Username conditions
         if(username.isEmpty()) {
@@ -85,8 +128,8 @@ public class RegisterActivity extends AppCompatActivity {
             passRegTxt.requestFocus();
             readyCheck = true;
         } else if(!password.equals(passwordRep)) {
-            passRepRegTxt.setError(getString(R.string.passwordNotEqual));
-            passRepRegTxt.requestFocus();
+            passConfirmRegTxt.setError(getString(R.string.passwordNotEqual));
+            passConfirmRegTxt.requestFocus();
             readyCheck = true;
         }
 
@@ -128,6 +171,5 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 }
