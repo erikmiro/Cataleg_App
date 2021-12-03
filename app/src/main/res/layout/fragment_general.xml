@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".GeneralFragment">
+
+    <TextView
+        android:id="@+id/welcomeGeneralFragment"
+        android:layout_width="372dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/notosanshk_bold"
+        android:gravity="center"
+        android:text="@string/welcomeGeneralScreen"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/gameSquareImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-123dp"
+        android:layout_marginEnd="3dp"
+        android:src="@drawable/game_square"
+        app:layout_constraintEnd_toStartOf="@+id/bookSquareImage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/musicSquareImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/musicSquareImage" />
+
+    <ImageView
+        android:id="@+id/musicSquareImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:src="@drawable/music_square"
+        app:layout_constraintEnd_toStartOf="@+id/serieSquareImage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeGeneralFragment" />
+
+    <ImageView
+        android:id="@+id/serieSquareImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-80dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/serie_square"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/musicSquareImage"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeGeneralFragment" />
+
+    <ImageView
+        android:id="@+id/bookSquareImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-106dp"
+        android:layout_marginTop="-98dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/books_square"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameSquareImage"
+        app:layout_constraintTop_toBottomOf="@+id/serieSquareImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

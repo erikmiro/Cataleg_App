@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="app/src/main/res/layout/content_register.xml" value="0.34739583333333335" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.34739583333333335" />
+        <entry key="app/src/main/res/layout/fragment_general.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.34739583333333335" />
       </map>
     </option>

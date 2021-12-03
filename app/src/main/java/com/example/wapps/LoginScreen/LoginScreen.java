@@ -31,8 +31,10 @@ private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_screen);
+       // setContentView(R.layout.activity_login_screen);
+        setContentView(R.layout.fragment_general);
 
+/*
         // Properties
         TextInputLayout outerPasswordTxt = findViewById(R.id.loginPasswordTxt);
         TextInputLayout outerEmailTxt = findViewById(R.id.loginEmailTxt);
@@ -124,5 +126,7 @@ private FirebaseAuth mAuth;
                 Toast.makeText(LoginScreen.this, getString(R.string.wrongEmailPass), Toast.LENGTH_SHORT).show();
             }
         });
+
+ */
     }
 }
