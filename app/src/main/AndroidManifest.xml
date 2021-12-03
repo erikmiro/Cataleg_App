@@ -12,8 +12,7 @@
         <activity
             android:name=".LoginScreen.LoginScreen"
             android:windowSoftInputMode="adjustPan"
-            android:exported="true"
-            android:noHistory="true">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
