@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wapps">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginScreen.LoginScreen"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +22,9 @@
         </activity>
         <activity
             android:name=".LoginScreen.LoginScreen"
+            android:exported="false"/>
+        <activity
+            android:name=".RegisterActivity"
             android:exported="false"/>
     </application>
 
