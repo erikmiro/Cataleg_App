@@ -29,27 +29,27 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
 
                     case R.id.nav_music:
-                        vibe.vibrate(5);
+                        vibe.vibrate(3);
                         fragment = new MusicFragment();
                         break;
 
                     case R.id.nav_movies:
-                        vibe.vibrate(5);
+                        vibe.vibrate(3);
                         fragment = new MoviesFragment();
                         break;
 
                     case R.id.nav_general:
-                        vibe.vibrate(5);
+                        vibe.vibrate(3);
                         fragment = new GeneralFragment();
                         break;
 
                     case R.id.nav_games:
-                        vibe.vibrate(5);
+                        vibe.vibrate(3);
                         fragment = new GamesFragment();
                         break;
 
                     case R.id.nav_books:
-                        vibe.vibrate(5);
+                        vibe.vibrate(3);
                         fragment = new BooksFragment();
                         break;
                 }

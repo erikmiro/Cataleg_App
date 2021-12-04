@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginScreen.LoginScreen"
+            android:name=".MainActivity"
             android:exported="false"/>
         <activity
             android:name=".RegisterActivity"
