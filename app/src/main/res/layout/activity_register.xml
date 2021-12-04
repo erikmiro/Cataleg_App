@@ -12,11 +12,13 @@
         android:id="@+id/welcomeTxt2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/notosanshk_bold"
         android:gravity="center"
         android:text="@string/welcome"
         android:textColor="@color/white"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,9 +27,9 @@
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/register_box_background"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,9 +39,9 @@
 
         <TextView
             android:id="@+id/loginTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_width="410dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/notosanshk_medium"
             android:gravity="center"
             android:text="@string/register"
@@ -48,30 +50,117 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/passRegTxt"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerUsernameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:paddingBottom="10dp"
-            android:theme="@style/EditTextTheme"
-            app:layout_constraintBottom_toTopOf="@+id/passRepRegTxt"
-            app:layout_constraintEnd_toEndOf="@+id/nameRegTxt"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/nameRegTxt"
-            app:layout_constraintTop_toBottomOf="@+id/emailRegTxt" />
+            android:layout_marginEnd="40dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginTxt"
+            app:startIconDrawable="@drawable/custom_username_icon">
+
+            <EditText
+                android:id="@+id/etRegisterUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="@string/user"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerEmailTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerUsernameTxt"
+            app:startIconDrawable="@drawable/custom_email_icon">
+
+            <EditText
+                android:id="@+id/etRegisterEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerPasswordTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerEmailTxt"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/custom_lock_icon">
+
+            <EditText
+                android:id="@+id/etRegisterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerConfirmPasswordTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerPasswordTxt"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/custom_lock_icon">
+
+            <EditText
+                android:id="@+id/etRegisterConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/passwordConfirm"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="80dp"
             android:fontFamily="@font/notosanshk_black"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
@@ -80,62 +169,9 @@
             android:textSize="12sp"
             app:cornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/passRepRegTxt"
-            app:layout_constraintStart_toStartOf="@+id/passRepRegTxt"
-            app:layout_constraintTop_toBottomOf="@+id/passRepRegTxt" />
-
-        <EditText
-            android:id="@+id/passRepRegTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-            android:ems="10"
-            android:hint="@string/passwordRep"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:paddingBottom="10dp"
-            android:theme="@style/EditTextTheme"
-            app:layout_constraintEnd_toEndOf="@+id/nameRegTxt"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/nameRegTxt"
-            app:layout_constraintTop_toBottomOf="@+id/passRegTxt" />
-
-        <EditText
-            android:id="@+id/nameRegTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="50dp"
-            android:ems="10"
-            android:hint="@string/user"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:paddingBottom="12dp"
-            android:theme="@style/EditTextTheme"
-            app:layout_constraintBottom_toTopOf="@+id/emailRegTxt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginTxt" />
-
-        <EditText
-            android:id="@+id/emailRegTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:paddingBottom="10dp"
-            android:theme="@style/EditTextTheme"
-            app:layout_constraintBottom_toTopOf="@+id/passRegTxt"
-            app:layout_constraintEnd_toEndOf="@+id/nameRegTxt"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/nameRegTxt"
-            app:layout_constraintTop_toBottomOf="@+id/nameRegTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/registerConfirmPasswordTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

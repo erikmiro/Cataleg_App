@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_music"
+        android:title="Music"
+        android:icon="@drawable/bottomnav_music_icon"
+        />
+
+    <item android:id="@+id/nav_movies"
+        android:title="Movies"
+        android:icon="@drawable/bottomnav_movies_icon"
+        />
+
+    <item android:id="@+id/nav_general"
+        android:title="Apps"
+        android:icon="@drawable/bottomnav_general_icon"
+        />
+
+    <item android:id="@+id/nav_games"
+        android:title="Games"
+        android:icon="@drawable/bottomnav_games_icon"
+        />
+
+    <item android:id="@+id/nav_books"
+        android:title="Books"
+        android:icon="@drawable/bottomnav_books_icon"
+        />
+</menu>

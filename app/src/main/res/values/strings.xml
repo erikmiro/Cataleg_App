@@ -22,5 +22,6 @@
     <string name="wrongEmailPass">Correu electrònic o contrasenya incorrectes</string>
     <string name="registerSuccessful">L\'usuari s\'ha registrat correctament</string>
     <string name="registerFailed">No s\'ha pogut registrar! Torna-ho a provar!</string>
-    <string name="welcomeGeneralScreen">Benvingut a SumaCat, accedeix al nostre contingut i comença a navegar</string>
+    <string name="passwordConfirm">Confirma contrasenya</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
