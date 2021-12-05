@@ -1,30 +1,44 @@
 package com.example.wapps;
 
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.content.Intent;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import android.os.Handler;
+import android.os.SystemClock;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GeneralFragment extends Fragment {
 
     private int shortAnimationDuration;
     private TextView welcomeText;
     private ImageView musicSquare;
+    private View musicSquareView;
     private ImageView seriesSquare;
     private ImageView gamesSquare;
     private ImageView booksSquare;
+    BottomNavigationView bottomNav;
 
     public GeneralFragment() {
         // Required empty public constructor
@@ -45,14 +59,15 @@ public class GeneralFragment extends Fragment {
 
         // Properties
         welcomeText = view.findViewById(R.id.welcomeGeneralFragment);
-        musicSquare = view.findViewById(R.id.musicSquare);
+        musicSquare = view.findViewById(R.id.musicSquareImage);
+        musicSquareView = view.findViewById(R.id.musicSquareView);
         seriesSquare = view.findViewById(R.id.seriesSquare);
         gamesSquare = view.findViewById(R.id.gamesSquare);
         booksSquare = view.findViewById(R.id.booksSquare);
+        bottomNav = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
 
 
-
-        // Instantiating the animation I want to use
+        // Making the welcome text fade in
         Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
         welcomeText.setAnimation(animation);
 
@@ -70,9 +85,54 @@ public class GeneralFragment extends Fragment {
         });
         imageContrast.start();
 
+        musicSquareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // When clicked disappear the rest of the squares
+                disappearViews();
+                disappearImage(seriesSquare);
+                disappearImage(gamesSquare);
+                disappearImage(booksSquare);
+
+                // To center the image
+                LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(getView().getWidth(), getView().getHeight());
+                layoutParams.gravity= Gravity.CENTER;
+              //  musicSquare.setLayoutParams(layoutParams);
+
+              //  TranslateAnimation animation = new TranslateAnimation(0.0f, 50.0f, 0.0f, 50.0f);
+              //  animation.setDuration(700);
+              //  animation.setFillAfter(true);
+
+             //   Animation animationMoveImage = AnimationUtils.loadAnimation(getContext(), R.anim.move_image);
+
+           //     musicSquare.startAnimation(animationMoveImage);
+
+
+
+                // To be able to zoom an image
+                ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(musicSquare, "scaleX", 5f);
+                ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(musicSquare, "scaleY", 5f);
+                scaleDownX.setDuration(2500);
+                scaleDownY.setDuration(2500);
+                AnimatorSet scaleDown = new AnimatorSet();
+                scaleDown.play(scaleDownX).with(scaleDownY);
+
+                // fade out image and also start to zoom
+                Animation animationFadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out_slower);
+                musicSquare.setAnimation(animationFadeOut);
+                scaleDown.start();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        changeFragment(R.id.nav_music); // Change screen
+                    }
+                }, 2500);   // Wait 1 second
+            }
+        });
+
         return view;
     }
-
 
     /**
      *
@@ -95,6 +155,23 @@ public class GeneralFragment extends Fragment {
         Paint paint = new Paint();
         paint.setColorFilter(new ColorMatrixColorFilter(cm));
         image.setColorFilter(new ColorMatrixColorFilter(cm));
-
     }
+
+    public void disappearViews() {
+        musicSquareView.setVisibility(musicSquareView.GONE);
+    }
+
+    public void disappearImage(ImageView img) {
+        // Fade out the rest of squares and also the text
+        Animation animationFadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
+        img.setAnimation(animationFadeOut);
+        welcomeText.setAnimation(animationFadeOut);
+        img.setVisibility(img.GONE);
+        welcomeText.setVisibility(welcomeText.INVISIBLE);
+    }
+
+    public void changeFragment(int id) {
+        bottomNav.setSelectedItemId(id);
+    }
+
 }
