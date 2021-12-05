@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#05ccd1"
+    android:background="@drawable/bg_music"
     tools:context=".MusicFragment">
 
     <!-- TODO: Update blank fragment layout -->
