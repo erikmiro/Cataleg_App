@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CDDC39"
+    android:background="@color/black"
     tools:context=".GeneralFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/welcomeGeneralFragment"
+        android:layout_width="372dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/notosanshk_bold"
+        android:gravity="center"
+        android:text="@string/welcomeGeneralScreen"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/musicSquare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-39dp"
+        android:src="@drawable/music_square"
+        app:layout_constraintStart_toStartOf="@+id/welcomeGeneralFragment"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeGeneralFragment" />
+
+    <ImageView
+        android:id="@+id/seriesSquare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-56dp"
+        android:src="@drawable/serie_square"
+        app:layout_constraintEnd_toEndOf="@+id/welcomeGeneralFragment"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeGeneralFragment" />
+
+    <ImageView
+        android:id="@+id/gamesSquare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-42dp"
+        android:layout_marginTop="-122dp"
+        android:src="@drawable/game_square"
+        app:layout_constraintStart_toStartOf="@+id/welcomeGeneralFragment"
+        app:layout_constraintTop_toBottomOf="@+id/musicSquare" />
+
+    <ImageView
+        android:id="@+id/booksSquare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-122dp"
+        android:layout_marginEnd="-40dp"
+        android:src="@drawable/books_square"
+        app:layout_constraintEnd_toEndOf="@+id/welcomeGeneralFragment"
+        app:layout_constraintTop_toBottomOf="@+id/seriesSquare" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

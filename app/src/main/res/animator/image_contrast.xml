@@ -1,0 +1,7 @@
+<animator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="2000"
+    android:valueFrom="0.7"
+    android:valueTo="1.2"
+    android:valueType="floatType"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse"/>

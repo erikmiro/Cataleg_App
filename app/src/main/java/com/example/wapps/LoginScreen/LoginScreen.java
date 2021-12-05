@@ -125,5 +125,6 @@ private FirebaseAuth mAuth;
                 Toast.makeText(LoginScreen.this, getString(R.string.wrongEmailPass), Toast.LENGTH_SHORT).show();
             }
         });
+        
     }
 }
