@@ -11,7 +11,7 @@
         android:id="@+id/welcomeGeneralFragment"
         android:layout_width="372dp"
         android:layout_height="84dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="75dp"
         android:fontFamily="@font/notosanshk_bold"
         android:gravity="center"
         android:text="@string/welcomeGeneralScreen"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/musicSquare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="-39dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeGeneralFragment" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/seriesSquare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="-56dp"
@@ -41,23 +41,23 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeGeneralFragment" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/gamesSquare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="-42dp"
         android:layout_marginTop="-122dp"
         android:src="@drawable/game_square"
         app:layout_constraintStart_toStartOf="@+id/welcomeGeneralFragment"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/musicSquare" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/booksSquare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-122dp"
         android:layout_marginEnd="-40dp"
         android:src="@drawable/books_square"
         app:layout_constraintEnd_toEndOf="@+id/welcomeGeneralFragment"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/seriesSquare" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
