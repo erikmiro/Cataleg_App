@@ -110,10 +110,10 @@ public class GeneralFragment extends Fragment {
 
 
                 // To be able to zoom an image
-                ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(musicSquare, "scaleX", 5f);
-                ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(musicSquare, "scaleY", 5f);
-                scaleDownX.setDuration(2500);
-                scaleDownY.setDuration(2500);
+                ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(musicSquare, "scaleX", 3f);
+                ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(musicSquare, "scaleY", 3f);
+                scaleDownX.setDuration(1000);
+                scaleDownY.setDuration(1000);
                 AnimatorSet scaleDown = new AnimatorSet();
                 scaleDown.play(scaleDownX).with(scaleDownY);
 
@@ -127,7 +127,7 @@ public class GeneralFragment extends Fragment {
                     public void run() {
                         changeFragment(R.id.nav_music); // Change screen
                     }
-                }, 2500);   // Wait 1 second
+                }, 900);   // Wait 1 second
             }
         });
 
