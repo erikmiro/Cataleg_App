@@ -2,4 +2,6 @@
     android:duration="2000"
     android:valueFrom="0.5"
     android:valueTo="1.2"
-    android:valueType="floatType"/>
+    android:valueType="floatType"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse"/>
