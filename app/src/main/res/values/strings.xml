@@ -25,4 +25,7 @@
     <string name="passwordConfirm">Confirma contrasenya</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcomeGeneralScreen">Benvingut a SumaCat, accedeix al nostre contingut i comença a navegar</string>
+    <string name="songName">Song name</string>
+    <string name="songArtist">Song artist</string>
+    <string name="welcomeMusicScreen">Descobreix la música catalana</string>
 </resources>
