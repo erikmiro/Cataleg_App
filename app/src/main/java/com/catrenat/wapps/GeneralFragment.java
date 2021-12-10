@@ -1,4 +1,4 @@
-package com.example.wapps;
+package com.catrenat.wapps;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;

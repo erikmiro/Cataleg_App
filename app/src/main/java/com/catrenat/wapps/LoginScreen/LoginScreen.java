@@ -1,4 +1,4 @@
-package com.example.wapps.LoginScreen;
+package com.catrenat.wapps.LoginScreen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wapps.MainActivity;
-import com.example.wapps.R;
-import com.example.wapps.RegisterActivity;
+import com.catrenat.wapps.MainActivity;
+import com.catrenat.wapps.R;
+import com.catrenat.wapps.RegisterActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
