@@ -19,8 +19,15 @@
         <entry key="app/src/main/res/drawable/bg_books.xml" value="0.38" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.38" />
         <entry key="app/src/main/res/drawable/bg_games.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/custom_eye_closed_icon.xml" value="0.3859375" />
+        <entry key="app/src/main/res/drawable/custom_favourite_icon.xml" value="0.3859375" />
+        <entry key="app/src/main/res/drawable/custom_login_input.xml" value="0.3859375" />
+        <entry key="app/src/main/res/drawable/custom_username_icon.xml" value="0.3859375" />
         <entry key="app/src/main/res/drawable/ic_music.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/ic_music_heart.xml" value="0.3859375" />
         <entry key="app/src/main/res/drawable/ic_music_more.xml" value="0.3859375" />
+        <entry key="app/src/main/res/drawable/menu_books_focused_icon.xml" value="0.3859375" />
+        <entry key="app/src/main/res/drawable/menu_general_focused_icon.xml" value="0.2875" />
         <entry key="app/src/main/res/drawable/music_image_placeholder.xml" value="0.38" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />
@@ -30,6 +37,8 @@
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.34739583333333335" />
         <entry key="app/src/main/res/layout/item_music_fragment.xml" value="0.67" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3859375" />
       </map>
     </option>
   </component>
