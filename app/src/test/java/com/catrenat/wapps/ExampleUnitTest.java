@@ -1,4 +1,4 @@
-package com.example.wapps;
+package com.catrenat.wapps;
 
 import org.junit.Test;
 
