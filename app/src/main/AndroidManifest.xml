@@ -27,6 +27,9 @@
             android:name="com.catrenat.wapps.MainActivity"
             android:exported="false"/>
         <activity
+            android:name="com.example.wapps.SoptifyAuthModels.LoginActivity"
+            android:exported="false"/>
+        <activity
             android:name="com.catrenat.wapps.RegisterActivity"
             android:exported="false"/>
     </application>

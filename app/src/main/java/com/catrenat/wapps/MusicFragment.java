@@ -1,5 +1,6 @@
 package com.catrenat.wapps;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 
@@ -16,6 +17,9 @@ import android.widget.ImageView;
 
 import com.example.wapps.Model.Music;
 import com.example.wapps.MusicRecyclerView.MusicRecyclerViewAdapter;
+import com.example.wapps.SoptifyAuthModels.AuthorizationClient;
+import com.example.wapps.SoptifyAuthModels.AuthorizationRequest;
+import com.example.wapps.SoptifyAuthModels.AuthorizationResponse;
 import com.example.wapps.SpotifyModels.Album;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,6 +47,13 @@ public class MusicFragment extends Fragment {
     private DatabaseReference databaseReference;
     private ArrayList<Music> musicArray = new ArrayList<>();
     private RecyclerView musicRecyclerView;
+    private String token;
+    private static final String CLIENT_ID = "14438023653442cfa4a047625b8c0ea0";
+    private static final String REDIRECT_URI = "https://catrenat.com/callback/";
+    private static final int REQUEST_CODE = 1337;
+    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
+
+
 
     public MusicFragment() {
 
@@ -52,6 +63,33 @@ public class MusicFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        // Check if result comes from the correct activity
+        if (requestCode == REQUEST_CODE) {
+            AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, intent);
+
+            switch (response.getType()) {
+                // Response was successful and contains auth token
+                case TOKEN:
+                    // Handle successful response
+                    token = response.getAccessToken();
+                    break;
+
+                // Auth flow returned an error
+                case ERROR:
+                    // Handle error response
+                    break;
+
+                // Most likely auth flow was cancelled
+                default:
+                    // Handle other cases
+            }
+        }
     }
 
     @Override
@@ -73,12 +111,11 @@ public class MusicFragment extends Fragment {
 
 
         // Trying to use spotify
+        authenticateSpotify();
 
         SpotifyApi api = new SpotifyApi();
 
-        // Most (but not all) of the Spotify Web API endpoints require authorisation.
-        // If you know you'll only use the ones that don't require authorisation you can skip this step
-        api.setAccessToken("myAccessToken");
+        api.setAccessToken(token);
 
         SpotifyService spotify = api.getService();
 
@@ -118,5 +155,12 @@ public class MusicFragment extends Fragment {
                 });
 
         return view;
+    }
+
+    private void authenticateSpotify() {
+        AuthorizationRequest.Builder builder = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
+        builder.setScopes(new String[]{SCOPES});
+        AuthorizationRequest request = builder.build();
+        AuthorizationClient.openLoginActivity(getActivity(), REQUEST_CODE, request);
     }
 }

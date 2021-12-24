@@ -50,4 +50,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation ('com.squareup.retrofit:retrofit:1.9.0')
+    implementation "com.spotify.android:auth:<version>"
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.spotify.android:auth:1.2.5' // Maven dependency
+    implementation 'androidx.browser:browser:1.0.0'
 }

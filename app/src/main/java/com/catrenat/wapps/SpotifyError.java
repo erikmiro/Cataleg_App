@@ -73,7 +73,7 @@ public class SpotifyError extends Exception {
     }
 
     /**
-     * @return true if there are {@link kaaes.spotify.webapi.android.models.ErrorDetails}
+     * @return true if there are {@link com.example.wapps.SpotifyModels.ErrorDetails}
      * associated with this error. False otherwise.
      */
     public boolean hasErrorDetails() {
