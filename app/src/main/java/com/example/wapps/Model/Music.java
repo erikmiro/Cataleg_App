@@ -3,16 +3,22 @@ package com.example.wapps.Model;
 import java.io.Serializable;
 
 public class Music implements Serializable {
+    // Properties
     String songName;
     String songArtist;
     String songImageUrl;
 
+    // Default Constructor
+    public  Music() {}
+
+    // Specific Constructor
     public Music(String songName, String songArtist, String songImageUrl) {
         this.songName = songName;
         this.songArtist = songArtist;
         this.songImageUrl = songImageUrl;
     }
 
+    // Getters and Setters
     public String getSongName() {
         return songName;
     }
