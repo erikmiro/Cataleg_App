@@ -25,7 +25,7 @@ import android.app.Activity;
 import android.util.Log;
 import com.example.wapps.SoptifyAuthModels.AuthorizationRequest;
 import com.example.wapps.SoptifyAuthModels.AuthorizationHandler;
-import com.spotify.sdk.android.auth.webview.LoginDialog;
+import com.example.wapps.webview.LoginDialog;
 
 public class WebViewAuthHandler implements AuthorizationHandler {
 

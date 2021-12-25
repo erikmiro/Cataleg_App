@@ -1,3 +1,5 @@
+package com.example.wapps.webview;
+
 /*
  * Copyright (c) 2015-2016 Spotify AB
  *
@@ -18,8 +20,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-package com.example.wapps.webview;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -46,17 +46,18 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.spotify.sdk.android.auth.AccountsQueryParameters;
+import com.example.wapps.SoptifyAuthModels.AccountsQueryParameters;
+import com.spotify.sdk.android.auth.R;
+import com.example.wapps.SoptifyAuthModels.AuthorizationResponse;
 import com.example.wapps.SoptifyAuthModels.AuthorizationRequest;
 import com.example.wapps.SoptifyAuthModels.AuthorizationHandler;
-import com.example.wapps.SoptifyAuthModels.AuthorizationResponse;
-import com.spotify.sdk.android.auth.R;
+import com.example.wapps.webview.WebViewUtils;
 
 import java.util.Locale;
 
 public class LoginDialog extends Dialog {
 
-    private static final String TAG = LoginDialog.class.getName();
+    private static final String TAG = com.spotify.sdk.android.auth.webview.LoginDialog.class.getName();
 
     /**
      * RegEx describing which uris should be opened in the WebView.
@@ -260,11 +261,11 @@ public class LoginDialog extends Dialog {
     }
 
     public static void clearCookies(Context context) {
-        WebViewUtils.clearFacebookCookies(context);
+        com.example.wapps.webview.WebViewUtils.clearFacebookCookies(context);
 
-        WebViewUtils.clearCookiesForDomain(context, "spotify.com");
-        WebViewUtils.clearCookiesForDomain(context, ".spotify.com");
-        WebViewUtils.clearCookiesForDomain(context, "https://spotify.com");
-        WebViewUtils.clearCookiesForDomain(context, "https://.spotify.com");
+        com.example.wapps.webview.WebViewUtils.clearCookiesForDomain(context, "spotify.com");
+        com.example.wapps.webview.WebViewUtils.clearCookiesForDomain(context, ".spotify.com");
+        com.example.wapps.webview.WebViewUtils.clearCookiesForDomain(context, "https://spotify.com");
+        com.example.wapps.webview.WebViewUtils.clearCookiesForDomain(context, "https://.spotify.com");
     }
 }
