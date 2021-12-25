@@ -16,21 +16,56 @@
         <entry key="..\:/Users/Neka/AndroidStudioProjects/Wapps/app/src/main/res/layout/fragment_movies.xml" value="0.115625" />
         <entry key="..\:/Users/Neka/AndroidStudioProjects/Wapps/app/src/main/res/layout/fragment_music.xml" value="0.115625" />
         <entry key="..\:/Users/Neka/AndroidStudioProjects/Wapps/app/src/main/res/menu/bottom_navigation.xml" value="0.4" />
-        <entry key="app/src/main/res/drawable/register_box_background.xml" value="0.31261261261261264" />
-        <entry key="app/src/main/res/drawable/temporal_placeholder_platform.xml" value="0.31261261261261264" />
-        <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.29864864864864865" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bg_games.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bnv_tab_item_foreground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bottomnav_books_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bottomnav_games_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bottomnav_general_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bottomnav_movies_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/bottomnav_music_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/color_selector.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_books_focused_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_books_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_games_focused_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_games_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_general_focused_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_general_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_movie_focused_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_movie_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_music_focused_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/drawable/menu_music_icon.xml" value="0.283984375" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/bymre/Documents/GitHub/Wapps/app/src/main/res/menu/bottom_navigation.xml" value="0.271875" />
+        <entry key="app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/bottomnav_general_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/bottomnav_movies_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/ic_group_133.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_books_focused_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_books_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_games_focused_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_games_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_general_focused_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_general_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_movie_focused_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_movie_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_movies_focused_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_music_focused_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/menu_music_icon.xml" value="0.38" />
+        <entry key="app/src/main/res/drawable/register_box_background.xml" value="0.3144144144144144" />
+        <entry key="app/src/main/res/drawable/temporal_placeholder_platform.xml" value="0.1810810810810811" />
+        <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3203125" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="app/src/main/res/layout/content_register.xml" value="0.34739583333333335" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.34739583333333335" />
-        <entry key="app/src/main/res/layout/fragment_games.xml" value="0.29864864864864865" />
+        <entry key="app/src/main/res/layout/fragment_games.xml" value="0.30045045045045043" />
         <entry key="app/src/main/res/layout/fragment_general.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.34739583333333335" />
-        <entry key="app/src/main/res/layout/header.xml" value="0.29864864864864865" />
-        <entry key="app/src/main/res/layout/item_game_platform.xml" value="0.29864864864864865" />
-        <entry key="app/src/main/res/layout/item_music_fragment.xml" value="0.29864864864864865" />
-        <entry key="app/src/main/res/menu/main_sidebarmenu.xml" value="0.29864864864864865" />
+        <entry key="app/src/main/res/layout/item_game_platform.xml" value="0.67" />
+        <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.3697916666666667" />
       </map>
     </option>
   </component>
