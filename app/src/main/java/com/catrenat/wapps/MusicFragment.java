@@ -1,6 +1,6 @@
 package com.catrenat.wapps;
 
-import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,33 +8,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.wapps.Model.Music;
 import com.example.wapps.MusicRecyclerView.MusicRecyclerViewAdapter;
-import com.example.wapps.SpotifyModels.Album;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-import retrofit.RetrofitError;
-import retrofit.Callback;
-import retrofit.client.Response;
-import retrofit2.Call;
 
 public class MusicFragment extends Fragment {
 
@@ -43,6 +34,7 @@ public class MusicFragment extends Fragment {
     private DatabaseReference databaseReference;
     private ArrayList<Music> musicArray = new ArrayList<>();
     private RecyclerView musicRecyclerView;
+    MediaPlayer player;
 
     public MusicFragment() {
 
@@ -71,29 +63,6 @@ public class MusicFragment extends Fragment {
             }
         );
 
-
-        // Trying to use spotify
-
-        SpotifyApi api = new SpotifyApi();
-
-        // Most (but not all) of the Spotify Web API endpoints require authorisation.
-        // If you know you'll only use the ones that don't require authorisation you can skip this step
-        api.setAccessToken("myAccessToken");
-
-        SpotifyService spotify = api.getService();
-
-        spotify.getAlbum("2dIGnmEIy1WZIcZCFSj6i8", new Callback<Album>() {
-            @Override
-            public void success(Album album, Response response) {
-                Log.d("Album success", album.name);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("Album failure", error.toString());
-            }
-        });
-
         // Creating the database instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -117,6 +86,46 @@ public class MusicFragment extends Fragment {
                     }
                 });
 
+        play(view);
         return view;
+    }
+
+    public void play(View v) {
+        if (player == null) {
+            player = MediaPlayer.create(getContext(), R.raw.escriurem);
+            CountDownTimer cntr_aCounter = new CountDownTimer(15000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    player.start();
+                }
+                public void onFinish() {
+                    //code fire after finish
+                    stopPlayer();
+                }
+            };cntr_aCounter.start();
+        }
+    }
+
+    public void pause(View v) {
+        if (player != null) {
+            player.pause();
+        }
+    }
+
+    public void stop(View v) {
+        stopPlayer();
+    }
+
+    private void stopPlayer() {
+        if (player != null) {
+            player.release();
+            player = null;
+            Toast.makeText(getContext(), "MediaPlayer released", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopPlayer();
     }
 }
