@@ -47,8 +47,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private Thread thread;
     private Runnable runnable;
     private CountDownTimer counter;
-    private MusicViewHolder holder;
-    private String songUrl;
 
     // Constructor
     public MusicRecyclerViewAdapter(ArrayList<Music> musicArray, Context context, MediaPlayer player){
@@ -71,7 +69,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     public void onBindViewHolder(@NonNull MusicViewHolder holder, int position) {
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
-        this.holder = holder;
 
         Log.i("a",""+music.getSongImageUrl());
 
@@ -101,7 +98,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         storageReference.child(music.getSong()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                songUrl = uri.toString();
+                holder.songUrl = uri.toString();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -147,7 +144,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             if (playPressed) {
                 holder.progressBar.setVisibility(view.VISIBLE);
                 holder.songImage.setVisibility(View.INVISIBLE);
-                play(view);
+                play(view, holder);
                 thread.start();
             } else {
                 holder.progressBar.setVisibility(view.INVISIBLE);
@@ -162,10 +159,9 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     }
 
     // To play a song
-    public void play(View v) {
-        createSongFromUrl(songUrl);
+    public void play(View v, MusicViewHolder holder) {
+        createSongFromUrl(holder.songUrl);
         if (player == null) {
-            player = MediaPlayer.create(context, R.raw.escriurem);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
@@ -210,6 +206,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         if (player != null) {
             player.release();
             player = null;
+            playPressed = false;
         }
     }
 
@@ -230,6 +227,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         TextView songName;
         TextView songArtist;
         ProgressBar progressBar;
+        String songUrl;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -241,4 +239,15 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             progressBar = itemView.findViewById(R.id.progress_bar);
         }
     }
+
+    /*
+    @Override
+    public void onViewDetachedFromWindow(@NonNull MusicViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        Log.i("ENTRA","ooooooooooooooooooooooooooooooooo"+"entra");
+        player.release();
+        player = null;
+    }
+
+     */
 }
