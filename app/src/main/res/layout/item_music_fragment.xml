@@ -40,6 +40,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/music_image_placeholder" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/circle_shape"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circle_progress_bar"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/musicRectangle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.545" />
+
         <TextView
             android:id="@+id/songName"
             android:layout_width="wrap_content"
@@ -85,6 +100,16 @@
             app:layout_constraintStart_toEndOf="@+id/favouriteImg"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_music_more" />
+
+        <ImageView
+            android:id="@+id/songPlay"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/songImage"
+            app:layout_constraintEnd_toEndOf="@+id/songImage"
+            app:layout_constraintStart_toStartOf="@+id/songImage"
+            app:layout_constraintTop_toTopOf="@+id/songImage"
+            app:srcCompat="@drawable/music_play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

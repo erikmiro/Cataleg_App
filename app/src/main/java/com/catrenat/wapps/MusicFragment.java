@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.wapps.Model.Music;
@@ -34,7 +36,6 @@ public class MusicFragment extends Fragment {
     private DatabaseReference databaseReference;
     private ArrayList<Music> musicArray = new ArrayList<>();
     private RecyclerView musicRecyclerView;
-    MediaPlayer player;
 
     public MusicFragment() {
 
@@ -86,46 +87,6 @@ public class MusicFragment extends Fragment {
                     }
                 });
 
-        play(view);
         return view;
-    }
-
-    public void play(View v) {
-        if (player == null) {
-            player = MediaPlayer.create(getContext(), R.raw.escriurem);
-            CountDownTimer cntr_aCounter = new CountDownTimer(15000, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    player.start();
-                }
-                public void onFinish() {
-                    //code fire after finish
-                    stopPlayer();
-                }
-            };cntr_aCounter.start();
-        }
-    }
-
-    public void pause(View v) {
-        if (player != null) {
-            player.pause();
-        }
-    }
-
-    public void stop(View v) {
-        stopPlayer();
-    }
-
-    private void stopPlayer() {
-        if (player != null) {
-            player.release();
-            player = null;
-            Toast.makeText(getContext(), "MediaPlayer released", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        stopPlayer();
     }
 }

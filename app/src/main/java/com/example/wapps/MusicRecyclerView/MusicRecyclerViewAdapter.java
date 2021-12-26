@@ -1,13 +1,18 @@
 package com.example.wapps.MusicRecyclerView;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +37,13 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private ArrayList<Music> musicArray;
     private Context context;
     boolean heartPressed = false;
+    boolean playPressed = false;
+    MediaPlayer player;
+    private int time = 0;
+    private Handler handler = new Handler();
+    Thread thread;
+    Runnable runnable;
+    CountDownTimer counter;
 
     // Constructor
     public MusicRecyclerViewAdapter(ArrayList<Music> musicArray, Context context){
@@ -59,6 +71,22 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         holder.songName.setText(music.getSongName());
         holder.songArtist.setText(music.getSongArtist());
 
+        // Music progressBar
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (playPressed) {
+                    if (time <= 200) {
+                        holder.progressBar.setProgress(time);
+                        time++;
+                        handler.postDelayed(this::run, 192);
+                    } else {
+                        handler.removeCallbacks(this::run);
+                    }
+                }
+            }
+        };
+
         // Reference to an image file in Cloud Storage
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         storageReference.child(music.getSongImageUrl()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -85,8 +113,30 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             heartPressed = (current == R.drawable.ic_music_heart) ? false : true;
             holder.favouriteImage.setImageResource(current);
         });
-    }
 
+        // For the play button
+        holder.songPlay.setImageResource(R.drawable.music_play);
+        holder.songPlay.setOnClickListener(view -> {
+            AppCompatActivity app = (AppCompatActivity) view.getContext();
+            int current = (playPressed == false) ? R.drawable.music_pause : R.drawable.music_play;
+            playPressed = (current == R.drawable.music_play) ? false : true;
+            thread = new Thread(runnable);
+            time = 0;
+            if (playPressed) {
+                holder.progressBar.setVisibility(view.VISIBLE);
+                holder.songImage.setVisibility(View.INVISIBLE);
+                play(view);
+                thread.start();
+            } else {
+                holder.progressBar.setVisibility(view.INVISIBLE);
+                holder.songImage.setVisibility(View.VISIBLE);
+                stop(view);
+                thread.interrupt();
+                thread = null;
+            }
+            holder.songPlay.setImageResource(current);
+        });
+    }
 
     // Counting the items in the music list
     @Override
@@ -98,8 +148,10 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     public class MusicViewHolder extends RecyclerView.ViewHolder{
         ImageView favouriteImage;
         ImageView songImage;
+        ImageView songPlay;
         TextView songName;
         TextView songArtist;
+        ProgressBar progressBar;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +159,51 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             songImage = itemView.findViewById(R.id.songImage);
             songName = itemView.findViewById(R.id.songName);
             songArtist = itemView.findViewById(R.id.songArtist);
+            songPlay = itemView.findViewById(R.id.songPlay);
+            progressBar = itemView.findViewById(R.id.progress_bar);
+        }
+    }
+
+    // To play a song
+    public void play(View v) {
+        if (player == null) {
+            player = MediaPlayer.create(context, R.raw.escriurem);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    stopPlayer();
+                }
+            });
+        }
+        counter = new CountDownTimer(20000, 1) {
+            public void onTick(long millisUntilFinished) {
+                if (player != null) {
+                    player.start();
+                }
+            }
+            public void onFinish() {
+                //code fire after finish
+                stopPlayer();
+            }
+        };counter.start();
+    }
+
+    // To pause a song
+    public void pause(View v) {
+        if (player != null) {
+            player.pause();
+        }
+    }
+
+    // To stop a song
+    public void stop(View v) {
+        stopPlayer();
+    }
+
+    private void stopPlayer() {
+        if (player != null) {
+            player.release();
+            player = null;
         }
     }
 }
