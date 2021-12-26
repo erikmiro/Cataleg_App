@@ -72,7 +72,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
         this.holder = holder;
-        songUrl = music.getSong();
 
         Log.i("a",""+music.getSongImageUrl());
 
@@ -97,6 +96,21 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
 
         // Reference to an image file in Cloud Storage
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
+        // To retrieve a song from firebase
+        storageReference.child(music.getSong()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                songUrl = uri.toString();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("SONG", e.toString());
+            }
+        });
+
+        // To retrieve an image from firebase
         storageReference.child(music.getSongImageUrl()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -147,12 +161,10 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         });
     }
 
-
     // To play a song
     public void play(View v) {
         createSongFromUrl(songUrl);
         if (player == null) {
-            Log.i("entra", "entra a player == null");
             player = MediaPlayer.create(context, R.raw.escriurem);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -185,6 +197,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             player.setOnPreparedListener(this);
             player.prepareAsync();
         } catch (IOException e) {
+            Log.e("ERROR", "Error found is "+ e);
         }
     }
 
@@ -207,9 +220,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     }
 
     @Override
-    public void onPrepared(MediaPlayer mediaPlayer) {
-
-    }
+    public void onPrepared(MediaPlayer mediaPlayer) {}
 
     //Creating properties and finding them in the view
     public class MusicViewHolder extends RecyclerView.ViewHolder{

@@ -89,10 +89,4 @@ public class MusicFragment extends Fragment {
 
         return view;
     }
-
-    @Override
-    public void onPause(){
-        //media player stops
-        super.onPause();
-    }
 }
