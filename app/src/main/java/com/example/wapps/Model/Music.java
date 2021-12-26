@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Music implements Serializable {
     // Properties
+    String song;
     String songName;
     String songArtist;
     String songImageUrl;
@@ -12,13 +13,18 @@ public class Music implements Serializable {
     public  Music() {}
 
     // Specific Constructor
-    public Music(String songName, String songArtist, String songImageUrl) {
+    public Music(String song, String songName, String songArtist, String songImageUrl) {
+        this.song = song;
         this.songName = songName;
         this.songArtist = songArtist;
         this.songImageUrl = songImageUrl;
     }
 
     // Getters and Setters
+    public String getSong() { return song; }
+
+    public void setSong(String song) { this.song = song; }
+
     public String getSongName() {
         return songName;
     }

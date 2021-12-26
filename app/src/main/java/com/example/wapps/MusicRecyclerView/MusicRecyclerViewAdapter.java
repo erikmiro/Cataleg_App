@@ -1,6 +1,8 @@
 package com.example.wapps.MusicRecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -29,9 +31,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecyclerViewAdapter.MusicViewHolder> {
+public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecyclerViewAdapter.MusicViewHolder> implements MediaPlayer.OnPreparedListener {
 
     // Properties
     private ArrayList<Music> musicArray;
@@ -41,15 +44,17 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     MediaPlayer player;
     private int time = 0;
     private Handler handler = new Handler();
-    Thread thread;
-    Runnable runnable;
-    CountDownTimer counter;
-    MusicViewHolder holder;
+    private Thread thread;
+    private Runnable runnable;
+    private CountDownTimer counter;
+    private MusicViewHolder holder;
+    private String songUrl;
 
     // Constructor
-    public MusicRecyclerViewAdapter(ArrayList<Music> musicArray, Context context){
+    public MusicRecyclerViewAdapter(ArrayList<Music> musicArray, Context context, MediaPlayer player){
         this.musicArray = musicArray;
         this.context = context;
+        this.player = player;
     }
 
     //Creating a new onCreateViewHolder
@@ -67,6 +72,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
         this.holder = holder;
+        songUrl = music.getSong();
 
         Log.i("a",""+music.getSongImageUrl());
 
@@ -135,15 +141,76 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 stop(view);
                 thread.interrupt();
                 thread = null;
+                counter.cancel();
             }
             holder.songPlay.setImageResource(current);
         });
+    }
+
+
+    // To play a song
+    public void play(View v) {
+        if (player == null) {
+            Log.i("entra", "entra a player == null");
+            player = MediaPlayer.create(context, R.raw.escriurem);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    stopPlayer();
+                }
+            });
+        }
+        counter = new CountDownTimer(20000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                if (player != null) {
+                    Log.i("entra", "entra a player != null, amb segons: " + millisUntilFinished);
+                    player.start();
+                }
+            }
+            public void onFinish() {
+                //code fire after finish
+                stopPlayer();
+                holder.progressBar.setVisibility(View.INVISIBLE);
+                holder.songImage.setVisibility(View.VISIBLE);
+                holder.songPlay.setImageResource(R.drawable.music_play);
+            }
+        };counter.start();
+    }
+
+    private void createSongFromUrl(String audioUrl) {
+        player.release();
+        try {
+            player = new MediaPlayer();
+            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            player.setDataSource(audioUrl);
+            player.setOnPreparedListener(this);
+            player.prepareAsync();
+            player.prepare();
+        } catch (IOException e) {
+        }
+    }
+
+    // To stop a song
+    public void stop(View v) {
+        stopPlayer();
+    }
+
+    private void stopPlayer() {
+        if (player != null) {
+            player.release();
+            player = null;
+        }
     }
 
     // Counting the items in the music list
     @Override
     public int getItemCount() {
         return musicArray.size();
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+
     }
 
     //Creating properties and finding them in the view
@@ -163,57 +230,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             songArtist = itemView.findViewById(R.id.songArtist);
             songPlay = itemView.findViewById(R.id.songPlay);
             progressBar = itemView.findViewById(R.id.progress_bar);
-        }
-    }
-
-    // To play a song
-    public void play(View v) {
-        if (player == null) {
-            player = MediaPlayer.create(context, R.raw.escriurem);
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    stopPlayer();
-                }
-            });
-        }
-        counter = new CountDownTimer(20000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                if (player != null) {
-                    player.start();
-                }
-            }
-            public void onFinish() {
-                //code fire after finish
-                stopPlayer();
-                holder.progressBar.setVisibility(View.INVISIBLE);
-                holder.songImage.setVisibility(View.VISIBLE);
-                holder.songPlay.setImageResource(R.drawable.music_play);
-            }
-        };counter.start();
-    }
-
-    private void changePlayButtonState(final MusicRecyclerViewAdapter.MusicViewHolder holder, final int position) {
-        holder.songPlay.performClick();
-    }
-
-
-    // To pause a song
-    public void pause(View v) {
-        if (player != null) {
-            player.pause();
-        }
-    }
-
-    // To stop a song
-    public void stop(View v) {
-        stopPlayer();
-    }
-
-    private void stopPlayer() {
-        if (player != null) {
-            player.release();
-            player = null;
         }
     }
 }

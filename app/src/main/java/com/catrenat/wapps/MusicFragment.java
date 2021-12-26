@@ -33,9 +33,9 @@ public class MusicFragment extends Fragment {
 
     private static final String TAG = "music";
     // Properties
-    private DatabaseReference databaseReference;
     private ArrayList<Music> musicArray = new ArrayList<>();
     private RecyclerView musicRecyclerView;
+    MediaPlayer player;
 
     public MusicFragment() {
 
@@ -79,7 +79,7 @@ public class MusicFragment extends Fragment {
                                 Music music = document.toObject(Music.class);
                                 musicArray.add(music);
                             }
-                            MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicArray, getContext());
+                            MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicArray, getContext(), player);
                             musicRecyclerView.setAdapter(adapter);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -88,5 +88,11 @@ public class MusicFragment extends Fragment {
                 });
 
         return view;
+    }
+
+    @Override
+    public void onPause(){
+        //media player stops
+        super.onPause();
     }
 }
