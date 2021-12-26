@@ -55,6 +55,11 @@ public class GamesFragment extends Fragment {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                         RecyclerView recyclerView = root.findViewById(R.id.gamePlatformRecyclerView);
+                        //recyclerView.setLayoutManager(new LinearLayoutManager((getContext())) {
+                        //                                  @Override
+                        //                                  public boolean canScrollVertically() { return false; }
+                        //                              }
+                        //);
                         PlatformRecyclerViewAdapter adapter = new PlatformRecyclerViewAdapter(platforms, getContext());
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
