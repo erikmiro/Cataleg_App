@@ -44,6 +44,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     Thread thread;
     Runnable runnable;
     CountDownTimer counter;
+    MusicViewHolder holder;
 
     // Constructor
     public MusicRecyclerViewAdapter(ArrayList<Music> musicArray, Context context){
@@ -65,6 +66,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     public void onBindViewHolder(@NonNull MusicViewHolder holder, int position) {
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
+        this.holder = holder;
 
         Log.i("a",""+music.getSongImageUrl());
 
@@ -175,7 +177,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 }
             });
         }
-        counter = new CountDownTimer(20000, 1) {
+        counter = new CountDownTimer(20000, 1000) {
             public void onTick(long millisUntilFinished) {
                 if (player != null) {
                     player.start();
@@ -184,9 +186,17 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             public void onFinish() {
                 //code fire after finish
                 stopPlayer();
+                holder.progressBar.setVisibility(View.INVISIBLE);
+                holder.songImage.setVisibility(View.VISIBLE);
+                holder.songPlay.setImageResource(R.drawable.music_play);
             }
         };counter.start();
     }
+
+    private void changePlayButtonState(final MusicRecyclerViewAdapter.MusicViewHolder holder, final int position) {
+        holder.songPlay.performClick();
+    }
+
 
     // To pause a song
     public void pause(View v) {
