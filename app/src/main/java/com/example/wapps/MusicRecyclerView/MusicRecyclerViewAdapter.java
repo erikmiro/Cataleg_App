@@ -150,6 +150,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
 
     // To play a song
     public void play(View v) {
+        createSongFromUrl(songUrl);
         if (player == null) {
             Log.i("entra", "entra a player == null");
             player = MediaPlayer.create(context, R.raw.escriurem);
@@ -163,7 +164,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         counter = new CountDownTimer(20000, 1000) {
             public void onTick(long millisUntilFinished) {
                 if (player != null) {
-                    Log.i("entra", "entra a player != null, amb segons: " + millisUntilFinished);
                     player.start();
                 }
             }
@@ -178,14 +178,12 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     }
 
     private void createSongFromUrl(String audioUrl) {
-        player.release();
         try {
             player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setDataSource(audioUrl);
             player.setOnPreparedListener(this);
             player.prepareAsync();
-            player.prepare();
         } catch (IOException e) {
         }
     }
