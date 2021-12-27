@@ -74,7 +74,8 @@ public class MusicFragment extends Fragment {
                                 Music music = document.toObject(Music.class);
                                 musicArray.add(music);
                             }
-                            MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicArray, getContext(), player);
+                            player = new MediaPlayer();
+                            MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicRecyclerView, musicArray, getContext(), player);
                             musicRecyclerView.setAdapter(adapter);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -84,4 +85,24 @@ public class MusicFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        player.stop();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        player.stop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        player.stop();
+    }
+
+
 }

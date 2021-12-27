@@ -37,15 +37,19 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     // Properties
     private ArrayList<Music> musicArray;
     private Context context;
+    private RecyclerView musicRecyclerView;
     boolean heartPressed = false;
     boolean playPressed = false;
     MediaPlayer player;
     private int time = 0;
     private Handler handler = new Handler();
+    private Thread thread;
+    private Runnable runnable;
     private CountDownTimer counter;
 
     // Constructor
-    public MusicRecyclerViewAdapter(ArrayList<Music> musicArray, Context context, MediaPlayer player){
+    public MusicRecyclerViewAdapter(RecyclerView musicRecyclerView, ArrayList<Music> musicArray, Context context, MediaPlayer player){
+        this.musicRecyclerView = musicRecyclerView;
         this.musicArray = musicArray;
         this.context = context;
         this.player = player;
@@ -130,7 +134,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         });
 
         // For the play button
-        holder.songPlay.setImageResource(R.drawable.music_play);
         holder.songPlay.setOnClickListener(view -> {
             AppCompatActivity app = (AppCompatActivity) view.getContext();
             int current = (!playPressed) ? R.drawable.music_pause : R.drawable.music_play;
@@ -140,6 +143,17 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             if (playPressed) {
                 holder.progressBar.setVisibility(view.VISIBLE);
                 holder.songImage.setVisibility(View.INVISIBLE);
+                holder.songPlay.setImageResource(R.drawable.music_pause);
+                // Resets item images, progressbar and play drawable.
+                for(int i = 0; i < musicArray.size(); i++) {
+                    if(i==position) {
+                        continue;
+                    }
+                    musicRecyclerView.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.progress_bar).setVisibility(View.INVISIBLE);
+                    musicRecyclerView.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.songImage).setVisibility(View.VISIBLE);
+                    ImageView songPlay = (ImageView) musicRecyclerView.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.songPlay);
+                    songPlay.setImageResource(R.drawable.music_play);
+                }
                 holder.songImage.setTag(position);
                 play(view, holder);
                 holder.thread.start();
@@ -183,7 +197,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
 
     private void createSongFromUrl(String audioUrl) {
         try {
-            player = new MediaPlayer();
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setDataSource(audioUrl);
             player.setOnPreparedListener(this);
