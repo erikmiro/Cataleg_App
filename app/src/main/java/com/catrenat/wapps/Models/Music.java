@@ -1,4 +1,4 @@
-package com.example.wapps.Model;
+package com.catrenat.wapps.Models;
 
 import java.io.Serializable;
 

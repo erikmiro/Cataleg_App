@@ -1,6 +1,5 @@
-package com.example.wapps.MusicRecyclerView;
+package com.catrenat.wapps.Music.RecyclerView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +23,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.catrenat.wapps.R;
-import com.example.wapps.Model.Music;
+import com.catrenat.wapps.Models.Music;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -44,8 +42,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     MediaPlayer player;
     private int time = 0;
     private Handler handler = new Handler();
-    private Thread thread;
-    private Runnable runnable;
     private CountDownTimer counter;
 
     // Constructor
@@ -70,13 +66,13 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
 
-        Log.i("a",""+music.getSongImageUrl());
-
         holder.songName.setText(music.getSongName());
         holder.songArtist.setText(music.getSongArtist());
+        Log.i("erik", "holder old position: "+holder.getOldPosition());
+        Log.i("erik", "holder current position: "+holder.getAdapterPosition());
 
         // Music progressBar
-        runnable = new Runnable() {
+        holder.runnable = new Runnable() {
             @Override
             public void run() {
                 if (playPressed) {
@@ -128,8 +124,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
         holder.favouriteImage.setOnClickListener(view -> {
             AppCompatActivity app = (AppCompatActivity) view.getContext();
-            int current = (heartPressed == false) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
-            heartPressed = (current == R.drawable.ic_music_heart) ? false : true;
+            int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
+            heartPressed = current != R.drawable.ic_music_heart;
             holder.favouriteImage.setImageResource(current);
         });
 
@@ -137,24 +133,24 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         holder.songPlay.setImageResource(R.drawable.music_play);
         holder.songPlay.setOnClickListener(view -> {
             AppCompatActivity app = (AppCompatActivity) view.getContext();
-            int current = (playPressed == false) ? R.drawable.music_pause : R.drawable.music_play;
-            playPressed = (current == R.drawable.music_play) ? false : true;
-            thread = new Thread(runnable);
+            int current = (!playPressed) ? R.drawable.music_pause : R.drawable.music_play;
+            playPressed = current != R.drawable.music_play;
+            holder.thread = new Thread(holder.runnable);
             time = 0;
             if (playPressed) {
                 holder.progressBar.setVisibility(view.VISIBLE);
                 holder.songImage.setVisibility(View.INVISIBLE);
+                holder.songImage.setTag(position);
                 play(view, holder);
-                thread.start();
+                holder.thread.start();
             } else {
                 holder.progressBar.setVisibility(view.INVISIBLE);
                 holder.songImage.setVisibility(View.VISIBLE);
                 stop(view);
-                thread.interrupt();
-                thread = null;
+                holder.thread.interrupt();
+                holder.thread = null;
                 counter.cancel();
             }
-            holder.songPlay.setImageResource(current);
         });
     }
 
@@ -228,6 +224,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         TextView songArtist;
         ProgressBar progressBar;
         String songUrl;
+        Thread thread;
+        Runnable runnable;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
