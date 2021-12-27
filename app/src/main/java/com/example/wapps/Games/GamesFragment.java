@@ -35,6 +35,7 @@ public class GamesFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_games, container, false);
 
+        // Data reading from firestore database
         db = FirebaseFirestore.getInstance();
         platforms = new ArrayList<>();
         db.collection("GamePlatforms")
@@ -55,14 +56,19 @@ public class GamesFragment extends Fragment {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                         RecyclerView recyclerView = root.findViewById(R.id.gamePlatformRecyclerView);
-                        //recyclerView.setLayoutManager(new LinearLayoutManager((getContext())) {
-                        //                                  @Override
-                        //                                  public boolean canScrollVertically() { return false; }
-                        //                              }
-                        //);
                         PlatformRecyclerViewAdapter adapter = new PlatformRecyclerViewAdapter(platforms, getContext());
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()) {
+                        //    @Override
+                        //    public boolean canScrollVertically() { return false; }
+                        //});
+                        // To disable nested scroll
+
+                        // recyclerView.setLayoutManager(new LinearLayoutManager((getContext())) {
+                       //    @Override
+                       //    public boolean canScrollVertically() { return false; }
+                       //});
                     }
                 });
         return root;
