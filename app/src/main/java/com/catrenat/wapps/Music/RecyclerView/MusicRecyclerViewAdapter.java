@@ -46,6 +46,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private Thread thread;
     private Runnable runnable;
     private CountDownTimer counter;
+    private String api_key = "AIzaSyD_9MXeprDkX0CsYemQiWVwQDuaUgXCbtw";
 
     // Constructor
     public MusicRecyclerViewAdapter(RecyclerView musicRecyclerView, ArrayList<Music> musicArray, Context context, MediaPlayer player){
@@ -250,15 +251,4 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             progressBar = itemView.findViewById(R.id.progress_bar);
         }
     }
-
-    /*
-    @Override
-    public void onViewDetachedFromWindow(@NonNull MusicViewHolder holder) {
-        super.onViewDetachedFromWindow(holder);
-        Log.i("ENTRA","ooooooooooooooooooooooooooooooooo"+"entra");
-        player.release();
-        player = null;
-    }
-
-     */
 }
