@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class MusicFragment extends Fragment {
     // Properties
     private ArrayList<Music> musicArray = new ArrayList<>();
     private RecyclerView musicRecyclerView;
-    MediaPlayer player;
+    YouTubePlayerView youTubePlayerView;
 
     public MusicFragment() {
 
@@ -75,8 +76,7 @@ public class MusicFragment extends Fragment {
                                 Music music = document.toObject(Music.class);
                                 musicArray.add(music);
                             }
-                            player = new MediaPlayer();
-                            MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicRecyclerView, musicArray, getContext(), player);
+                            MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicRecyclerView, musicArray, getContext(), youTubePlayerView);
                             musicRecyclerView.setAdapter(adapter);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -90,18 +90,16 @@ public class MusicFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        player.stop();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        player.stop();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        player.stop();
+        //youTubePlayerView.release();
     }
 }

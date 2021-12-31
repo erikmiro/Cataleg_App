@@ -28,57 +28,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/songImage"
-            android:layout_width="67dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/music_image_placeholder" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/circle_shape"
-            android:indeterminate="false"
-            android:progressDrawable="@drawable/circle_progress_bar"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/musicRectangle"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.545" />
-
         <TextView
             android:id="@+id/songName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/notosanshk_bold"
             android:text="@string/songName"
             android:textColor="@color/white"
             android:textSize="15dp"
-            app:layout_constraintStart_toEndOf="@+id/songImage"
+            app:layout_constraintStart_toEndOf="@+id/youtubePlayer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/songArtist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/notosanshk_bold"
             android:text="@string/songArtist"
             android:textColor="@color/lightGrey"
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/songImage"
+            app:layout_constraintStart_toEndOf="@+id/youtubePlayer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -101,27 +74,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_music_more" />
 
-        <ImageView
-            android:id="@+id/songPlay"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="@+id/songImage"
-            app:layout_constraintEnd_toEndOf="@+id/songImage"
-            app:layout_constraintStart_toStartOf="@+id/songImage"
-            app:layout_constraintTop_toTopOf="@+id/songImage"
-            app:srcCompat="@drawable/music_play" />
-
-        <com.google.android.youtube.player.YouTubePlayerView
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/youtubePlayer"
             android:layout_width="79dp"
             android:layout_height="71dp"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="80dp"
+            android:layout_marginStart="15dp"
+            app:enableAutomaticInitialization="false"
+            app:autoPlay="false"
+            app:barrierAllowsGoneWidgets="true"
+            app:layout_constraintCircleRadius="20dp"
+            app:circularflow_radiusInDP="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/musicRectangle"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.448" />
-
+            app:layout_constraintVertical_bias="0.551" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
