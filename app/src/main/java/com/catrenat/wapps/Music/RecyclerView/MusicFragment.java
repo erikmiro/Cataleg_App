@@ -104,6 +104,4 @@ public class MusicFragment extends Fragment {
         super.onDestroy();
         player.stop();
     }
-
-
 }

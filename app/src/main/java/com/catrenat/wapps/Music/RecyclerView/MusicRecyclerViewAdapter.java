@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,13 +27,17 @@ import com.catrenat.wapps.R;
 import com.catrenat.wapps.Models.Music;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecyclerViewAdapter.MusicViewHolder> implements MediaPlayer.OnPreparedListener {
+public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecyclerViewAdapter.MusicViewHolder> implements MediaPlayer.OnPreparedListener, YouTubePlayer.OnInitializedListener {
 
     // Properties
     private ArrayList<Music> musicArray;
@@ -73,8 +78,32 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
 
         holder.songName.setText(music.getSongName());
         holder.songArtist.setText(music.getSongArtist());
-        Log.i("erik", "holder old position: "+holder.getOldPosition());
-        Log.i("erik", "holder current position: "+holder.getAdapterPosition());
+
+        /*
+        // Youtube player listener
+        YouTubePlayer.OnInitializedListener listener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                // Load video using youtube video id
+                youTubePlayer.loadVideo("PoGFiOjfQvY&ab_channel=MikiNunezVEVO");
+                // Start video
+                youTubePlayer.play();
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                // Display toast
+                Toast.makeText(context,
+                        "Initialization failed",
+                        Toast.LENGTH_SHORT).show();
+            }
+        };
+
+         */
+
+        // Initialize player with youtube api key
+        holder.youTubePlayerView.initialize("AIzaSyBqvxD0K9hukXG9ziqt3ZgMfkzbnqwu7kw", YoutubePlayerClass.initializeYoutube(context));
+
 
         // Music progressBar
         holder.runnable = new Runnable() {
@@ -229,6 +258,16 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {}
 
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+    }
+
     //Creating properties and finding them in the view
     public class MusicViewHolder extends RecyclerView.ViewHolder{
         ImageView favouriteImage;
@@ -240,6 +279,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         String songUrl;
         Thread thread;
         Runnable runnable;
+        YouTubePlayerView youTubePlayerView;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -249,6 +289,30 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             songArtist = itemView.findViewById(R.id.songArtist);
             songPlay = itemView.findViewById(R.id.songPlay);
             progressBar = itemView.findViewById(R.id.progress_bar);
+            youTubePlayerView = itemView.findViewById(R.id.youtubePlayer);
+        }
+    }
+
+    private static class YoutubePlayerClass extends YouTubeBaseActivity {
+        public static YouTubePlayer.OnInitializedListener initializeYoutube(Context context) {
+            YouTubePlayer.OnInitializedListener listener = new YouTubePlayer.OnInitializedListener() {
+                @Override
+                public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                    // Load video using youtube video id
+                    youTubePlayer.loadVideo("PoGFiOjfQvY&ab_channel=MikiNunezVEVO");
+                    // Start video
+                    youTubePlayer.play();
+                }
+
+                @Override
+                public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                    // Display toast
+                    Toast.makeText(context,
+                            "Initialization failed",
+                            Toast.LENGTH_SHORT).show();
+                }
+            };
+            return listener;
         }
     }
 }
