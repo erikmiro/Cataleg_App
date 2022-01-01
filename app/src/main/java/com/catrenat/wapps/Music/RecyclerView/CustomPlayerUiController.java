@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -51,14 +53,15 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
     private void initViews(View playerUi) {
         panel = playerUi.findViewById(R.id.panel);
         ImageView playPauseButton = playerUi.findViewById(R.id.playPauseButton);
+
+      //  Log.i("k","jsjssjs: "+playerTracker.getState());
         playPauseButton.setOnClickListener( (view) -> {
             if (playerTracker.getState() == PlayerConstants.PlayerState.PLAYING) {
                 youTubePlayer.pause();
-                playPauseButton.setImageResource(R.drawable.music_play);
-            }
-            else {
+                //playPauseButton.setImageResource(R.drawable.music_play);
+            } else {
                 youTubePlayer.play();
-                playPauseButton.setImageResource(R.drawable.music_pause);
+                //playPauseButton.setImageResource(R.drawable.music_pause);
             }
         });
 

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,7 +72,14 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         });
 
         // For the favourite button
-        holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
+        holder.favouriteImage.setOnClickListener(view -> {
+            AppCompatActivity app = (AppCompatActivity) view.getContext();
+            int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
+            heartPressed = current != R.drawable.ic_music_heart;
+            holder.favouriteImage.setImageResource(current);
+        });
+
+        // For the play button
         holder.favouriteImage.setOnClickListener(view -> {
             AppCompatActivity app = (AppCompatActivity) view.getContext();
             int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
@@ -92,13 +100,19 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         TextView songName;
         TextView songArtist;
         YouTubePlayerView youTubePlayerView;
+        FrameLayout frameLayout;
+        ImageView playButton;
 
         public MusicViewHolder(@NonNull View itemView) {
             super(itemView);
             favouriteImage = itemView.findViewById(R.id.favouriteImg);
             songName = itemView.findViewById(R.id.songName);
             songArtist = itemView.findViewById(R.id.songArtist);
+            playButton = itemView.findViewById(R.id.playMusic);
+            playButton.setVisibility(View.INVISIBLE);
             youTubePlayerView = itemView.findViewById(R.id.youtubePlayer);
+            frameLayout = itemView.findViewById(R.id.musicItemFrameLayout);
+            frameLayout.setClipToOutline(true);
 
             // Youtube player UI
             IFramePlayerOptions options = new IFramePlayerOptions.Builder()
