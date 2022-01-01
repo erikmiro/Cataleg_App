@@ -47,15 +47,20 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Image loader from firebase using glide (Asks firebase for image hosted url using imagePath to storage)
+
+        // Sets card background color
         if(platforms.get(position).getHexColor() != null) {
             holder.platformBackground.setCardBackgroundColor(Color.parseColor(platforms.get(position).getHexColor()));
         }
+
+        // Image loader from firebase using glide (Asks firebase for image hosted url using imagePath to storage)
         StorageReference storageReference = FirebaseStorage.getInstance("gs://catrenat-3e277.appspot.com").getReference();
         if(platforms.get(position).getImagePath() != null) {
             storageReference.child(platforms.get(position).getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
+
+                    // Load image with glide
                     Glide.with(context) // Context from getContext() in HomeFragment
                             .load(uri.toString())
                             .into(holder.platformImage);

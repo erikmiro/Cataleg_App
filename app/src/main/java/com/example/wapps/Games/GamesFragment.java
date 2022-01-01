@@ -44,6 +44,7 @@ public class GamesFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
+                            // RecyclerView array argument construction
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 Platform platform = new Platform();
                                 platform.setName(document.getString("name"));
@@ -55,20 +56,17 @@ public class GamesFragment extends Fragment {
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
+
+                        // RecyclerView declared and init with array
                         RecyclerView recyclerView = root.findViewById(R.id.gamePlatformRecyclerView);
                         PlatformRecyclerViewAdapter adapter = new PlatformRecyclerViewAdapter(platforms, getContext());
                         recyclerView.setAdapter(adapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()) {
-                        //    @Override
-                        //    public boolean canScrollVertically() { return false; }
-                        //});
-                        // To disable nested scroll
 
-                        // recyclerView.setLayoutManager(new LinearLayoutManager((getContext())) {
-                       //    @Override
-                       //    public boolean canScrollVertically() { return false; }
-                       //});
+                        // Disables recyclerView nested scroll
+                         recyclerView.setLayoutManager(new LinearLayoutManager((getContext())) {
+                            @Override
+                            public boolean canScrollVertically() { return false; }
+                        });
                     }
                 });
         return root;
