@@ -12,13 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.catrenat.wapps.Models.Music;
 import com.catrenat.wapps.Music.RecyclerView.MusicRecyclerViewAdapter;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,9 +41,7 @@ public class MusicFragment extends Fragment {
     private RecyclerView musicRecyclerView;
     YouTubePlayerView youTubePlayerView;
 
-    public MusicFragment() {
-
-    }
+    public MusicFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,12 @@ public class MusicFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_music, container, false);
+
+        TextView musicIntroText = view.findViewById(R.id.musicIntroText);
+
+        // Making the welcome text fade in
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
+        musicIntroText.setAnimation(animation);
 
         // Initializing the RecyclerView for the list
         musicRecyclerView = view.findViewById(R.id.musicRecyclerView);
@@ -101,6 +111,5 @@ public class MusicFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //youTubePlayerView.release();
     }
 }

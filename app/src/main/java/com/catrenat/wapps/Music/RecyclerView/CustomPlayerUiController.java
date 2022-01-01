@@ -23,15 +23,15 @@ import com.catrenat.wapps.R;
 
 class CustomPlayerUiController extends AbstractYouTubePlayerListener implements YouTubePlayerFullScreenListener {
 
+    // Properties
     private final View playerUi;
-
     private Context context;
     private YouTubePlayer youTubePlayer;
     private YouTubePlayerView youTubePlayerView;
     private boolean playPressed = false;
     ImageView playPauseButton;
 
-    // panel is used to intercept clicks on the WebView, I don't want the user to be able to click the WebView directly.
+    // Panel is used to intercept clicks on the WebView, I don't want the user to be able to click the WebView directly.
     private View panel;
     private View progressbar;
     private TextView videoCurrentTimeTextView;
@@ -52,6 +52,7 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
         initViews(customPlayerUi);
     }
 
+    // To initialize the view
     private void initViews(View playerUi) {
         panel = playerUi.findViewById(R.id.panel);
         playPauseButton = playerUi.findViewById(R.id.playPauseButton);
@@ -68,28 +69,15 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
             }
             playPauseButton.setImageResource(current);
         });
-
-        /*
-
-        videoCurrentTimeTextView = playerUi.findViewById(R.id.video_current_time);
-        videoDurationTextView = playerUi.findViewById(R.id.video_duration);
-        Button enterExitFullscreenButton = playerUi.findViewById(R.id.enter_exit_fullscreen_button);
-
-        enterExitFullscreenButton.setOnClickListener( (view) -> {
-            if(fullscreen) youTubePlayerView.exitFullScreen();
-            else youTubePlayerView.enterFullScreen();
-
-            fullscreen = !fullscreen;
-        });
-
-         */
     }
 
+    // Indicates when the player is ready and loaded
     @Override
     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
       progressbar.setVisibility(View.INVISIBLE);
     }
 
+    // Every time the state of a video is changed, played, paused, buffering, or cued
     @Override
     public void onStateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerState state) {
         if (state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED || state == PlayerConstants.PlayerState.VIDEO_CUED) {

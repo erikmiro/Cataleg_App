@@ -44,7 +44,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         this.youTubePlayerView = youTubePlayerView;
     }
 
-    //Creating a new onCreateViewHolder
+    // Creating a new onCreateViewHolder
     @NonNull
     @Override
     public MusicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,7 +53,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         return holder;
     }
 
-    //Setting values to every field item by item
+    // Setting values to every field item by item
     @Override
     public void onBindViewHolder(@NonNull MusicViewHolder holder, int position) {
         // Create a music object with the music that is inside the array list
@@ -123,7 +123,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 }
             };
 
-            // disable iframe ui
+            // Disable iframe ui
             youTubePlayerView.initialize(listener, options);
         }
     }
