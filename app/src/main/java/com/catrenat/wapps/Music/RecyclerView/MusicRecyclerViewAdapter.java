@@ -78,14 +78,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             heartPressed = current != R.drawable.ic_music_heart;
             holder.favouriteImage.setImageResource(current);
         });
-
-        // For the play button
-        holder.favouriteImage.setOnClickListener(view -> {
-            AppCompatActivity app = (AppCompatActivity) view.getContext();
-            int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
-            heartPressed = current != R.drawable.ic_music_heart;
-            holder.favouriteImage.setImageResource(current);
-        });
     }
 
     // Counting the items in the music list

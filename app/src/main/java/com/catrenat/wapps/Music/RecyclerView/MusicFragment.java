@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.catrenat.wapps.Models.Music;
 import com.catrenat.wapps.Music.RecyclerView.MusicRecyclerViewAdapter;

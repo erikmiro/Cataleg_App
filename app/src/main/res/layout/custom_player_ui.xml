@@ -16,13 +16,27 @@
 
     <ImageView
         android:id="@+id/playPauseButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/transparent_play" />
+        app:srcCompat="@drawable/music_play" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/lightGrey"
+        android:progressTint="@color/lightGrey"
+        android:foregroundTint="@color/lightGrey"
+        android:indeterminateTint="@color/lightGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

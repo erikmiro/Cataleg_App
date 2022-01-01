@@ -28,6 +28,8 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
     private Context context;
     private YouTubePlayer youTubePlayer;
     private YouTubePlayerView youTubePlayerView;
+    private boolean playPressed = false;
+    ImageView playPauseButton;
 
     // panel is used to intercept clicks on the WebView, I don't want the user to be able to click the WebView directly.
     private View panel;
@@ -52,30 +54,23 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
 
     private void initViews(View playerUi) {
         panel = playerUi.findViewById(R.id.panel);
-        ImageView playPauseButton = playerUi.findViewById(R.id.playPauseButton);
+        playPauseButton = playerUi.findViewById(R.id.playPauseButton);
+        progressbar = playerUi.findViewById(R.id.progressBar);
+        progressbar.setVisibility(View.VISIBLE);
 
-      //  Log.i("k","jsjssjs: "+playerTracker.getState());
         playPauseButton.setOnClickListener( (view) -> {
-            if (playerTracker.getState() == PlayerConstants.PlayerState.PLAYING) {
-                youTubePlayer.pause();
-                //playPauseButton.setImageResource(R.drawable.music_play);
-            } else {
+            int current = (playPressed == false) ? R.drawable.music_pause : R.drawable.music_play;
+            playPressed = (current == R.drawable.music_play) ? false : true;
+            if (playPressed) {
                 youTubePlayer.play();
-                //playPauseButton.setImageResource(R.drawable.music_pause);
+            } else {
+                youTubePlayer.pause();
             }
+            playPauseButton.setImageResource(current);
         });
 
         /*
 
-        holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
-        holder.favouriteImage.setOnClickListener(view -> {
-            AppCompatActivity app = (AppCompatActivity) view.getContext();
-            int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
-            heartPressed = current != R.drawable.ic_music_heart;
-            holder.favouriteImage.setImageResource(current);
-        });
-
-        progressbar = playerUi.findViewById(R.id.progressbar);
         videoCurrentTimeTextView = playerUi.findViewById(R.id.video_current_time);
         videoDurationTextView = playerUi.findViewById(R.id.video_duration);
         Button enterExitFullscreenButton = playerUi.findViewById(R.id.enter_exit_fullscreen_button);
@@ -92,16 +87,23 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
 
     @Override
     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-       progressbar.setVisibility(View.GONE);
+      progressbar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onStateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerState state) {
-        if(state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED || state == PlayerConstants.PlayerState.VIDEO_CUED)
+        if (state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED || state == PlayerConstants.PlayerState.VIDEO_CUED) {
             panel.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent));
-        else
-        if(state == PlayerConstants.PlayerState.BUFFERING)
+            progressbar.setVisibility(View.INVISIBLE);
+        } else if (state == PlayerConstants.PlayerState.BUFFERING) {
             panel.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent));
+            progressbar.setVisibility(View.VISIBLE);
+        }
+        if (state == PlayerConstants.PlayerState.PLAYING) {
+            playPauseButton.setImageResource(R.drawable.music_pause);
+        } else {
+            playPauseButton.setImageResource(R.drawable.music_play);
+        }
     }
 
     @SuppressLint("SetTextI18n")
