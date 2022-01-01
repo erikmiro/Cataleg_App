@@ -1,4 +1,4 @@
-package com.example.wapps.Models;
+package com.catrenat.wapps.Models;
 
 public class Platform {
     private String name;

@@ -1,4 +1,4 @@
-package com.example.wapps.Games;
+package com.catrenat.wapps.Games;
 
 import static android.content.ContentValues.TAG;
 
@@ -14,8 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.wapps.Games.RecyclerView.PlatformRecyclerViewAdapter;
-import com.example.wapps.Models.Platform;
+import com.catrenat.wapps.Games.RecyclerView.PlatformRecyclerViewAdapter;
+import com.catrenat.wapps.Models.Platform;
 import com.example.wapps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
