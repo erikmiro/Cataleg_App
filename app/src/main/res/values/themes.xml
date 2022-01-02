@@ -20,4 +20,8 @@
         <item name="colorControlActivated">@color/blue</item>
         <item name="colorControlHighlight">@color/blue</item>
     </style>
+
+    <style name="ToolBarTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
 </resources>
