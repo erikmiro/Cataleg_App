@@ -3,10 +3,13 @@ package com.catrenat.wapps.LoginScreen;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.util.Patterns;
 import android.widget.Button;
@@ -27,6 +30,8 @@ private EditText emailTxt, passwordTxt;
 private TextView registerTxt;
 private Button loginBtn;
 private FirebaseAuth mAuth;
+private CheckBox rememberBox;
+private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ private FirebaseAuth mAuth;
         emailTxt = findViewById(R.id.etEmail);
         registerTxt = findViewById(R.id.registerTxt);
         loginBtn = findViewById(R.id.loginBtn);
+        rememberBox = findViewById(R.id.remember_checkBox);
 
         // To be able to change lock icon color when focused
         passwordTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -81,9 +87,15 @@ private FirebaseAuth mAuth;
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        // Shared preference
+        prefs = getSharedPreferences("SharedP", Context.MODE_PRIVATE);
+
+        // If remember was check permits auto-login.
+        if(prefs.getBoolean("login", false)) {
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        }
         overridePendingTransition(0, 0);
     }
 
@@ -117,6 +129,11 @@ private FirebaseAuth mAuth;
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginScreen.this, getString(R.string.loggedSuccessfully), Toast.LENGTH_SHORT).show();
+                // If remember box isChecked auto-login is activated
+                if(rememberBox.isChecked()) {
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("login", true).commit();
+                }
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {

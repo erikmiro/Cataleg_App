@@ -30,4 +30,5 @@
     <string name="welcomeMusicScreen">Descobreix la música catalana</string>
     <string name="welcomeGameScreen">Descobreix els videojocs en català</string>
     <string name="choosePlatform">Escull una plataforma</string>
+    <string name="rememberMe">Recorda\'m</string>
 </resources>
