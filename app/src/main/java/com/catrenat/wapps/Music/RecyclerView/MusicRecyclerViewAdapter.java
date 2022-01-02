@@ -1,12 +1,16 @@
 package com.catrenat.wapps.Music.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.catrenat.wapps.Music.MusicDetailsFragment;
 import com.catrenat.wapps.R;
 import com.catrenat.wapps.Models.Music;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -59,6 +64,10 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
 
+        // Creating the music details fragment
+        MusicDetailsFragment musicDetailsFragment = new MusicDetailsFragment();
+
+        // Setting the text for the song name and artist
         holder.songName.setText(music.getSongName());
         holder.songArtist.setText(music.getSongArtist());
 
@@ -77,6 +86,32 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
             heartPressed = current != R.drawable.ic_music_heart;
             holder.favouriteImage.setImageResource(current);
+        });
+
+        // Adds item object to bundle and sent to Item Details fragments
+        //bundle.putSerializable("Category", category);
+        //dishesListFragment.setArguments(bundle);
+
+        holder.itemView.setOnClickListener(v -> {
+            AppCompatActivity app = (AppCompatActivity) v.getContext();
+            //app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, musicDetailsFragment, "MusicDetails").addToBackStack(null).commit();
+
+            // Create the dialog
+            Dialog MusicDetailsFragment_popup = new Dialog(context);
+
+            // Create the window manager to get screen size and set dialog size
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(MusicDetailsFragment_popup.getWindow().getAttributes());
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+            // Show the dialog
+            MusicDetailsFragment_popup.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+            MusicDetailsFragment_popup.setContentView(R.layout.fragment_music_details);
+            MusicDetailsFragment_popup.setCancelable(true);
+            MusicDetailsFragment_popup.show();
+            MusicDetailsFragment_popup.getWindow().setAttributes(lp);
+
         });
     }
 
