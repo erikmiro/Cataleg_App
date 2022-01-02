@@ -82,9 +82,9 @@ private FirebaseAuth mAuth;
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        overridePendingTransition(0, 0);
+        //if (FirebaseAuth.getInstance().getCurrentUser() != null)
+        //    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        //overridePendingTransition(0, 0);
     }
 
     public void loginUser() {

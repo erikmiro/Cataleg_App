@@ -27,4 +27,8 @@
     <string name="welcomeGeneralScreen">Benvingut a SumaCat, accedeix al nostre contingut i comença a navegar</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Closed</string>
+    <string name="alert_logout_title">Do you want to logout?</string>
+    <string name="alert_logout_message">Remember login will be disabled (TODO)</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
