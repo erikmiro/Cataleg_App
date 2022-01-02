@@ -2,8 +2,10 @@ package com.catrenat.wapps.Music.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -39,6 +41,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private RecyclerView musicRecyclerView;
     boolean heartPressed = false;
     YouTubePlayerView youTubePlayerView;
+    public static Dialog musicDetailsFragmentPopup;
 
 
     // Constructor
@@ -97,20 +100,42 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             //app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, musicDetailsFragment, "MusicDetails").addToBackStack(null).commit();
 
             // Create the dialog
-            Dialog MusicDetailsFragment_popup = new Dialog(context);
+            Dialog musicDetailsFragmentPopup = new Dialog(context);
 
             // Create the window manager to get screen size and set dialog size
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-            lp.copyFrom(MusicDetailsFragment_popup.getWindow().getAttributes());
+            lp.copyFrom(musicDetailsFragmentPopup.getWindow().getAttributes());
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             lp.height = WindowManager.LayoutParams.MATCH_PARENT;
 
             // Show the dialog
-            MusicDetailsFragment_popup.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-            MusicDetailsFragment_popup.setContentView(R.layout.fragment_music_details);
-            MusicDetailsFragment_popup.setCancelable(true);
-            MusicDetailsFragment_popup.show();
-            MusicDetailsFragment_popup.getWindow().setAttributes(lp);
+            musicDetailsFragmentPopup.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+            musicDetailsFragmentPopup.setContentView(R.layout.fragment_music_details);
+
+
+            // Elements of the dialog
+            View dialogDismissView = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsdismissDialogView);
+            ImageView favouriteImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailFavourite);
+
+            // Change dialog favourite image by touching
+            favouriteImage.setOnClickListener(view -> {
+                int current = (!heartPressed) ? R.drawable.ic_music_details_filled_heart : R.drawable.ic_music_details_heart;
+                heartPressed = current != R.drawable.ic_music_details_heart;
+                favouriteImage.setImageResource(current);
+            });
+
+            // To be able to dismiss the dialog when touched
+            dialogDismissView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   // musicDetailsFragmentPopup.dismiss();
+                }
+            });
+
+            musicDetailsFragmentPopup.setCancelable(true);
+            musicDetailsFragmentPopup.setCanceledOnTouchOutside(true);
+            musicDetailsFragmentPopup.show();
+            musicDetailsFragmentPopup.getWindow().setAttributes(lp);
 
         });
     }
