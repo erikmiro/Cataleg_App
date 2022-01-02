@@ -28,4 +28,6 @@
     <string name="songName">Song name</string>
     <string name="songArtist">Song artist</string>
     <string name="welcomeMusicScreen">Descobreix la música catalana</string>
+    <string name="welcomeGameScreen">Descobreix els videojocs en català</string>
+    <string name="choosePlatform">Escull una plataforma</string>
 </resources>

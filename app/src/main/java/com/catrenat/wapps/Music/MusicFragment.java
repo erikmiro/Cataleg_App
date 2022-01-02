@@ -1,4 +1,4 @@
-package com.catrenat.wapps.Music.RecyclerView;
+package com.catrenat.wapps.Music;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
