@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wapps</string>
+    <string name="app_name">Catàleg</string>
     <string name="todo">TODO</string>
     <string name="welcome">Benvingut!</string>
     <string name="login">Inicia Sessió</string>
