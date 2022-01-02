@@ -13,10 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import com.catrenat.wapps.Games.RecyclerView.PlatformRecyclerViewAdapter;
 import com.catrenat.wapps.Models.Platform;
-import com.example.wapps.R;
+import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,6 +37,14 @@ public class GamesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_games, container, false);
+
+        TextView welcomeTxt = root.findViewById(R.id.gamesWelcomeText);
+        TextView chosePlatformText = root.findViewById(R.id.chosePlatformText);
+
+        // Making the welcome text fade in
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
+        welcomeTxt.setAnimation(animation);
+        chosePlatformText.setAnimation(animation);
 
         // Data reading from firestore database
         db = FirebaseFirestore.getInstance();

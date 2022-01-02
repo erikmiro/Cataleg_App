@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.MenuItem;
 
+import com.catrenat.wapps.Music.MusicFragment;
 import com.catrenat.wapps.Games.GamesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
