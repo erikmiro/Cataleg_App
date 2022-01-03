@@ -205,7 +205,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             dialogDismissView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   // musicDetailsFragmentPopup.dismiss();
+                   musicDetailsFragmentPopup.dismiss();
                 }
             });
 
