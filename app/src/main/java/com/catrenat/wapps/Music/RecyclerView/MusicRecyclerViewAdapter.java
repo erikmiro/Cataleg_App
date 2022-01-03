@@ -132,6 +132,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             TextView songArtistDetails = musicDetailsFragmentPopup.findViewById(R.id.detailsSongArtist);
             ImageView youtubeImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsYoutubeImg);
             TextView youtubeText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailYoutubeText);
+            ImageView shareSongImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsShareImg);
+            TextView shareSongText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailShareText);
 
             // Set song name and artist
             songNameDetails.setText(holder.songName.getText());
@@ -169,7 +171,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 favouriteImage.setImageResource(current);
             });
 
-            // Youtube link
+            // Youtube button
             youtubeImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -181,6 +183,21 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 @Override
                 public void onClick(View view) {
                     openYoutube(music.getSong());
+                }
+            });
+
+            // Sharing button
+            shareSongImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shareSong(music.getSong());
+                }
+            });
+
+            shareSongText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shareSong(music.getSong());
                 }
             });
 
@@ -225,6 +242,16 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + youtubePackage)));
             }
         }
+    }
+
+    // Share a song
+    private void shareSong(String songUrl) {
+        String youtubeInitialText = "https://www.youtube.com/watch?v=";
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, youtubeInitialText + songUrl);
+        sendIntent.setType("text/plain");
+        context.startActivity(sendIntent);
     }
 
     // Counting the items in the music list
