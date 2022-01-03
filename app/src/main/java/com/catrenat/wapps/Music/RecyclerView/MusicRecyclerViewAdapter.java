@@ -1,8 +1,12 @@
 package com.catrenat.wapps.Music.RecyclerView;
 
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
@@ -44,6 +48,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiCo
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecyclerViewAdapter.MusicViewHolder>{
 
@@ -168,14 +173,14 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             youtubeImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openYoutube();
+                    openYoutube(music.getSong());
                 }
             });
 
             youtubeText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openYoutube();
+                    openYoutube(music.getSong());
                 }
             });
 
@@ -197,8 +202,29 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     }
 
     // Open youtube function
-    private void openYoutube() {
-        
+    private void openYoutube(String songUrl) {
+        // Youtube and play store packages names
+        String playStorePackage = "com.android.vending";
+        String youtubePackage = "com.google.android.youtube";
+
+        // Youtube api
+        String youtubeInitialText = "https://www.youtube.com/watch?v=";
+
+        // Creating intents to check whether the app exists or not in the device
+        Intent youtubeExistsIntent = context.getPackageManager().getLaunchIntentForPackage(youtubePackage);
+        Intent playStoreExists = context.getPackageManager().getLaunchIntentForPackage(playStorePackage);
+        if (youtubeExistsIntent != null) {
+            // Open youtube
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(youtubeInitialText + songUrl));
+            intent.setPackage(youtubePackage);
+            context.startActivity(intent);
+        } else {
+            // Youtube not installed so open youtube in play store if it exists
+            if (playStoreExists != null) {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + youtubePackage)));
+            }
+        }
     }
 
     // Counting the items in the music list
