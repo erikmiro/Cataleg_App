@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_books"
-    tools:context=".BooksFragment">
+    tools:context=".Books.BooksFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_category"

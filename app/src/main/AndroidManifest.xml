@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.wapps">
+    package="com.catrenat.wapps">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START"/>
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wapps">
         <activity
-            android:name=".LoginScreen.LoginScreen"
+            android:name="com.catrenat.wapps.LoginScreen.LoginScreen"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
@@ -21,10 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.catrenat.wapps.MainActivity"
             android:exported="false"/>
         <activity
-            android:name=".RegisterActivity"
+            android:name="com.catrenat.wapps.RegisterActivity"
             android:exported="false"/>
     </application>
 
