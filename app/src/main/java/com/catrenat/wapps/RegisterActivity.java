@@ -10,8 +10,10 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.catrenat.wapps.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,11 +25,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText nameRegTxt, emailRegTxt, passRegTxt, passConfirmRegTxt;
-    TextInputLayout outerUsernameTxt, outerEmailTxt, outerPasswordTxt, outerConfirmPasswordTxt;
-    Button registerBtn;
-    FirebaseAuth mAuth;
-    FirebaseFirestore db;
+    private EditText nameRegTxt, emailRegTxt, passRegTxt, passConfirmRegTxt, bioRegTxt;
+    private TextInputLayout outerUsernameTxt, outerEmailTxt, outerPasswordTxt, outerConfirmPasswordTxt, outerBioTxt;
+    private Button registerBtn;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private ProgressBar progressRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,14 @@ public class RegisterActivity extends AppCompatActivity {
         outerEmailTxt = findViewById(R.id.registerEmailTxt);
         outerPasswordTxt = findViewById(R.id.registerPasswordTxt);
         outerConfirmPasswordTxt = findViewById(R.id.registerConfirmPasswordTxt);
+        outerBioTxt = findViewById(R.id.registerBioTxt);
         nameRegTxt = findViewById(R.id.etRegisterUsername);
         emailRegTxt = findViewById(R.id.etRegisterEmail);
         passRegTxt = findViewById(R.id.etRegisterPassword);
         passConfirmRegTxt = findViewById(R.id.etRegisterConfirmPassword);
+        bioRegTxt = findViewById(R.id.etRegisterBio);
         registerBtn = findViewById(R.id.registerBtn);
+        progressRegister = findViewById(R.id.progressRegister);
 
         // Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -91,11 +97,21 @@ public class RegisterActivity extends AppCompatActivity {
                 outerConfirmPasswordTxt.setStartIconTintList(ColorStateList.valueOf(color));
             }
         });
+
+        // To be able to change confirm password icon color when focused
+        bioRegTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int color = hasFocus ? getResources().getColor(R.color.blue) : getResources().getColor(R.color.grey);
+                outerBioTxt.setStartIconTintList(ColorStateList.valueOf(color));
+            }
+        });
     }
 
     public void registerUser() {
         Boolean readyCheck = false;
         String username = nameRegTxt.getText().toString().trim();
+        String bio = bioRegTxt.getText().toString().trim();
         String email = emailRegTxt.getText().toString().trim();
         String password = passRegTxt.getText().toString().trim();
         String passwordRep = passConfirmRegTxt.getText().toString().trim();
@@ -104,6 +120,13 @@ public class RegisterActivity extends AppCompatActivity {
         if(username.isEmpty()) {
             nameRegTxt.setError(getString(R.string.usernameRequired));
             nameRegTxt.requestFocus();
+            readyCheck = true;
+        }
+
+        // Bio conditions
+        if(bio.length() > 18) {
+            bioRegTxt.setError(getString(R.string.bioMaxLength));
+            bioRegTxt.requestFocus();
             readyCheck = true;
         }
 
@@ -137,6 +160,9 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        // Loading progressBar and button disabled
+        loadingState(true);
+
         // Creates new user on Authentication firebase
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -145,11 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Map<String, String> user = new HashMap<>();
-                            user.put("Username", username);
-                            user.put("Email", email);
-                            user.put("Password", password);
-
+                            User user = new User(username, bio, email, password);
                             db.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .set(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -159,17 +181,30 @@ public class RegisterActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterActivity.this, getString(R.string.registerSuccessful), Toast.LENGTH_LONG).show();
+                                                loadingState(false);
                                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                             } else {
                                                 Toast.makeText(RegisterActivity.this, getString(R.string.registerFailed), Toast.LENGTH_LONG).show();
+                                                loadingState(false);
                                             }
                                         }
                                     });
 
                         } else {
                             Toast.makeText(RegisterActivity.this, getString(R.string.registerFailed), Toast.LENGTH_LONG).show();
+                            loadingState(false);
                         }
                     }
                 });
+    }
+
+    public void loadingState(Boolean isLoading) {
+        if(isLoading) {
+            progressRegister.setVisibility(View.VISIBLE);
+            registerBtn.setClickable(false);
+        } else {
+            progressRegister.setVisibility(View.GONE);
+            registerBtn.setClickable(true);
+        }
     }
 }

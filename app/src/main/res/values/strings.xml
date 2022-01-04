@@ -31,4 +31,6 @@
     <string name="welcomeGameScreen">Descobreix els videojocs en català</string>
     <string name="choosePlatform">Escull una plataforma</string>
     <string name="rememberMe">Recorda\'m</string>
+    <string name="bio">Bio (Opcional)</string>
+    <string name="bioMaxLength">La longitud màxima és de 15 caràcters</string>
 </resources>
