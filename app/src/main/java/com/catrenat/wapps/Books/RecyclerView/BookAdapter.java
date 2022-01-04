@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catrenat.wapps.Models.Book;
-import com.example.wapps.R;
+import com.catrenat.wapps.R;
 
 import java.util.List;
 

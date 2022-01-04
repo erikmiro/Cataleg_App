@@ -14,12 +14,14 @@ import com.catrenat.wapps.R;
 import com.catrenat.wapps.Books.RecyclerView.BooksCategoryAdapter;
 import com.catrenat.wapps.Models.Book;
 import com.catrenat.wapps.Models.BooksCategory;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BooksFragment extends Fragment {
 
+    private FirebaseFirestore db;
     RecyclerView rcvCategory;
     BooksCategoryAdapter categoryAdapter;
 
@@ -27,6 +29,9 @@ public class BooksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View bookView = inflater.inflate(R.layout.fragment_books, container, false);
+
+        // Data reading from firestore database
+        db = FirebaseFirestore.getInstance();
 
         rcvCategory = bookView.findViewById(R.id.rcv_category);
         categoryAdapter = new BooksCategoryAdapter(getContext());

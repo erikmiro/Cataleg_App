@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catrenat.wapps.Models.BooksCategory;
-import com.example.wapps.R;
+import com.catrenat.wapps.R;
 
 import java.util.List;
 
