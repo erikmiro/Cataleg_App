@@ -35,4 +35,6 @@
     <string name="moreOfTheArtist">Més de l\'artista</string>
     <string name="listenInYoutube">Escolta-la a Youtube</string>
     <string name="share">Compartir</string>
+    <string name="bio">Bio (Opcional)</string>
+    <string name="bioMaxLength">La longitud màxima és de 15 caràcters</string>
 </resources>
