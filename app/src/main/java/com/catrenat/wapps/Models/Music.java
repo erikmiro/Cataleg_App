@@ -2,22 +2,26 @@ package com.catrenat.wapps.Models;
 
 import java.io.Serializable;
 
+import javax.crypto.AEADBadTagException;
+
 public class Music implements Serializable {
     // Properties
     String song;
     String songName;
     String songArtist;
     String songImageUrl;
+    Artist artist;
 
     // Default Constructor
     public  Music() {}
 
     // Specific Constructor
-    public Music(String song, String songName, String songArtist, String songImageUrl) {
+    public Music(String song, String songName, String songArtist, String songImageUrl, Artist artist) {
         this.song = song;
         this.songName = songName;
         this.songArtist = songArtist;
         this.songImageUrl = songImageUrl;
+        this.artist = artist;
     }
 
     // Getters and Setters
@@ -48,4 +52,8 @@ public class Music implements Serializable {
     public void setSongImageUrl(String songImageUrl) {
         this.songImageUrl = songImageUrl;
     }
+
+    public Artist getArtist() { return artist; }
+
+    public void setArtist(Artist artist) { this.artist = artist; }
 }

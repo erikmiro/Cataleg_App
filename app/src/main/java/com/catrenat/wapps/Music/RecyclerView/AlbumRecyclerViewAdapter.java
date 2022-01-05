@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +32,10 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
 
     @Override
     public void onBindViewHolder(@NonNull AlbumRecyclerViewAdapter.AlbumViewHolder holder, int position) {
+        // Create a music object with the music that is inside the array list
+        Music music = musicArray.get(position);
 
+        holder.albumName.setText(music.getSongArtist());
     }
 
     @Override
@@ -40,9 +44,10 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     }
 
     public class AlbumViewHolder extends RecyclerView.ViewHolder {
-
+        TextView albumName;
         public AlbumViewHolder(@NonNull View itemView) {
             super(itemView);
+            albumName = itemView.findViewById(R.id.albumName);
         }
     }
 }
