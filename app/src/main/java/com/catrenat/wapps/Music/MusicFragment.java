@@ -85,7 +85,7 @@ public class MusicFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 Music music = document.toObject(Music.class);
-                                //Log.i("erik", "aaaaaaaaaaaaa "+music.getArtist().getSongArtist());
+                                Log.i("erik", "inside Music Fragment " + music.getArtist().toString());
                                 musicArray.add(music);
                             }
                             MusicRecyclerViewAdapter adapter = new MusicRecyclerViewAdapter(musicRecyclerView, musicArray, getContext(), youTubePlayerView);
