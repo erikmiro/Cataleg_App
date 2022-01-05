@@ -1,7 +1,6 @@
 package com.catrenat.wapps.Music.RecyclerView;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
+import com.catrenat.wapps.Models.Album;
 import com.catrenat.wapps.Models.Music;
 import com.catrenat.wapps.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -50,14 +42,26 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
         Map<String, Object> artist = music.getArtist();
+        ArrayList<Album> albums = new ArrayList<>();
+        albums.add(new Album(artist));
 
+        /*
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
-            //Object artistValues = entry.getValue();
 
-            if (entry.getKey().equals("artistImageUrl")) {
-
+            if (entry.getKey().equals("albums")) {
+                //albums = (ArrayList<Album>) entry.getValue();
+                albums.add(new Album(artist));
+                //albums.add(new Album("","","",""));
             }
-            Log.i("erik", "dins de album recycler adapter" + entry.getValue().toString() + " em y el key " + entry.getKey());
+            for (int i = 0; i < albums.size(); i++) {
+                // holder.albumName.setText(albums.get(i).getAlbumName());
+              //  Log.i("erik", "dins de album recycler adapter" + albums.get(i).getAlbumName());
+            }
+        }
+         */
+
+        for (int i = 0; i < albums.size(); i++) {
+            // holder.albumName.setText(albums.get(i).getAlbumName());
         }
 
     }

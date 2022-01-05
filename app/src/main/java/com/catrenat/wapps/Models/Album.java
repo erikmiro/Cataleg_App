@@ -1,5 +1,11 @@
 package com.catrenat.wapps.Models;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class Album {
     // Properties
     String albumImageUrl;
@@ -16,6 +22,19 @@ public class Album {
         this.albumName = albumName;
         this.albumType = albumType;
         this.albumYear = albumYear;
+    }
+
+    public Album(Map<String, Object> artist) {
+        for (Map.Entry<String, Object> entry: artist.entrySet()) {
+
+            if (entry.getKey().equals("albums")) {
+                artist.values().toArray();
+                //Album[] album = artist.values().toArray(new Album[0]);
+                Log.i("erik", "XXXXXXXXXXXX " + artist.values().toArray()[0]);
+
+
+            }
+        }
     }
 
     // Getters and Setters
