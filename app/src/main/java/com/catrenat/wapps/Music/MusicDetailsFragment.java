@@ -28,10 +28,5 @@ public class MusicDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_music_details, container, false);
 
         return view;
-
-
-        // Bundle properties
-        //bundle = getArguments();
-        //category = (Category) bundle.getSerializable("Category");
     }
 }

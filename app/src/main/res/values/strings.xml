@@ -35,4 +35,8 @@
     <string name="moreOfTheArtist">Més de l\'artista</string>
     <string name="listenInYoutube">Escolta-la a Youtube</string>
     <string name="share">Compartir</string>
+    <string name="albumName">Nom de l\'album</string>
+    <string name="albumYear">Any ·</string>
+    <string name="albumType">Tipus de títol</string>
+    <string name="titlesArtist">Més títols en català</string>
 </resources>
