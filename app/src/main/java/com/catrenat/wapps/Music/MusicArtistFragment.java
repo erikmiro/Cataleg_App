@@ -67,7 +67,6 @@ public class MusicArtistFragment extends Fragment {
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
 
             if (entry.getKey().equals("artistImageUrl")) {
-                // holder.artistImage.setImageResource(R.drawable.ic_music_heart);
                 // Image loader from firebase using glide
                 if (!entry.getValue().toString().isEmpty()) {
                     StorageReference storageReference = FirebaseStorage.getInstance("gs://catrenat-3e277.appspot.com").getReference();

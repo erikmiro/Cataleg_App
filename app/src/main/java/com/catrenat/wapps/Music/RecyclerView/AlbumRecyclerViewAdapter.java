@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catrenat.wapps.Models.Album;
@@ -16,7 +17,9 @@ import com.catrenat.wapps.Models.Music;
 import com.catrenat.wapps.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecyclerViewAdapter.AlbumViewHolder> {
     // Properties
@@ -42,9 +45,84 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
         Map<String, Object> artist = music.getArtist();
-        ArrayList<Album> albums = new ArrayList<>();
-        albums.add(new Album(artist));
+        Map<String, Object> albums = new Map<String, Object>() {
+            @Override
+            public int size() {
+                return 0;
+            }
 
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean containsKey(@Nullable Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsValue(@Nullable Object o) {
+                return false;
+            }
+
+            @Nullable
+            @Override
+            public Object get(@Nullable Object o) {
+                return null;
+            }
+
+            @Nullable
+            @Override
+            public Object put(String s, Object o) {
+                return null;
+            }
+
+            @Nullable
+            @Override
+            public Object remove(@Nullable Object o) {
+                return null;
+            }
+
+            @Override
+            public void putAll(@NonNull Map<? extends String, ?> map) {
+
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @NonNull
+            @Override
+            public Set<String> keySet() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Collection<Object> values() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Set<Entry<String, Object>> entrySet() {
+                return null;
+            }
+        };
+
+        for (Map.Entry<String, Object> entry: artist.entrySet()) {
+            if (!entry.getKey().equals("artistImageUrl") && !entry.getKey().equals("songArtist")) {
+                albums.put(entry.getKey(), entry.getValue());
+                Log.i("erik", "el valor que estoy metiendo en albums es: ");
+            }
+        }
+
+       // for (Map.Entry<String, Object> entry: albums.entrySet()) {
+           // Log.i("erik", "dins de album nhi ha això: "+ entry.getValue());
+       // }
         /*
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
 
@@ -60,9 +138,9 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
         }
          */
 
-        for (int i = 0; i < albums.size(); i++) {
+        //for (int i = 0; i < albums.size(); i++) {
             // holder.albumName.setText(albums.get(i).getAlbumName());
-        }
+        //}
 
     }
 

@@ -17,8 +17,6 @@ public class Music implements Serializable {
     String songName;
     String songArtist;
     String songImageUrl;
-    //List<Map<String, Object>> artists = (List<Map<String, Object>>);
-    //Artist artist;
     Map<String, Object> artist = new Map<String, Object>() {
         @Override
         public int size() {
