@@ -25,11 +25,13 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     // Properties
     private ArrayList<Music> musicArray;
     private Context context;
+    private Map<String, Object> albumMap;
 
     // Constructor
-    public AlbumRecyclerViewAdapter(ArrayList<Music> musicArray, Context context) {
+    public AlbumRecyclerViewAdapter(ArrayList<Music> musicArray, Map<String, Object> albumMap, Context context) {
         this.musicArray = musicArray;
         this.context = context;
+        this.albumMap = albumMap;
     }
 
     @NonNull
@@ -44,104 +46,10 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     public void onBindViewHolder(@NonNull AlbumRecyclerViewAdapter.AlbumViewHolder holder, int position) {
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
-        Map<String, Object> artist = music.getArtist();
-        Map<String, Object> albums = new Map<String, Object>() {
-            @Override
-            public int size() {
-                return 0;
-            }
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean containsKey(@Nullable Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsValue(@Nullable Object o) {
-                return false;
-            }
-
-            @Nullable
-            @Override
-            public Object get(@Nullable Object o) {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public Object put(String s, Object o) {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public Object remove(@Nullable Object o) {
-                return null;
-            }
-
-            @Override
-            public void putAll(@NonNull Map<? extends String, ?> map) {
-
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @NonNull
-            @Override
-            public Set<String> keySet() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Collection<Object> values() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Set<Entry<String, Object>> entrySet() {
-                return null;
-            }
-        };
-
-        for (Map.Entry<String, Object> entry: artist.entrySet()) {
-            if (!entry.getKey().equals("artistImageUrl") && !entry.getKey().equals("songArtist")) {
-                albums.put(entry.getKey(), entry.getValue());
-                Log.i("erik", "el valor que estoy metiendo en albums es: ");
-            }
+        for (Map.Entry<String, Object> entry: albumMap.entrySet()) {
+            Log.i("erik", "dentro de RV key: "+entry.getKey()+" value: "+entry.getValue());
         }
-
-       // for (Map.Entry<String, Object> entry: albums.entrySet()) {
-           // Log.i("erik", "dins de album nhi ha això: "+ entry.getValue());
-       // }
-        /*
-        for (Map.Entry<String, Object> entry: artist.entrySet()) {
-
-            if (entry.getKey().equals("albums")) {
-                //albums = (ArrayList<Album>) entry.getValue();
-                albums.add(new Album(artist));
-                //albums.add(new Album("","","",""));
-            }
-            for (int i = 0; i < albums.size(); i++) {
-                // holder.albumName.setText(albums.get(i).getAlbumName());
-              //  Log.i("erik", "dins de album recycler adapter" + albums.get(i).getAlbumName());
-            }
-        }
-         */
-
-        //for (int i = 0; i < albums.size(); i++) {
-            // holder.albumName.setText(albums.get(i).getAlbumName());
-        //}
-
     }
 
     @Override

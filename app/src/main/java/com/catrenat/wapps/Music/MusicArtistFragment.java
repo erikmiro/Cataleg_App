@@ -21,9 +21,15 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.catrenat.wapps.Models.Music;
 import com.catrenat.wapps.Music.RecyclerView.AlbumRecyclerViewAdapter;
+import com.catrenat.wapps.Music.RecyclerView.MusicRecyclerViewAdapter;
 import com.catrenat.wapps.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -37,6 +43,7 @@ public class MusicArtistFragment extends Fragment {
     private Music music;
     private ArrayList<Music> musicArray = new ArrayList<>();
     private RecyclerView albumRecyclerView;
+    private Map<String, Object> albumMap;
 
     public MusicArtistFragment() {
         // Required empty public constructor
@@ -62,7 +69,46 @@ public class MusicArtistFragment extends Fragment {
         music = (Music) bundle.getSerializable("musicArtistDetails");
         musicArray.add(music);
 
+        // Getting the artist from music list
         Map<String, Object> artist = music.getArtist();
+
+        // Initializing the RecyclerView for the list
+        albumRecyclerView = view.findViewById(R.id.albumRecyclerView);
+        albumRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Creating the database instance
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Get data from firebase
+        db.collection("Music")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> artistMap = document.getData();
+                                for (Map.Entry<String, Object> entry : artistMap.entrySet()) {
+                                    if (entry.getKey().equals("artist")) {
+                                        Map<String, Object> album = (Map<String, Object>) entry.getValue();
+                                        for (Map.Entry<String, Object> albumEntry: album.entrySet()) {
+                                            if (albumEntry.getKey().startsWith("album")) {
+                                                Map<String, Object> insideAlbumMap = (Map<String, Object>) albumEntry.getValue();
+                                                for (Map.Entry<String, Object> insideAlbumEntry: insideAlbumMap.entrySet()) {
+                                                    albumMap = insideAlbumMap;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            AlbumRecyclerViewAdapter albumRecyclerViewAdapter = new AlbumRecyclerViewAdapter(musicArray, albumMap, getContext());
+                            albumRecyclerView.setAdapter(albumRecyclerViewAdapter);
+                        } else {
+                            Log.w("ALBUM", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
 
@@ -93,12 +139,6 @@ public class MusicArtistFragment extends Fragment {
                 }
             }
         }
-
-        // Initializing the RecyclerView for the list
-        albumRecyclerView = view.findViewById(R.id.albumRecyclerView);
-        albumRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        AlbumRecyclerViewAdapter albumRecyclerViewAdapter = new AlbumRecyclerViewAdapter(musicArray, getContext());
-        albumRecyclerView.setAdapter(albumRecyclerViewAdapter);
 
         return view;
     }
