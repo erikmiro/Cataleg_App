@@ -205,13 +205,12 @@
                     android:id="@+id/forgotPasswordTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="40dp"
                     android:fontFamily="@font/notosanshk_regular"
                     android:text="@string/forgotPassword"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loginPasswordTxt" />
+                    app:layout_constraintBottom_toTopOf="@+id/loginBtn"
+                    app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+                    app:layout_constraintStart_toStartOf="@+id/loginBtn" />
 
                 <TextView
                     android:id="@+id/loginTxt"
@@ -230,7 +229,7 @@
                     android:id="@+id/loginBtn"
                     android:layout_width="172dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
+                    android:layout_marginTop="90dp"
                     android:layout_marginBottom="80dp"
                     android:fontFamily="@font/notosanshk_black"
                     android:text="@string/login"
@@ -240,8 +239,21 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/loginPasswordTxt"
                     tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <CheckBox
+                    android:id="@+id/remember_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/notosanshk_regular"
+                    android:text="@string/rememberMe"
+                    android:textColor="@color/login_grey"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/loginPasswordTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/loginPasswordTxt" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

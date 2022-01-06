@@ -10,8 +10,9 @@
         <item name="colorSecondaryVariant">@color/black</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+        <!-- Nav Bar color. -->
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/black</item>
     </style>
 
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -20,8 +21,7 @@
         <item name="colorControlHighlight">@color/blue</item>
     </style>
 
-    <!--
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorControlHighlight">@color/ripple_material_dark</item>
-    </style> -->
+    <style name="ToolBarTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
 </resources>
