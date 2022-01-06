@@ -74,6 +74,7 @@ public class MusicArtistFragment extends Fragment {
 
         // Initializing the RecyclerView for the list
         albumRecyclerView = view.findViewById(R.id.albumRecyclerView);
+        albumRecyclerView.setNestedScrollingEnabled(false);
         albumRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Creating the database instance
@@ -102,7 +103,7 @@ public class MusicArtistFragment extends Fragment {
                                     }
                                 }
                             }
-                            AlbumRecyclerViewAdapter albumRecyclerViewAdapter = new AlbumRecyclerViewAdapter(musicArray, albumMap, getContext());
+                            AlbumRecyclerViewAdapter albumRecyclerViewAdapter = new AlbumRecyclerViewAdapter(musicArray, albumMap, artist, getContext());
                             albumRecyclerView.setAdapter(albumRecyclerViewAdapter);
                         } else {
                             Log.w("ALBUM", "Error getting documents.", task.getException());
