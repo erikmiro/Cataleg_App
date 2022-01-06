@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
@@ -31,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.catrenat.wapps.Music.MusicArtistFragment;
 import com.catrenat.wapps.Music.MusicDetailsFragment;
 import com.catrenat.wapps.R;
 import com.catrenat.wapps.Models.Music;
@@ -58,8 +60,6 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private RecyclerView musicRecyclerView;
     boolean heartPressed = false;
     YouTubePlayerView youTubePlayerView;
-    public static Dialog musicDetailsFragmentPopup;
-
 
     // Constructor
     public MusicRecyclerViewAdapter(RecyclerView musicRecyclerView, ArrayList<Music> musicArray, Context context, YouTubePlayerView youTubePlayerView){
@@ -84,8 +84,13 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
 
-        // Creating the music details fragment
-        MusicDetailsFragment musicDetailsFragment = new MusicDetailsFragment();
+        // Creating the music artist details fragment
+        MusicArtistFragment musicArtistFragment = new MusicArtistFragment();
+
+        // Creating the bundle to pass data to music artist fragment
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("musicArtistDetails", music);
+        musicArtistFragment.setArguments(bundle);
 
         // Setting the text for the song name and artist
         holder.songName.setText(music.getSongName());
@@ -134,6 +139,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             TextView youtubeText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailYoutubeText);
             ImageView shareSongImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsShareImg);
             TextView shareSongText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailShareText);
+            TextView songArtistDetailsText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailArtistText);
+            ImageView songArtistDetailsImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailArtistImg);
 
             // Set song name and artist
             songNameDetails.setText(holder.songName.getText());
@@ -169,6 +176,25 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 int current = (!heartPressed) ? R.drawable.ic_music_details_filled_heart : R.drawable.ic_music_details_heart;
                 heartPressed = current != R.drawable.ic_music_details_heart;
                 favouriteImage.setImageResource(current);
+            });
+
+            // More about the song artist button
+            songArtistDetailsText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    musicDetailsFragmentPopup.dismiss();
+                    AppCompatActivity app = (AppCompatActivity) v.getContext();
+                    app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, musicArtistFragment, "musicArtistDetails").addToBackStack(null).commit();
+                }
+            });
+
+            songArtistDetailsImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    musicDetailsFragmentPopup.dismiss();
+                    AppCompatActivity app = (AppCompatActivity) v.getContext();
+                    app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, musicArtistFragment, "musicArtistDetails").addToBackStack(null).commit();
+                }
             });
 
             // Youtube button

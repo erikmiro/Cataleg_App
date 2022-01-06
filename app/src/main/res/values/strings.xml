@@ -37,4 +37,8 @@
     <string name="share">Compartir</string>
     <string name="bio">Bio (Opcional)</string>
     <string name="bioMaxLength">La longitud màxima és de 15 caràcters</string>
+    <string name="albumName">Nom de l\'album</string>
+    <string name="albumYear">Any ·</string>
+    <string name="albumType">Tipus de títol</string>
+    <string name="titlesArtist">Més títols en català</string>
 </resources>

@@ -3,21 +3,16 @@ package com.catrenat.wapps.Models;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.crypto.AEADBadTagException;
-
-public class Music implements Serializable {
+public class Artist {
     // Properties
-    String song;
-    String songName;
+    String artistImageUrl;
     String songArtist;
-    String songImageUrl;
-    Map<String, Object> artist = new Map<String, Object>() {
+    Map<String, Object> album = new Map<String, Object>() {
         @Override
         public int size() {
             return 0;
@@ -85,29 +80,23 @@ public class Music implements Serializable {
         }
     };
 
-    // Default Constructor
-    public  Music() {}
+    // Default constructor
+    public Artist() {}
 
-    // Specific Constructor
-    public Music(String song, String songName, String songArtist, String songImageUrl,  Map<String, Object> artist) {
-        this.song = song;
-        this.songName = songName;
+    // Specific constructor
+    public Artist(String artistImageUrl, String songArtist, Map<String, Object> album) {
+        this.artistImageUrl = artistImageUrl;
         this.songArtist = songArtist;
-        this.songImageUrl = songImageUrl;
-        this.artist = artist;
+        this.album = album;
     }
 
     // Getters and Setters
-    public String getSong() { return song; }
-
-    public void setSong(String song) { this.song = song; }
-
-    public String getSongName() {
-        return songName;
+    public String getArtistImageUrl() {
+        return artistImageUrl;
     }
 
-    public void setSongName(String songName) {
-        this.songName = songName;
+    public void setArtistImageUrl(String artistImageUrl) {
+        this.artistImageUrl = artistImageUrl;
     }
 
     public String getSongArtist() {
@@ -118,15 +107,11 @@ public class Music implements Serializable {
         this.songArtist = songArtist;
     }
 
-    public String getSongImageUrl() {
-        return songImageUrl;
+    public Map<String, Object> getAlbum() {
+        return album;
     }
 
-    public void setSongImageUrl(String songImageUrl) {
-        this.songImageUrl = songImageUrl;
+    public void setAlbum(Map<String, Object> album) {
+        this.album = album;
     }
-
-    public Map<String, Object> getArtist() { return artist; }
-
-    public void setArtist(Map<String, Object> artist) { this.artist = artist; }
 }
