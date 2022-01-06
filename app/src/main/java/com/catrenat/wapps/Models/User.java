@@ -6,6 +6,18 @@ public class User {
     private String email;
     private String password;
     private String imagePath;
+    
+    public User() {
+
+    }
+
+    public User(String username, String bio, String email, String password, String imagePath) {
+        this.username = username;
+        this.bio = bio;
+        this.email = email;
+        this.password = password;
+        this.imagePath = imagePath;
+    }
 
     public User(String username, String bio, String email, String password) {
         this.username = username;
