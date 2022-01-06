@@ -34,15 +34,13 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     // Properties
     private ArrayList<Music> musicArray;
     private Context context;
-    private Map<String, Object> albumMap;
     private Map<String, Object> artist;
     private int size = 0;
 
     // Constructor
-    public AlbumRecyclerViewAdapter(ArrayList<Music> musicArray, Map<String, Object> albumMap, Map<String, Object> artist, Context context) {
+    public AlbumRecyclerViewAdapter(ArrayList<Music> musicArray, Map<String, Object> artist, Context context) {
         this.musicArray = musicArray;
         this.context = context;
-        this.albumMap = albumMap;
         this.artist = artist;
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
             if (entry.getKey().startsWith("album")) {
@@ -62,6 +60,9 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     @Override
     public void onBindViewHolder(@NonNull AlbumRecyclerViewAdapter.AlbumViewHolder holder, int position) {
 
+        if (position == (getItemCount()-1)) {
+            holder.albumSeparator.setVisibility(View.INVISIBLE);
+        }
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
             if (entry.getKey().startsWith("album"+position)) {
                 Map<String, Object> insideAlbumMap = (Map<String, Object>) entry.getValue();
@@ -112,6 +113,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
         TextView albumType;
         TextView albumYear;
         ImageView albumImage;
+        ImageView albumSeparator;
 
         public AlbumViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -119,6 +121,8 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
             albumImage = itemView.findViewById(R.id.albumImage);
             albumType = itemView.findViewById(R.id.albumType);
             albumYear = itemView.findViewById(R.id.albumYear);
+            albumSeparator = itemView.findViewById(R.id.albumSeparator);
+            albumSeparator.setVisibility(View.VISIBLE);
         }
     }
 }
