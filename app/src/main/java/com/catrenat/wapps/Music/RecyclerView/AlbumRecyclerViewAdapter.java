@@ -34,15 +34,13 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     // Properties
     private ArrayList<Music> musicArray;
     private Context context;
-    private Map<String, Object> albumMap;
     private Map<String, Object> artist;
     private int size = 0;
 
     // Constructor
-    public AlbumRecyclerViewAdapter(ArrayList<Music> musicArray, Map<String, Object> albumMap, Map<String, Object> artist, Context context) {
+    public AlbumRecyclerViewAdapter(ArrayList<Music> musicArray, Map<String, Object> artist, Context context) {
         this.musicArray = musicArray;
         this.context = context;
-        this.albumMap = albumMap;
         this.artist = artist;
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
             if (entry.getKey().startsWith("album")) {

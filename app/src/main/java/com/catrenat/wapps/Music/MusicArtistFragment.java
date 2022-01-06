@@ -72,45 +72,6 @@ public class MusicArtistFragment extends Fragment {
         // Getting the artist from music list
         Map<String, Object> artist = music.getArtist();
 
-        // Initializing the RecyclerView for the list
-        albumRecyclerView = view.findViewById(R.id.albumRecyclerView);
-        albumRecyclerView.setNestedScrollingEnabled(false);
-        albumRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        // Creating the database instance
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        // Get data from firebase
-        db.collection("Music")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Map<String, Object> artistMap = document.getData();
-                                for (Map.Entry<String, Object> entry : artistMap.entrySet()) {
-                                    if (entry.getKey().equals("artist")) {
-                                        Map<String, Object> album = (Map<String, Object>) entry.getValue();
-                                        for (Map.Entry<String, Object> albumEntry: album.entrySet()) {
-                                            if (albumEntry.getKey().startsWith("album")) {
-                                                Map<String, Object> insideAlbumMap = (Map<String, Object>) albumEntry.getValue();
-                                                for (Map.Entry<String, Object> insideAlbumEntry: insideAlbumMap.entrySet()) {
-                                                    albumMap = insideAlbumMap;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            AlbumRecyclerViewAdapter albumRecyclerViewAdapter = new AlbumRecyclerViewAdapter(musicArray, albumMap, artist, getContext());
-                            albumRecyclerView.setAdapter(albumRecyclerViewAdapter);
-                        } else {
-                            Log.w("ALBUM", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
 
             if (entry.getKey().equals("artistImageUrl")) {
@@ -140,6 +101,13 @@ public class MusicArtistFragment extends Fragment {
                 }
             }
         }
+
+        // Initializing the RecyclerView for the list
+        albumRecyclerView = view.findViewById(R.id.albumRecyclerView);
+        albumRecyclerView.setNestedScrollingEnabled(false);
+        albumRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        AlbumRecyclerViewAdapter albumRecyclerViewAdapter = new AlbumRecyclerViewAdapter(musicArray, artist, getContext());
+        albumRecyclerView.setAdapter(albumRecyclerViewAdapter);
 
         return view;
     }
