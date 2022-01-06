@@ -24,19 +24,6 @@ public class Album {
         this.albumYear = albumYear;
     }
 
-    public Album(Map<String, Object> artist) {
-        for (Map.Entry<String, Object> entry: artist.entrySet()) {
-
-            if (entry.getKey().equals("albums")) {
-                artist.values().toArray();
-                //Album[] album = artist.values().toArray(new Album[0]);
-                Log.i("erik", "XXXXXXXXXXXX " + artist.values().toArray()[0]);
-
-
-            }
-        }
-    }
-
     // Getters and Setters
     public String getAlbumImageUrl() {
         return albumImageUrl;
