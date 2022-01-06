@@ -9,7 +9,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,17 +18,29 @@
             android:id="@+id/albumImage"
             android:layout_width="90dp"
             android:layout_height="86dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/music_bg_box_less_corners" />
+
+        <ImageView
+            android:id="@+id/albumSeparator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_linia_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/albumImage" />
 
         <TextView
             android:id="@+id/albumName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/notosanshk_bold"
             android:text="@string/albumName"
             android:textColor="@color/white"
@@ -43,12 +54,10 @@
             android:layout_height="30dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="-15dp"
-            android:layout_marginBottom="20dp"
             android:fontFamily="@font/notosanshk_bold"
             android:text="@string/albumYear"
             android:textColor="@color/grey"
             android:textSize="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/albumImage"
             app:layout_constraintTop_toBottomOf="@+id/albumName" />
 
@@ -57,12 +66,10 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="-15dp"
-            android:layout_marginBottom="20dp"
             android:fontFamily="@font/notosanshk_bold"
             android:text="@string/albumType"
             android:textColor="@color/grey"
             android:textSize="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/albumYear"
             app:layout_constraintTop_toBottomOf="@+id/albumName" />
     </androidx.constraintlayout.widget.ConstraintLayout>

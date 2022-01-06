@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
@@ -60,6 +61,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private RecyclerView musicRecyclerView;
     boolean heartPressed = false;
     YouTubePlayerView youTubePlayerView;
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
 
     // Constructor
     public MusicRecyclerViewAdapter(RecyclerView musicRecyclerView, ArrayList<Music> musicArray, Context context, YouTubePlayerView youTubePlayerView){
@@ -67,6 +70,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         this.musicArray = musicArray;
         this.context = context;
         this.youTubePlayerView = youTubePlayerView;
+        this.sharedPref = context.getSharedPreferences("music_fav", Context.MODE_PRIVATE);
+        this.editor = sharedPref.edit();
     }
 
     // Creating a new onCreateViewHolder
@@ -106,9 +111,17 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         });
 
         // For the favourite button
+        if (sharedPref.getBoolean(music.getSong(), true)) {
+            holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+        }
         holder.favouriteImage.setOnClickListener(view -> {
             AppCompatActivity app = (AppCompatActivity) view.getContext();
             int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
+            if (!heartPressed) {
+                editor.putBoolean(music.getSong(), true).commit();
+            } else {
+                editor.putBoolean(music.getSong(), false).commit();
+            }
             heartPressed = current != R.drawable.ic_music_heart;
             holder.favouriteImage.setImageResource(current);
         });
@@ -131,6 +144,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             // Elements of the dialog
             View dialogDismissView = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsdismissDialogView);
             ImageView favouriteImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailFavourite);
+            TextView favouriteText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailFavouriteText);
             ImageView songImage = musicDetailsFragmentPopup.findViewById(R.id.songImage);
             ImageView songImagePlaceholder = musicDetailsFragmentPopup.findViewById(R.id.musicDetailPlaceholderImg);
             TextView songNameDetails = musicDetailsFragmentPopup.findViewById(R.id.detailsSongName);
@@ -171,9 +185,34 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 songImagePlaceholder.setVisibility(View.VISIBLE);
             }
 
+            if (sharedPref.getBoolean(music.getSong(), true)) {
+                favouriteImage.setImageResource(R.drawable.ic_music_details_filled_heart);
+                holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+            }
+
             // Change dialog favourite image by touching
             favouriteImage.setOnClickListener(view -> {
                 int current = (!heartPressed) ? R.drawable.ic_music_details_filled_heart : R.drawable.ic_music_details_heart;
+                if (!heartPressed) {
+                    editor.putBoolean(music.getSong(), true).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+                } else {
+                    editor.putBoolean(music.getSong(), false).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
+                }
+                heartPressed = current != R.drawable.ic_music_details_heart;
+                favouriteImage.setImageResource(current);
+            });
+
+            favouriteText.setOnClickListener(view -> {
+                int current = (!heartPressed) ? R.drawable.ic_music_details_filled_heart : R.drawable.ic_music_details_heart;
+                if (!heartPressed) {
+                    editor.putBoolean(music.getSong(), true).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+                } else {
+                    editor.putBoolean(music.getSong(), false).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
+                }
                 heartPressed = current != R.drawable.ic_music_details_heart;
                 favouriteImage.setImageResource(current);
             });
