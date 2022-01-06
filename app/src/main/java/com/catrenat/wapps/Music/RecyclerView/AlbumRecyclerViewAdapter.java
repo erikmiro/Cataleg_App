@@ -77,7 +77,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
                     }
                     if (albumEntry.getKey().equals("albumImageUrl")) {
                         // Image loader from firebase using glide
-                        if (!entry.getValue().toString().isEmpty()) {
+                        if (!albumEntry.getValue().toString().isEmpty()) {
                             StorageReference storageReference = FirebaseStorage.getInstance("gs://catrenat-3e277.appspot.com").getReference();
                             storageReference.child(albumEntry.getValue().toString()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
