@@ -13,11 +13,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -196,6 +199,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    // To change the ripple color
+    private void setRippleColor(View view, int color) {
+        RippleDrawable drawable = (RippleDrawable) view.getBackground();
+        ColorStateList stateList = new ColorStateList(
+                new int[][]{new int[]{android.R.attr.state_pressed}},
+                new int[]{color}
+        );
+        drawable.setColor(stateList);
+        view.setBackground(drawable);
     }
 
     @Override

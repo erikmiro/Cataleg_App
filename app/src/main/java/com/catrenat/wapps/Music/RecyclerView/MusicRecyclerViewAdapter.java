@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
@@ -31,6 +33,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.catrenat.wapps.Music.MusicArtistFragment;
 import com.catrenat.wapps.Music.MusicDetailsFragment;
 import com.catrenat.wapps.R;
 import com.catrenat.wapps.Models.Music;
@@ -58,8 +61,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
     private RecyclerView musicRecyclerView;
     boolean heartPressed = false;
     YouTubePlayerView youTubePlayerView;
-    public static Dialog musicDetailsFragmentPopup;
-
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
 
     // Constructor
     public MusicRecyclerViewAdapter(RecyclerView musicRecyclerView, ArrayList<Music> musicArray, Context context, YouTubePlayerView youTubePlayerView){
@@ -67,6 +70,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         this.musicArray = musicArray;
         this.context = context;
         this.youTubePlayerView = youTubePlayerView;
+        this.sharedPref = context.getSharedPreferences("music_fav", Context.MODE_PRIVATE);
+        this.editor = sharedPref.edit();
     }
 
     // Creating a new onCreateViewHolder
@@ -84,8 +89,13 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         // Create a music object with the music that is inside the array list
         Music music = musicArray.get(position);
 
-        // Creating the music details fragment
-        MusicDetailsFragment musicDetailsFragment = new MusicDetailsFragment();
+        // Creating the music artist details fragment
+        MusicArtistFragment musicArtistFragment = new MusicArtistFragment();
+
+        // Creating the bundle to pass data to music artist fragment
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("musicArtistDetails", music);
+        musicArtistFragment.setArguments(bundle);
 
         // Setting the text for the song name and artist
         holder.songName.setText(music.getSongName());
@@ -101,9 +111,17 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
         });
 
         // For the favourite button
+        if (sharedPref.getBoolean(music.getSong(), true)) {
+            holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+        }
         holder.favouriteImage.setOnClickListener(view -> {
             AppCompatActivity app = (AppCompatActivity) view.getContext();
             int current = (!heartPressed) ? R.drawable.ic_music_filled_heart : R.drawable.ic_music_heart;
+            if (!heartPressed) {
+                editor.putBoolean(music.getSong(), true).commit();
+            } else {
+                editor.putBoolean(music.getSong(), false).commit();
+            }
             heartPressed = current != R.drawable.ic_music_heart;
             holder.favouriteImage.setImageResource(current);
         });
@@ -126,6 +144,7 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             // Elements of the dialog
             View dialogDismissView = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsdismissDialogView);
             ImageView favouriteImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailFavourite);
+            TextView favouriteText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailFavouriteText);
             ImageView songImage = musicDetailsFragmentPopup.findViewById(R.id.songImage);
             ImageView songImagePlaceholder = musicDetailsFragmentPopup.findViewById(R.id.musicDetailPlaceholderImg);
             TextView songNameDetails = musicDetailsFragmentPopup.findViewById(R.id.detailsSongName);
@@ -134,6 +153,8 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
             TextView youtubeText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailYoutubeText);
             ImageView shareSongImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailsShareImg);
             TextView shareSongText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailShareText);
+            TextView songArtistDetailsText = musicDetailsFragmentPopup.findViewById(R.id.musicDetailArtistText);
+            ImageView songArtistDetailsImage = musicDetailsFragmentPopup.findViewById(R.id.musicDetailArtistImg);
 
             // Set song name and artist
             songNameDetails.setText(holder.songName.getText());
@@ -164,11 +185,55 @@ public class MusicRecyclerViewAdapter extends RecyclerView.Adapter<MusicRecycler
                 songImagePlaceholder.setVisibility(View.VISIBLE);
             }
 
+            if (sharedPref.getBoolean(music.getSong(), true)) {
+                favouriteImage.setImageResource(R.drawable.ic_music_details_filled_heart);
+                holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+            }
+
             // Change dialog favourite image by touching
             favouriteImage.setOnClickListener(view -> {
                 int current = (!heartPressed) ? R.drawable.ic_music_details_filled_heart : R.drawable.ic_music_details_heart;
+                if (!heartPressed) {
+                    editor.putBoolean(music.getSong(), true).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+                } else {
+                    editor.putBoolean(music.getSong(), false).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
+                }
                 heartPressed = current != R.drawable.ic_music_details_heart;
                 favouriteImage.setImageResource(current);
+            });
+
+            favouriteText.setOnClickListener(view -> {
+                int current = (!heartPressed) ? R.drawable.ic_music_details_filled_heart : R.drawable.ic_music_details_heart;
+                if (!heartPressed) {
+                    editor.putBoolean(music.getSong(), true).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_filled_heart);
+                } else {
+                    editor.putBoolean(music.getSong(), false).commit();
+                    holder.favouriteImage.setImageResource(R.drawable.ic_music_heart);
+                }
+                heartPressed = current != R.drawable.ic_music_details_heart;
+                favouriteImage.setImageResource(current);
+            });
+
+            // More about the song artist button
+            songArtistDetailsText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    musicDetailsFragmentPopup.dismiss();
+                    AppCompatActivity app = (AppCompatActivity) v.getContext();
+                    app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, musicArtistFragment, "musicArtistDetails").addToBackStack(null).commit();
+                }
+            });
+
+            songArtistDetailsImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    musicDetailsFragmentPopup.dismiss();
+                    AppCompatActivity app = (AppCompatActivity) v.getContext();
+                    app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, musicArtistFragment, "musicArtistDetails").addToBackStack(null).commit();
+                }
             });
 
             // Youtube button

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wapps</string>
+    <string name="app_name">Catàleg</string>
     <string name="todo">TODO</string>
     <string name="welcome">Benvingut!</string>
     <string name="login">Inicia Sessió</string>
@@ -43,4 +43,8 @@
     <string name="alert_logout_message">Remember login will be disabled (TODO)</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="albumName">Nom de l\'album</string>
+    <string name="albumYear">Any ·</string>
+    <string name="albumType">Tipus de títol</string>
+    <string name="titlesArtist">Més títols en català</string>
 </resources>
