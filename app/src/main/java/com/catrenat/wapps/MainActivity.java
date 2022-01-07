@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Bottom navigation selection fragment
         bottomNav.setSelectedItemId(R.id.nav_general);
+        bottomNav.setItemIconTintList(null);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
