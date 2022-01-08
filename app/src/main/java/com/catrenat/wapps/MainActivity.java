@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SystemClock.sleep(2000);
-        setTheme(R.style.Theme_Wapps);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

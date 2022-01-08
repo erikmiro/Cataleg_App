@@ -14,7 +14,4 @@
         <!-- Nav Bar color. -->
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/black</item>
     </style>
-    <style name="SplashTheme" parent="Theme.Wapps">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
 </resources>
