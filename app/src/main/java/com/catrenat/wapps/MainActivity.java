@@ -17,7 +17,6 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,23 +25,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.catrenat.wapps.Movies.MoviesFragment;
 import com.catrenat.wapps.LoginScreen.LoginScreen;
-import com.catrenat.wapps.Models.Music;
 import com.catrenat.wapps.Models.User;
 import com.catrenat.wapps.Music.MusicFragment;
 import com.catrenat.wapps.Games.GamesFragment;
-import com.catrenat.wapps.Music.RecyclerView.MusicRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -164,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Bottom navigation selection fragment
         bottomNav.setSelectedItemId(R.id.nav_general);
+        bottomNav.setItemIconTintList(null);
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
