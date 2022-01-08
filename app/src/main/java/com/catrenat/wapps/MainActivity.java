@@ -17,6 +17,7 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SystemClock.sleep(2000);
+        setTheme(R.style.Theme_Wapps);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
