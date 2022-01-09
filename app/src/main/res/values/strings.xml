@@ -51,4 +51,5 @@
     <string name="seriesFragmentName">Series</string>
     <string name="moviesFragmentName">Pel·lícules</string>
     <string name="docsFragmentName">Documentals</string>
+    <string name="games">Videojocs</string>
 </resources>
