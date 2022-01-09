@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.catrenat.wapps.Games.GamesListFragment;
-import com.catrenat.wapps.Models.Platform;
+import com.catrenat.wapps.Models.GamePlatform;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -25,15 +25,15 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRecyclerViewAdapter.ViewHolder> {
-    private ArrayList<Platform> platforms;
+public class PlatformListRecyclerViewAdapter extends RecyclerView.Adapter<PlatformListRecyclerViewAdapter.ViewHolder> {
+    private ArrayList<GamePlatform> gamePlatforms;
     private Context context;
 
-    public PlatformRecyclerViewAdapter() {
+    public PlatformListRecyclerViewAdapter() {
     }
 
-    public PlatformRecyclerViewAdapter(ArrayList<Platform> platforms, Context context){
-        this.platforms = platforms;
+    public PlatformListRecyclerViewAdapter(ArrayList<GamePlatform> gamePlatforms, Context context){
+        this.gamePlatforms = gamePlatforms;
         this.context = context;
     }
 
@@ -45,20 +45,18 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
         return holder;
     }
 
-
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         // Sets card background color
-        if(platforms.get(position).getHexColor() != null) {
-            holder.platformBackground.setCardBackgroundColor(Color.parseColor(platforms.get(position).getHexColor()));
+        if(gamePlatforms.get(position).getHexColor() != null) {
+            holder.platformBackground.setCardBackgroundColor(Color.parseColor(gamePlatforms.get(position).getHexColor()));
         }
 
         // Image loader from firebase using glide (Asks firebase for image hosted url using imagePath to storage)
         StorageReference storageReference = FirebaseStorage.getInstance("gs://catrenat-3e277.appspot.com").getReference();
-        if(platforms.get(position).getImagePath() != null) {
-            storageReference.child(platforms.get(position).getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        if(gamePlatforms.get(position).getImagePath() != null) {
+            storageReference.child(gamePlatforms.get(position).getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
 
@@ -80,7 +78,7 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
 
                 // Prepares and sets bundle for Detail fragment
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("platform", platforms.get(position).getName());
+                bundle.putSerializable("platform", gamePlatforms.get(position).getName());
                 gamesListFragment.setArguments(bundle);
 
                 // Fragment trasnaction
@@ -94,7 +92,7 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
 
     @Override
     public int getItemCount() {
-        return platforms.size();
+        return gamePlatforms.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
