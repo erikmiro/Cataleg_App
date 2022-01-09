@@ -79,9 +79,9 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
                 GamesListFragment gamesListFragment = new GamesListFragment();
 
                 // Prepares and sets bundle for Detail fragment
-                //Bundle bundle = new Bundle();
-                //
-                //detailFragment.setArguments(bundle);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("platform", platforms.get(position).getName());
+                gamesListFragment.setArguments(bundle);
 
                 // Fragment trasnaction
                 app.getSupportFragmentManager()
