@@ -8,7 +8,7 @@
 
     <queries>
         <intent>
-            <action android:name="com.google.android.youtube.api.service.START"/>
+            <action android:name="com.google.android.youtube.api.service.START" />
         </intent>
     </queries>
 
@@ -20,21 +20,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wapps">
         <activity
-            android:name="com.catrenat.wapps.LoginScreen.LoginScreen"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".SplashScreen.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.catrenat.wapps.MainActivity"
-            android:exported="false"/>
+            android:name=".LoginScreen.LoginScreen"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name="com.catrenat.wapps.RegisterActivity"
-            android:exported="false"/>
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
