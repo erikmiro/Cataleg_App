@@ -42,10 +42,6 @@ public class GameListRecyclerViewAdapter extends RecyclerView.Adapter<GameListRe
     
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Reset X and Y image scale
-        holder.gameImage.setScaleX(1);
-        holder.gameImage.setScaleY(1);
-
         // Gets image url from firebase storage
         StorageReference storageReference = FirebaseStorage.getInstance("gs://catrenat-3e277.appspot.com").getReference();
         if(games.get(position).getImagePath() != null) {

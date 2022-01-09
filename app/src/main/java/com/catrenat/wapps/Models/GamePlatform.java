@@ -1,15 +1,15 @@
 package com.catrenat.wapps.Models;
 
-public class Platform {
+public class GamePlatform {
     private String name;
     private String imagePath;
     private String hexColor;
 
-    public Platform() {
+    public GamePlatform() {
 
     }
 
-    public Platform(String name, String imagePath, String hexColor) {
+    public GamePlatform(String name, String imagePath, String hexColor) {
         this.name = name;
         this.imagePath = imagePath;
         this.hexColor = hexColor;

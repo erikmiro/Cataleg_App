@@ -29,7 +29,7 @@ import com.catrenat.wapps.Movies.MoviesFragment;
 import com.catrenat.wapps.LoginScreen.LoginScreen;
 import com.catrenat.wapps.Models.User;
 import com.catrenat.wapps.Music.MusicFragment;
-import com.catrenat.wapps.Games.GamesFragment;
+import com.catrenat.wapps.Games.PlatformsListFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_games:
                         vibe.vibrate(3);
-                        fragment = new GamesFragment();
+                        fragment = new PlatformsListFragment();
                         break;
 
                     case R.id.nav_books:
