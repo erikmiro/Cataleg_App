@@ -59,6 +59,7 @@ public class GamesListFragment extends Fragment {
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 Game game = document.toObject(Game.class);
                                 Log.d("Platform", document.getId() + " => " + document.getData());
+                                // Adds only games with current platform selected
                                 for(String platform: game.getPlatforms()) {
                                     if(selectedPlatform.equals(platform)) {
                                         games.add(game);
