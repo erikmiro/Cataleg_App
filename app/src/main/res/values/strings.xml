@@ -52,4 +52,10 @@
     <string name="moviesFragmentName">Pel·lícules</string>
     <string name="docsFragmentName">Documentals</string>
     <string name="games">Videojocs</string>
+    <string name="gameReleaseDate">DATA DE LLANÇAMENT:</string>
+    <string name="gameDeveloper">DESENVOLUPADOR:</string>
+    <string name="gameEditor">EDITOR:</string>
+    <string name="gameMore">Ves-hi</string>
+    <string name="gameShare">Compartir</string>
+    <string name="gameTranslate">Traducció</string>
 </resources>
