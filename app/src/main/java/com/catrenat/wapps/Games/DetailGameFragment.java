@@ -16,12 +16,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.catrenat.wapps.Games.RecyclerView.GameGalleryRecyclerViewAdapter;
+import com.catrenat.wapps.Games.RecyclerView.SelectListener;
 import com.catrenat.wapps.Models.Game;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 
-public class DetailGameFragment extends Fragment {
+public class DetailGameFragment extends Fragment implements SelectListener {
     private Game game;
     private TextView gameTitle, gameReleaseDate, gameDeveloper, gameDescription, gameEditor;
     private RecyclerView gameGalleryRecyclerView, gamePlatformRecyclerView;
@@ -53,7 +54,7 @@ public class DetailGameFragment extends Fragment {
         gameDeveloper.setText(game.getDeveloper());
         gameEditor.setText(game.getEditor());
 
-        GameGalleryRecyclerViewAdapter adapter = new GameGalleryRecyclerViewAdapter(game.getGalleryPaths(), getContext());
+        GameGalleryRecyclerViewAdapter adapter = new GameGalleryRecyclerViewAdapter(game.getGalleryPaths(), getContext(), DetailGameFragment.this);
         gameGalleryRecyclerView.setAdapter(adapter);
         gameGalleryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
@@ -63,7 +64,7 @@ public class DetailGameFragment extends Fragment {
             @Override
             public void onSuccess(Uri uri) {
                 // Load image with glide
-                Glide.with(getContext()) // Context from getContext() in HomeFragment
+                Glide.with(getContext())
                         .load(uri.toString())
                         .into(gameMainImage);
                 Log.i("IMAGEGLIDE", uri.toString());
@@ -71,5 +72,13 @@ public class DetailGameFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onItemClicked(Uri uri) {
+        // Load image with glide
+        Glide.with(getContext())
+                .load(uri.toString())
+                .into(gameMainImage);
     }
 }

@@ -26,10 +26,12 @@ import java.util.ArrayList;
 public class GameGalleryRecyclerViewAdapter extends RecyclerView.Adapter<GameGalleryRecyclerViewAdapter.ViewHolder> {
     private ArrayList<String> galleryPaths;
     private Context context;
+    private SelectListener listener;
 
-    public GameGalleryRecyclerViewAdapter(ArrayList<String> galleryPaths, Context context) {
+    public GameGalleryRecyclerViewAdapter(ArrayList<String> galleryPaths, Context context, SelectListener listener) {
         this.galleryPaths = galleryPaths;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -49,10 +51,17 @@ public class GameGalleryRecyclerViewAdapter extends RecyclerView.Adapter<GameGal
             @Override
             public void onSuccess(Uri uri) {
                 // Load image with glide
-                Glide.with(context) // Context from getContext() in HomeFragment
+                Glide.with(context) // Context from getContext() in DetailGameFragment
                         .load(uri.toString())
                         .into(holder.galleryItemImage);
                 Log.i("IMAGEGLIDE", uri.toString());
+
+                holder.galleryItemImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.onItemClicked(uri);
+                    }
+                });
             }
         });
     }
