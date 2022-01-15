@@ -2,6 +2,7 @@ package com.catrenat.wapps.Games.RecyclerView;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +10,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.catrenat.wapps.Games.DetailGameFragment;
+import com.catrenat.wapps.Games.GamesListFragment;
 import com.catrenat.wapps.Models.Game;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GameListRecyclerViewAdapter extends RecyclerView.Adapter<GameListRecyclerViewAdapter.ViewHolder> {
@@ -56,6 +61,20 @@ public class GameListRecyclerViewAdapter extends RecyclerView.Adapter<GameListRe
                 }
             });
         }
+        holder.gameImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Preparation for fragment transaction
+                AppCompatActivity app = (AppCompatActivity) view.getContext();
+                DetailGameFragment detailGameFragment = new DetailGameFragment(games.get(position));
+
+                // Fragment transaction
+                app.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, detailGameFragment)
+                        .commit();
+            }
+        });
     }
 
     @Override

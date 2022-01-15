@@ -9,11 +9,11 @@
     tools:context=".Games.DetailGameFragment">
 
     <ImageView
-        android:id="@+id/mainGameImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:id="@+id/gameMainImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="85dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,11 +22,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/galleryRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="-3dp"
+        android:requiresFadingEdge="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainGameImage" />
+        app:layout_constraintTop_toBottomOf="@+id/gameMainImage" />
 
     <ScrollView
         android:id="@+id/gameInfoScrollView"
@@ -36,6 +39,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:requiresFadingEdge="vertical"
         app:layout_constraintBottom_toTopOf="@+id/separatorLineView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Game Title"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/gameReleaseDate"
-                android:textSize="16sp"
+                android:textColor="@color/gameDetail_grey"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
@@ -84,7 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:hint="Release date"
-                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/releaseDateString"
                 app:layout_constraintStart_toEndOf="@+id/releaseDateString"
                 app:layout_constraintTop_toTopOf="@+id/releaseDateString" />
@@ -94,7 +103,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/releaseDateString" />
@@ -105,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/gameDeveloper"
-                android:textSize="16sp"
+                android:textColor="@color/gameDetail_grey"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gameDescription" />
@@ -116,7 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/gameEditor"
-                android:textSize="16sp"
+                android:textColor="@color/gameDetail_grey"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gameDeveloperString" />
@@ -127,7 +141,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:hint="Developer"
-                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/gameDeveloperString"
                 app:layout_constraintStart_toEndOf="@+id/gameDeveloperString"
                 app:layout_constraintTop_toTopOf="@+id/gameDeveloperString" />
@@ -138,7 +154,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:hint="Editor"
-                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/gameEditorString"
                 app:layout_constraintStart_toEndOf="@+id/gameEditorString"
                 app:layout_constraintTop_toTopOf="@+id/gameEditorString" />
@@ -157,20 +175,22 @@
     <View
         android:id="@+id/separatorLineView"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="170dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/moreImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/games_detail_go"
         app:layout_constraintEnd_toStartOf="@+id/translateImage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,10 +198,11 @@
 
     <ImageView
         android:id="@+id/shareImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="40dp"
+        android:src="@drawable/link_filled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/translateImage"
@@ -189,9 +210,10 @@
 
     <ImageView
         android:id="@+id/translateImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/share_filled"
         app:layout_constraintEnd_toStartOf="@+id/shareImage"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/moreImage"
@@ -202,6 +224,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gameMore"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/moreImage"
         app:layout_constraintStart_toStartOf="@+id/moreImage"
         app:layout_constraintTop_toBottomOf="@+id/moreImage" />
@@ -211,6 +234,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gameShare"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/translateImage"
         app:layout_constraintStart_toStartOf="@+id/translateImage"
         app:layout_constraintTop_toBottomOf="@+id/translateImage" />
@@ -220,6 +244,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gameTranslate"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/shareImage"
         app:layout_constraintStart_toStartOf="@+id/shareImage"
         app:layout_constraintTop_toBottomOf="@+id/shareImage" />
