@@ -24,6 +24,7 @@ public class MoviesListFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager viewPager;
     MainAdapter adapter;
+    private String selectedPlatform;
 
     public MoviesListFragment() {
         // Required empty public constructor
@@ -40,13 +41,19 @@ public class MoviesListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movies_list, container, false);
 
+        // Bundle
+        Bundle bundle = getArguments();
+        selectedPlatform = (String) bundle.getSerializable("moviePlatform");
+        SeriesFragment seriesFragment = new SeriesFragment();
+        seriesFragment.setArguments(bundle);
+
         // Elements of the view
         tabLayout = view.findViewById(R.id.tabLayout);
         viewPager = view.findViewById(R.id.viewPager);
         adapter = new MainAdapter(getActivity().getSupportFragmentManager());
 
         // Add fragments to the adapter
-        adapter.AddFragment(new SeriesFragment(), getString(R.string.seriesFragmentName));
+        adapter.AddFragment(seriesFragment, getString(R.string.seriesFragmentName));
         adapter.AddFragment(new PelisFragment(), getString(R.string.moviesFragmentName));
         adapter.AddFragment(new DocusFragment(), getString(R.string.docsFragmentName));
 

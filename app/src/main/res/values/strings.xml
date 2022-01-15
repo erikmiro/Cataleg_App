@@ -52,4 +52,11 @@
     <string name="moviesFragmentName">Pel·lícules</string>
     <string name="docsFragmentName">Documentals</string>
     <string name="games">Videojocs</string>
+    <string name="category">Categoria</string>
+    <string name="action">Acció</string>
+    <string name="romance">Romanç</string>
+    <string name="scifi">Sci-Fi</string>
+    <string name="comedy">Comèdia</string>
+    <string name="drama">Drama</string>
+    <string name="horror">Horror</string>
 </resources>

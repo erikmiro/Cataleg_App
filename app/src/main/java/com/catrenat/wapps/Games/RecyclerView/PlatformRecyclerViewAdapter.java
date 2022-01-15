@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.catrenat.wapps.Games.GamesListFragment;
 import com.catrenat.wapps.Models.Platform;
+import com.catrenat.wapps.Movies.SeriesFragment;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -61,12 +62,10 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
             storageReference.child(platforms.get(position).getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-
-                    // Load image with glide
-                    Glide.with(context) // Context from getContext() in HomeFragment
-                            .load(uri.toString())
-                            .into(holder.platformImage);
-                    Log.i("IMAGEGLIDE", uri.toString());
+                // Load image with glide
+                Glide.with(context) // Context from getContext() in HomeFragment
+                        .load(uri.toString())
+                        .into(holder.platformImage);
                 }
             });
         }

@@ -58,12 +58,10 @@ public class MoviePlatformViewAdapter extends RecyclerView.Adapter<MoviePlatform
             storageReference.child(moviePlatforms.get(position).getImagePath()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-
-                    // Load image with glide
-                    Glide.with(context) // Context from getContext() in HomeFragment
-                            .load(uri.toString())
-                            .into(holder.platformImage);
-                    Log.i("IMAGEGLIDE", uri.toString());
+                // Load image with glide
+                Glide.with(context) // Context from getContext() in HomeFragment
+                        .load(uri.toString())
+                        .into(holder.platformImage);
                 }
             });
         }
@@ -72,14 +70,15 @@ public class MoviePlatformViewAdapter extends RecyclerView.Adapter<MoviePlatform
             @Override
             public void onClick(View view) {
                 AppCompatActivity app = (AppCompatActivity) view.getContext();
-                SeriesFragment seriesFragment = new SeriesFragment();
+                MoviesListFragment moviesListFragment = new MoviesListFragment();
+                //SeriesFragment seriesFragment = new SeriesFragment();
 
                 // Prepares and sets bundle for Detail fragment
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("moviePlatform", moviePlatforms.get(position).getName());
-                seriesFragment.setArguments(bundle);
+                moviesListFragment.setArguments(bundle);
 
-                app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MoviesListFragment(), "moviesListFragment").addToBackStack(null).commit();
+                app.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, moviesListFragment, "moviesListFragment").addToBackStack(null).commit();
             }
         });
     }

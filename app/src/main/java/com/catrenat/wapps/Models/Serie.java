@@ -13,11 +13,14 @@ public class Serie implements Serializable {
     String genres;
     String sinopsis;
     String youtubeUrl;
-    ArrayList<String> platforms;
-    ArrayList<String> platformsUrls;
+    ArrayList<String> platform;
+    ArrayList<String> platformUrl;
 
-    // Constructor
-    public Serie(String name, String imagePath, String category, String episodes, String seasons, String genres, String sinopsis, String youtubeUrl, ArrayList<String> platforms, ArrayList<String> platformsUrls) {
+    // Default Constructor
+    public Serie() {}
+
+    // Specific Constructor
+    public Serie(String name, String imagePath, String category, String episodes, String seasons, String genres, String sinopsis, String youtubeUrl, ArrayList<String> platform, ArrayList<String> platformUrl) {
         this.name = name;
         this.imagePath = imagePath;
         this.category = category;
@@ -26,8 +29,8 @@ public class Serie implements Serializable {
         this.genres = genres;
         this.sinopsis = sinopsis;
         this.youtubeUrl = youtubeUrl;
-        this.platforms = platforms;
-        this.platformsUrls = platformsUrls;
+        this.platform = platform;
+        this.platformUrl = platformUrl;
     }
 
     // Getters and Setters
@@ -95,19 +98,19 @@ public class Serie implements Serializable {
         this.youtubeUrl = youtubeUrl;
     }
 
-    public ArrayList<String> getPlatforms() {
-        return platforms;
+    public ArrayList<String> getPlatform() {
+        return platform;
     }
 
-    public void setPlatforms(ArrayList<String> platforms) {
-        this.platforms = platforms;
+    public void setPlatform(ArrayList<String> platform) {
+        this.platform = platform;
     }
 
-    public ArrayList<String> getPlatformsUrls() {
-        return platformsUrls;
+    public ArrayList<String> getPlatformUrl() {
+        return platformUrl;
     }
 
-    public void setPlatformsUrls(ArrayList<String> platformsUrls) {
-        this.platformsUrls = platformsUrls;
+    public void setPlatformUrl(ArrayList<String> platformUrl) {
+        this.platformUrl = platformUrl;
     }
 }
