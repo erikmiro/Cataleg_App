@@ -10,7 +10,7 @@ public class Serie implements Serializable {
     String category;
     String episodes;
     String seasons;
-    String genres;
+    ArrayList<String> genres;
     String sinopsis;
     String youtubeUrl;
     ArrayList<String> platform;
@@ -20,7 +20,7 @@ public class Serie implements Serializable {
     public Serie() {}
 
     // Specific Constructor
-    public Serie(String name, String imagePath, String category, String episodes, String seasons, String genres, String sinopsis, String youtubeUrl, ArrayList<String> platform, ArrayList<String> platformUrl) {
+    public Serie(String name, String imagePath, String category, String episodes, String seasons, ArrayList<String> genres, String sinopsis, String youtubeUrl, ArrayList<String> platform, ArrayList<String> platformUrl) {
         this.name = name;
         this.imagePath = imagePath;
         this.category = category;
@@ -74,11 +74,11 @@ public class Serie implements Serializable {
         this.seasons = seasons;
     }
 
-    public String getGenres() {
+    public ArrayList<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(String genres) {
+    public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
     }
 

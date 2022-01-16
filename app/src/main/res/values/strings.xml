@@ -55,8 +55,7 @@
     <string name="category">Categoria</string>
     <string name="action">Acció</string>
     <string name="romance">Romanç</string>
-    <string name="scifi">Sci-Fi</string>
     <string name="comedy">Comèdia</string>
     <string name="drama">Drama</string>
-    <string name="horror">Horror</string>
+    <string name="thriller">Suspens</string>
 </resources>

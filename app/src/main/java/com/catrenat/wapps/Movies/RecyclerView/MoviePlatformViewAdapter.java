@@ -78,7 +78,7 @@ public class MoviePlatformViewAdapter extends RecyclerView.Adapter<MoviePlatform
                 bundle.putSerializable("moviePlatform", moviePlatforms.get(position).getName());
                 moviesListFragment.setArguments(bundle);
 
-                app.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, moviesListFragment, "moviesListFragment").addToBackStack(null).commit();
+                app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, moviesListFragment, "moviesListFragment").addToBackStack(null).commit();
             }
         });
     }
