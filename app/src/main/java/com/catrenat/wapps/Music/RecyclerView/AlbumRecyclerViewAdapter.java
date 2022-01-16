@@ -64,11 +64,9 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
             holder.albumSeparator.setVisibility(View.INVISIBLE);
         }
         for (Map.Entry<String, Object> entry: artist.entrySet()) {
-            Log.i("erik", "artist valor: "+ entry.getValue() + " artist key: "+entry.getKey());
             if (entry.getKey().startsWith("album"+position)) {
                 Map<String, Object> insideAlbumMap = (Map<String, Object>) entry.getValue();
                 for (Map.Entry<String, Object> albumEntry: insideAlbumMap.entrySet()) {
-                    Log.i("erik", "artist valor: "+ albumEntry.getValue() + " artist key: "+albumEntry.getKey());
                     if (albumEntry.getKey().equals("albumName")) {
                         holder.albumName.setText(albumEntry.getValue().toString());
                     }
