@@ -38,7 +38,6 @@ public class AllSeriesRecyclerViewAdapter extends RecyclerView.Adapter<AllSeries
         // Set the movie category title
         holder.categoryTitle.setText(allCategories.get(position).getTitle());
         setSeriesRecycler(holder.seriesRecyclerView, allCategories.get(position).getSeries());
-        // Initialize Series Recycler view
     }
 
     @Override

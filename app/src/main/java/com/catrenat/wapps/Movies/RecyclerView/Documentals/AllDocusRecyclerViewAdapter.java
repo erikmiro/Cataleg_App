@@ -39,7 +39,6 @@ public class AllDocusRecyclerViewAdapter extends RecyclerView.Adapter<AllDocusRe
         // Set the movie category title
         holder.categoryTitle.setText(documentalsCategories.get(position).getTitle());
         setDocusRecycler(holder.docusRecyclerView, documentalsCategories.get(position).getDocumentals());
-        // Initialize Series Recycler view
     }
 
     @Override
@@ -59,7 +58,7 @@ public class AllDocusRecyclerViewAdapter extends RecyclerView.Adapter<AllDocusRe
         }
     }
 
-    // Set the series recycler view
+    // Set the Documental recycler view
     private void setDocusRecycler(RecyclerView docusRecyclerView, List<Documental> documentals) {
         DocusRecyclerViewAdapter docusRecyclerViewAdapter = new DocusRecyclerViewAdapter(documentals, context);
         docusRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));

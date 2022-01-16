@@ -39,9 +39,6 @@ public class DocusRecyclerViewAdapter extends RecyclerView.Adapter<DocusRecycler
 
     @Override
     public void onBindViewHolder(@NonNull DocusRecyclerViewAdapter.DocusViewHolder holder, int position) {
-
-        Log.i("erik", "docu image: "+documentals.get(position).getImagePath());
-
         // Image loader from firebase using glide (Asks firebase for image hosted url using imagePath to storage)
         StorageReference storageReference = FirebaseStorage.getInstance("gs://catrenat-3e277.appspot.com").getReference();
         if(!documentals.get(position).getImagePath().isEmpty() && documentals.get(position).getImagePath() != null) {
