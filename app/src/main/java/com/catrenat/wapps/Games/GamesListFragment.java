@@ -2,13 +2,11 @@ package com.catrenat.wapps.Games;
 
 import static android.content.ContentValues.TAG;
 
-import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -17,10 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.catrenat.wapps.Games.RecyclerView.GameListRecyclerViewAdapter;
-import com.catrenat.wapps.Games.RecyclerView.PlatformRecyclerViewAdapter;
 import com.catrenat.wapps.Models.Game;
-import com.catrenat.wapps.Models.Platform;
-import com.catrenat.wapps.Models.User;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -17,8 +17,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.catrenat.wapps.Games.RecyclerView.PlatformRecyclerViewAdapter;
-import com.catrenat.wapps.Models.Platform;
+import com.catrenat.wapps.Games.RecyclerView.PlatformListRecyclerViewAdapter;
+import com.catrenat.wapps.Models.GamePlatform;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,9 +28,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class GamesFragment extends Fragment {
+public class PlatformsListFragment extends Fragment {
     private FirebaseFirestore db;
-    ArrayList<Platform> platforms;
+    ArrayList<GamePlatform> gamePlatforms;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +48,7 @@ public class GamesFragment extends Fragment {
 
         // Data reading from firestore database
         db = FirebaseFirestore.getInstance();
-        platforms = new ArrayList<>();
+        gamePlatforms = new ArrayList<>();
         db.collection("GamePlatforms")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -57,12 +57,12 @@ public class GamesFragment extends Fragment {
                         if(task.isSuccessful()) {
                             // RecyclerView array argument construction
                             for(QueryDocumentSnapshot document : task.getResult()) {
-                                Platform platform = new Platform();
-                                platform.setName(document.getString("name"));
-                                platform.setImagePath(document.getString("imagePath"));
-                                platform.setHexColor(document.getString("hexColor"));
+                                GamePlatform gamePlatform = new GamePlatform();
+                                gamePlatform.setName(document.getString("name"));
+                                gamePlatform.setImagePath(document.getString("imagePath"));
+                                gamePlatform.setHexColor(document.getString("hexColor"));
                                 Log.d("Platform", document.getId() + " => " + document.getData());
-                                platforms.add(platform);
+                                gamePlatforms.add(gamePlatform);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -70,7 +70,7 @@ public class GamesFragment extends Fragment {
 
                         // RecyclerView declared and init with array
                         RecyclerView recyclerView = root.findViewById(R.id.gamePlatformRecyclerView);
-                        PlatformRecyclerViewAdapter adapter = new PlatformRecyclerViewAdapter(platforms, getContext());
+                        PlatformListRecyclerViewAdapter adapter = new PlatformListRecyclerViewAdapter(gamePlatforms, getContext());
                         recyclerView.setAdapter(adapter);
 
                         // Disables recyclerView nested scroll
