@@ -21,7 +21,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker;
 import com.catrenat.wapps.R;
 
-class CustomPlayerUiController extends AbstractYouTubePlayerListener implements YouTubePlayerFullScreenListener {
+public class CustomPlayerUiController extends AbstractYouTubePlayerListener implements YouTubePlayerFullScreenListener {
 
     // Properties
     private final View playerUi;
@@ -40,7 +40,7 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
     private final YouTubePlayerTracker playerTracker;
     private boolean fullscreen = false;
 
-    CustomPlayerUiController(Context context, View customPlayerUi, YouTubePlayer youTubePlayer, YouTubePlayerView youTubePlayerView) {
+    public CustomPlayerUiController(Context context, View customPlayerUi, YouTubePlayer youTubePlayer, YouTubePlayerView youTubePlayerView) {
         this.playerUi = customPlayerUi;
         this.context = context;
         this.youTubePlayer = youTubePlayer;

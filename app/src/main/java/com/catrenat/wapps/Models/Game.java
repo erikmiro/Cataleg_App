@@ -11,14 +11,15 @@ public class Game implements Serializable {
     private String releaseDate;
     private String developer;
     private String editor;
-    private String shareURL;
+    private String moreURL;
     private String translateURL;
     private ArrayList<String> galleryPaths;
+    private String youtubeURL;
 
     public Game() {
     }
 
-    public Game(String name, String imagePath, ArrayList<String> platforms, String gameDescription, String releaseDate, String developer, String editor, String shareURL, String translateURL, ArrayList<String> galleryPaths) {
+    public Game(String name, String imagePath, ArrayList<String> platforms, String gameDescription, String releaseDate, String developer, String editor, String moreURL, String translateURL, ArrayList<String> galleryPaths, String youtubeURL) {
         this.name = name;
         this.imagePath = imagePath;
         this.platforms = platforms;
@@ -26,9 +27,18 @@ public class Game implements Serializable {
         this.releaseDate = releaseDate;
         this.developer = developer;
         this.editor = editor;
-        this.shareURL = shareURL;
+        this.moreURL = moreURL;
         this.translateURL = translateURL;
         this.galleryPaths = galleryPaths;
+        this.youtubeURL = youtubeURL;
+    }
+
+    public String getYoutubeURL() {
+        return youtubeURL;
+    }
+
+    public void setYoutubeURL(String youtubeURL) {
+        this.youtubeURL = youtubeURL;
     }
 
     public String getGameDescription() {
@@ -87,12 +97,12 @@ public class Game implements Serializable {
         this.editor = editor;
     }
 
-    public String getShareURL() {
-        return shareURL;
+    public String getMoreURL() {
+        return moreURL;
     }
 
-    public void setShareURL(String shareURL) {
-        this.shareURL = shareURL;
+    public void setMoreURL(String moreURL) {
+        this.moreURL = moreURL;
     }
 
     public String getTranslateURL() {

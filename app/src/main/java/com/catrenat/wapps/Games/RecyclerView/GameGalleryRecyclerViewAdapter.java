@@ -59,7 +59,7 @@ public class GameGalleryRecyclerViewAdapter extends RecyclerView.Adapter<GameGal
                 holder.galleryItemImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        listener.onItemClicked(uri);
+                        listener.onItemClicked(uri, position);
                     }
                 });
             }

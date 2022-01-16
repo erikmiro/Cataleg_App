@@ -19,6 +19,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/gameYoutubePlayer"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="10dp"
+        app:autoPlay="false"
+        app:enableAutomaticInitialization="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/galleryRecyclerView"
         android:layout_width="match_parent"
@@ -77,7 +91,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/platformLogoRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="60dp"
                 app:layout_constraintBottom_toBottomOf="@+id/gameTitle"
@@ -184,69 +198,93 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/moreImage"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/games_detail_go"
-        app:layout_constraintEnd_toStartOf="@+id/translateImage"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separatorLineView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/translateView"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shareView"
+        app:layout_constraintStart_toEndOf="@+id/moreView">
 
-    <ImageView
-        android:id="@+id/shareImage"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="40dp"
-        android:src="@drawable/link_filled"
+        <ImageView
+            android:id="@+id/translateImage"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/share_filled"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/translateString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gameTranslate"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/translateImage"
+            app:layout_constraintStart_toStartOf="@+id/translateImage"
+            app:layout_constraintTop_toBottomOf="@+id/translateImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/moreView"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/translateView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/translateView">
+
+        <ImageView
+            android:id="@+id/moreImage"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/games_detail_go"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.464"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/moreString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gameMore"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/moreImage"
+            app:layout_constraintStart_toStartOf="@+id/moreImage"
+            app:layout_constraintTop_toBottomOf="@+id/moreImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shareView"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/translateImage"
-        app:layout_constraintTop_toBottomOf="@+id/separatorLineView" />
+        app:layout_constraintStart_toEndOf="@+id/translateView"
+        app:layout_constraintTop_toTopOf="@+id/translateView">
 
-    <ImageView
-        android:id="@+id/translateImage"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/share_filled"
-        app:layout_constraintEnd_toStartOf="@+id/shareImage"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/moreImage"
-        app:layout_constraintTop_toBottomOf="@+id/separatorLineView" />
+        <ImageView
+            android:id="@+id/shareImage"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/link_filled"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/moreString"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gameMore"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/moreImage"
-        app:layout_constraintStart_toStartOf="@+id/moreImage"
-        app:layout_constraintTop_toBottomOf="@+id/moreImage" />
-
-    <TextView
-        android:id="@+id/shareString"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gameShare"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/translateImage"
-        app:layout_constraintStart_toStartOf="@+id/translateImage"
-        app:layout_constraintTop_toBottomOf="@+id/translateImage" />
-
-    <TextView
-        android:id="@+id/translateString"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gameTranslate"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/shareImage"
-        app:layout_constraintStart_toStartOf="@+id/shareImage"
-        app:layout_constraintTop_toBottomOf="@+id/shareImage" />
+        <TextView
+            android:id="@+id/shareString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gameShare"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/shareImage"
+            app:layout_constraintStart_toStartOf="@+id/shareImage"
+            app:layout_constraintTop_toBottomOf="@+id/shareImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
