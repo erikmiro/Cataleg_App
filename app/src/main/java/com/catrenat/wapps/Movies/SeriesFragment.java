@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.catrenat.wapps.Models.MovieCategories;
+import com.catrenat.wapps.Models.SerieCategories;
 import com.catrenat.wapps.Models.Serie;
-import com.catrenat.wapps.Movies.RecyclerView.AllSeriesRecyclerViewAdapter;
+import com.catrenat.wapps.Movies.RecyclerView.Series.AllSeriesRecyclerViewAdapter;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,7 +37,7 @@ public class SeriesFragment extends Fragment {
     private RecyclerView allSeriesRecyclerView;
     private AllSeriesRecyclerViewAdapter moviesAdapter;
     private ArrayList<Serie> seriesList = new ArrayList();
-    private List<MovieCategories> movieCategoriesList = new ArrayList<>();
+    private List<SerieCategories> serieCategoriesList = new ArrayList<>();
     private List<Serie> comedySeries = new ArrayList<>();
     private List<Serie> actionSeries = new ArrayList<>();
     private List<Serie> romanceSeries = new ArrayList<>();
@@ -63,8 +63,7 @@ public class SeriesFragment extends Fragment {
         Bundle bundle = getArguments();
         selectedPlatform = (String) bundle.getSerializable("moviePlatform");
 
-        //moviesAdapter.setData();
-        //moviesListRecyclerView.setAdapter();
+        // Setting up categories recycler view
         allSeriesRecyclerView = view.findViewById(R.id.categoryRecyclerView);
         allSeriesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         allSeriesRecyclerView.setHasFixedSize(false);
@@ -107,7 +106,7 @@ public class SeriesFragment extends Fragment {
                             }
                             // Initializing the RecyclerView for the movie categories list
                             addCategories();
-                            moviesAdapter = new AllSeriesRecyclerViewAdapter(movieCategoriesList, getContext());
+                            moviesAdapter = new AllSeriesRecyclerViewAdapter(serieCategoriesList, getContext());
                             allSeriesRecyclerView.setAdapter(moviesAdapter);
                         } else {
                             Log.d("SERIES", "Error getting documents: ", task.getException());
@@ -118,23 +117,23 @@ public class SeriesFragment extends Fragment {
     }
 
     private void addCategories() {
-        if (movieCategoriesList != null){
-            movieCategoriesList.clear();
+        if (serieCategoriesList != null){
+            serieCategoriesList.clear();
         }
         if (!actionSeries.isEmpty()) {
-            movieCategoriesList.add(new MovieCategories(getString(R.string.action), actionSeries));
+            serieCategoriesList.add(new SerieCategories(getString(R.string.action), actionSeries));
         }
         if (!romanceSeries.isEmpty()) {
-            movieCategoriesList.add(new MovieCategories(getString(R.string.romance), romanceSeries));
+            serieCategoriesList.add(new SerieCategories(getString(R.string.romance), romanceSeries));
         }
         if (!comedySeries.isEmpty()) {
-            movieCategoriesList.add(new MovieCategories(getString(R.string.comedy), comedySeries));
+            serieCategoriesList.add(new SerieCategories(getString(R.string.comedy), comedySeries));
         }
         if (!dramaSeries.isEmpty()) {
-            movieCategoriesList.add(new MovieCategories(getString(R.string.drama), dramaSeries));
+            serieCategoriesList.add(new SerieCategories(getString(R.string.drama), dramaSeries));
         }
         if (!thrillerSeries.isEmpty()) {
-            movieCategoriesList.add(new MovieCategories(getString(R.string.thriller), thrillerSeries));
+            serieCategoriesList.add(new SerieCategories(getString(R.string.thriller), thrillerSeries));
         }
     }
 

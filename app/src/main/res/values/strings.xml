@@ -58,4 +58,9 @@
     <string name="comedy">Comèdia</string>
     <string name="drama">Drama</string>
     <string name="thriller">Suspens</string>
+    <string name="nature">Naturalesa</string>
+    <string name="crime">Crims i misteri</string>
+    <string name="technology">Tecnologia</string>
+    <string name="health">Salut</string>
+    <string name="food">Alimentació</string>
 </resources>

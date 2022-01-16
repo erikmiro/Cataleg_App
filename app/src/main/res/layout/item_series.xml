@@ -19,7 +19,9 @@
             android:id="@+id/serieCardView"
             android:layout_width="140dp"
             android:layout_height="90dp"
-            app:cardBackgroundColor="@color/black"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,10 +29,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:clickable="true"
+                android:focusableInTouchMode="true"
                 android:id="@+id/serieImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/bg_header_userimage" />
+                app:srcCompat="@drawable/multimedia" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

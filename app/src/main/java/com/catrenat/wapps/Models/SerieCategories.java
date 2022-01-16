@@ -3,15 +3,15 @@ package com.catrenat.wapps.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieCategories {
+public class SerieCategories {
     String title;
     List<Serie> series;
 
     // Default constructor
-    public MovieCategories() {}
+    public SerieCategories() {}
 
     // Specific constructor
-    public MovieCategories(String title, List<Serie> series) {
+    public SerieCategories(String title, List<Serie> series) {
         this.title = title;
         this.series = series;
     }

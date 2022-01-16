@@ -44,8 +44,14 @@ public class MoviesListFragment extends Fragment {
         // Bundle
         Bundle bundle = getArguments();
         selectedPlatform = (String) bundle.getSerializable("moviePlatform");
+
+        // Creating the fragments to be able to pass bundle to each
         SeriesFragment seriesFragment = new SeriesFragment();
         seriesFragment.setArguments(bundle);
+        PelisFragment pelisFragment = new PelisFragment();
+        pelisFragment.setArguments(bundle);
+        DocusFragment docusFragment = new DocusFragment();
+        docusFragment.setArguments(bundle);
 
         // Elements of the view
         tabLayout = view.findViewById(R.id.tabLayout);
@@ -54,8 +60,8 @@ public class MoviesListFragment extends Fragment {
 
         // Add fragments to the adapter
         adapter.AddFragment(seriesFragment, getString(R.string.seriesFragmentName));
-        adapter.AddFragment(new PelisFragment(), getString(R.string.moviesFragmentName));
-        adapter.AddFragment(new DocusFragment(), getString(R.string.docsFragmentName));
+        adapter.AddFragment(pelisFragment, getString(R.string.moviesFragmentName));
+        adapter.AddFragment(docusFragment, getString(R.string.docsFragmentName));
 
         // Set Adapter
         viewPager.setAdapter(adapter);

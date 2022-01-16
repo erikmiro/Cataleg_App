@@ -1,31 +1,26 @@
-package com.catrenat.wapps.Movies.RecyclerView;
+package com.catrenat.wapps.Movies.RecyclerView.Series;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.catrenat.wapps.Models.MovieCategories;
+import com.catrenat.wapps.Models.SerieCategories;
 import com.catrenat.wapps.Models.Serie;
 import com.catrenat.wapps.R;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class AllSeriesRecyclerViewAdapter extends RecyclerView.Adapter<AllSeriesRecyclerViewAdapter.AllSeriesViewHolder> {
-    private List<MovieCategories> allCategories;
+    private List<SerieCategories> allCategories;
     private Context context;
 
-    public AllSeriesRecyclerViewAdapter(List<MovieCategories> allCategories, Context context) {
+    public AllSeriesRecyclerViewAdapter(List<SerieCategories> allCategories, Context context) {
         this.context = context;
         this.allCategories = allCategories;
     }
