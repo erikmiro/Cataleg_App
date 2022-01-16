@@ -67,8 +67,7 @@ public class SeriesFragment extends Fragment {
         //moviesListRecyclerView.setAdapter();
         allSeriesRecyclerView = view.findViewById(R.id.categoryRecyclerView);
         allSeriesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        allSeriesRecyclerView.setNestedScrollingEnabled(true);
-
+        allSeriesRecyclerView.setHasFixedSize(false);
         clearData();
 
         // Data reading from firestore database
@@ -86,8 +85,6 @@ public class SeriesFragment extends Fragment {
                                 for (String platform : serie.getPlatform()) {
                                     if (selectedPlatform.equals(platform)) {
                                         seriesList.add(serie);
-                                        Log.i("Erik", " inside query serie platform "+ serie.getPlatform());
-                                        Log.i("Erik", " inside query selected platform "+ selectedPlatform);
                                     }
                                 }
                             }
@@ -124,11 +121,21 @@ public class SeriesFragment extends Fragment {
         if (movieCategoriesList != null){
             movieCategoriesList.clear();
         }
-        movieCategoriesList.add(new MovieCategories(getString(R.string.action), actionSeries));
-        movieCategoriesList.add(new MovieCategories(getString(R.string.romance), romanceSeries));
-        movieCategoriesList.add(new MovieCategories(getString(R.string.comedy), comedySeries));
-        movieCategoriesList.add(new MovieCategories(getString(R.string.drama), dramaSeries));
-        movieCategoriesList.add(new MovieCategories(getString(R.string.thriller), thrillerSeries));
+        if (!actionSeries.isEmpty()) {
+            movieCategoriesList.add(new MovieCategories(getString(R.string.action), actionSeries));
+        }
+        if (!romanceSeries.isEmpty()) {
+            movieCategoriesList.add(new MovieCategories(getString(R.string.romance), romanceSeries));
+        }
+        if (!comedySeries.isEmpty()) {
+            movieCategoriesList.add(new MovieCategories(getString(R.string.comedy), comedySeries));
+        }
+        if (!dramaSeries.isEmpty()) {
+            movieCategoriesList.add(new MovieCategories(getString(R.string.drama), dramaSeries));
+        }
+        if (!thrillerSeries.isEmpty()) {
+            movieCategoriesList.add(new MovieCategories(getString(R.string.thriller), thrillerSeries));
+        }
     }
 
     // To add a serie to firebase programatically
