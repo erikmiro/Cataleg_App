@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.catrenat.wapps.Games.GamesListFragment;
-import com.catrenat.wapps.Models.Platform;
+import com.catrenat.wapps.Models.GamePlatform;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -26,13 +26,13 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRecyclerViewAdapter.ViewHolder> {
-    private ArrayList<Platform> platforms;
+    private ArrayList<GamePlatform> platforms;
     private Context context;
 
     public PlatformRecyclerViewAdapter() {
     }
 
-    public PlatformRecyclerViewAdapter(ArrayList<Platform> platforms, Context context){
+    public PlatformRecyclerViewAdapter(ArrayList<GamePlatform> platforms, Context context){
         this.platforms = platforms;
         this.context = context;
     }
