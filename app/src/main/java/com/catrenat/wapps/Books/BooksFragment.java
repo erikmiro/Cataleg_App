@@ -71,13 +71,13 @@ public class BooksFragment extends Fragment {
                                 booksList.add(book);
                             }
                             for (int i = 0; i < booksList.size(); i++) {
-                                if (booksList.get(i).getCategory().equals(getString(R.string.action))) {
+                                if (booksList.get(i).getCategory().equals("romance")) {
                                     romanceBooks.add(booksList.get(i));
                                 }
-                                if (booksList.get(i).getCategory().equals(getString(R.string.romance))) {
+                                if (booksList.get(i).getCategory().equals("thriller")) {
                                     thrillerBooks.add(booksList.get(i));
                                 }
-                                if (booksList.get(i).getCategory().equals(getString(R.string.comedy))) {
+                                if (booksList.get(i).getCategory().equals("childs")) {
                                     childsBooks.add(booksList.get(i));
                                 }
                             }
