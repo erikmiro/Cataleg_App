@@ -24,6 +24,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.catrenat.wapps.Books.BooksFragment;
+import com.catrenat.wapps.LoginScreen.LoginScreen;
+import com.catrenat.wapps.Models.User;
+import com.catrenat.wapps.Movies.MoviesFragment;
 import com.catrenat.wapps.Music.MusicFragment;
 import com.catrenat.wapps.Games.PlatformsListFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
