@@ -10,18 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.catrenat.wapps.Models.Book;
 import com.catrenat.wapps.Models.BooksCategory;
+import com.catrenat.wapps.Models.Serie;
+import com.catrenat.wapps.Movies.RecyclerView.Series.SeriesRecyclerViewAdapter;
 import com.catrenat.wapps.R;
 
 import java.util.List;
 
 public class BooksCategoryAdapter extends RecyclerView.Adapter<BooksCategoryAdapter.CategoryViewHolder> {
 
-    private Context mContext;
+    private Context context;
     private List<BooksCategory> mListCategory;
 
-    public BooksCategoryAdapter(Context context){
-        this.mContext = mContext;
+    public BooksCategoryAdapter(List<BooksCategory> booksCategoriesList, Context context){
+        this.context = context;
     }
 
     public void setData(List<BooksCategory> list) {
@@ -37,18 +40,9 @@ public class BooksCategoryAdapter extends RecyclerView.Adapter<BooksCategoryAdap
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        BooksCategory category = mListCategory.get(position);
-        if (category == null){
-            return;
-        }
-        holder.bookNameCategory.setText(category.getNameCategory());
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
-        holder.rcvBookCategory.setLayoutManager(linearLayoutManager);
-
-        BookAdapter bookAdapter = new BookAdapter();
-        bookAdapter.setData(category.getBooks());
-        holder.rcvBookCategory.setAdapter(bookAdapter);
+        // Set the movie category title
+        holder.bookNameCategory.setText(mListCategory.get(position).getNameCategory());
+        setBooksRecycler(holder.rcvBookCategory, mListCategory.get(position).getBooks());
     }
 
     @Override
@@ -67,5 +61,11 @@ public class BooksCategoryAdapter extends RecyclerView.Adapter<BooksCategoryAdap
             bookNameCategory = itemView.findViewById(R.id.books_name_category);
             rcvBookCategory = itemView.findViewById(R.id.rcv_book);
         }
+    }
+
+    private void setBooksRecycler(RecyclerView booksRecyclerView, List<Book> books) {
+        BookAdapter bookAdapter = new BookAdapter(books, context);
+        booksRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+        booksRecyclerView.setAdapter(bookAdapter);
     }
 }

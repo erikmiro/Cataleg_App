@@ -3,22 +3,22 @@ package com.catrenat.wapps.Models;
 import java.util.List;
 
 public class BooksCategory {
-    private String nameCategory;
+    private String title;
     private List<Book> books;
 
     public BooksCategory(){}
 
     public BooksCategory(String nameCategory, List<Book> books) {
-        this.nameCategory = nameCategory;
+        this.title = nameCategory;
         this.books = books;
     }
 
     public String getNameCategory() {
-        return nameCategory;
+        return title;
     }
 
     public void setNameCategory(String nameCategory) {
-        this.nameCategory = nameCategory;
+        this.title = nameCategory;
     }
 
     public List<Book> getBooks() {
