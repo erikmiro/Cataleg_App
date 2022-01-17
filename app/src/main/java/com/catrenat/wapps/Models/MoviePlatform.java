@@ -1,15 +1,17 @@
 package com.catrenat.wapps.Models;
 
-public class Platform {
+import java.io.Serializable;
+
+public class MoviePlatform implements Serializable {
     private String name;
     private String imagePath;
     private String hexColor;
 
-    public Platform() {
+    public MoviePlatform() {
 
     }
 
-    public Platform(String name, String imagePath, String hexColor) {
+    public MoviePlatform(String name, String imagePath, String hexColor) {
         this.name = name;
         this.imagePath = imagePath;
         this.hexColor = hexColor;

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/albumImage"
+            android:layout_width="90dp"
+            android:layout_height="86dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/music_bg_box_less_corners" />
+
+        <ImageView
+            android:id="@+id/albumSeparator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_linia_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/albumImage" />
+
+        <TextView
+            android:id="@+id/albumName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/notosanshk_bold"
+            android:text="@string/albumName"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@+id/albumImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/albumYear"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="-15dp"
+            android:fontFamily="@font/notosanshk_bold"
+            android:text="@string/albumYear"
+            android:textColor="@color/grey"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/albumImage"
+            app:layout_constraintTop_toBottomOf="@+id/albumName" />
+
+        <TextView
+            android:id="@+id/albumType"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="-15dp"
+            android:fontFamily="@font/notosanshk_bold"
+            android:text="@string/albumType"
+            android:textColor="@color/grey"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/albumYear"
+            app:layout_constraintTop_toBottomOf="@+id/albumName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

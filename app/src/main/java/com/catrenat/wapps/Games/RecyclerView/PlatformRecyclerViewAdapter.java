@@ -3,6 +3,7 @@ package com.catrenat.wapps.Games.RecyclerView;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.catrenat.wapps.Models.Platform;
+import com.catrenat.wapps.Games.GamesListFragment;
+import com.catrenat.wapps.Models.GamePlatform;
 import com.catrenat.wapps.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -23,13 +26,13 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRecyclerViewAdapter.ViewHolder> {
-    private ArrayList<Platform> platforms;
+    private ArrayList<GamePlatform> platforms;
     private Context context;
 
     public PlatformRecyclerViewAdapter() {
     }
 
-    public PlatformRecyclerViewAdapter(ArrayList<Platform> platforms, Context context){
+    public PlatformRecyclerViewAdapter(ArrayList<GamePlatform> platforms, Context context){
         this.platforms = platforms;
         this.context = context;
     }
@@ -67,6 +70,26 @@ public class PlatformRecyclerViewAdapter extends RecyclerView.Adapter<PlatformRe
                 }
             });
         }
+
+        holder.platformBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Preparation for fragment transaction
+                AppCompatActivity app = (AppCompatActivity) view.getContext();
+                GamesListFragment gamesListFragment = new GamesListFragment();
+
+                // Prepares and sets bundle for Detail fragment
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("platform", platforms.get(position).getName());
+                gamesListFragment.setArguments(bundle);
+
+                // Fragment trasnaction
+                app.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, gamesListFragment)
+                        .commit();
+            }
+        });
     }
 
     @Override
